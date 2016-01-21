@@ -11,6 +11,14 @@ app.get('/', function(request, response){
 	response.render('pages/main');
 });
 
+app.get('/flux', function(request, response){
+	response.render('pages/flux');
+});
+
+app.get('/archives', function(request, response){
+	response.render('pages/archives');
+});
+
 app.listen(app.get('port'), function(){
 	console.log('Node app is running on port', app.get('port'));
 });
