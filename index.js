@@ -1,4 +1,5 @@
 var ParseCloud = require('parse-cloud-express');
+var Parse = ParseCloud.Parse;
 var nunjucks = require('nunjucks');
 var express = require('express');
 var app = express();
@@ -6,6 +7,10 @@ var app = express();
 nunjucks.configure('views', {
 	autoescape:true,
 	express:app
+});
+
+Parse.Cloud.define('hello', function(request, response) {
+	response.success('Hello from Cloud Code on Node.');
 });
 
 app.set('port', process.env.PORT || 5000);
