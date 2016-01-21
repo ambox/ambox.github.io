@@ -13,7 +13,7 @@ app.set('views', __dirname +'/views');
 app.use(express.static(__dirname +'/public'));
 
 app.get('/', function(request, response){
-	response.render('pages/main');
+	response.render('index');
 });
 
 app.get('/flux', function(request, response){

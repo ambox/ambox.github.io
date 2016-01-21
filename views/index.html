@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+	<base href="/"/>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Adrian C. Miranda // Front-End Developer</title>
+	<title>{% block title %}ambox // root{% endblock %}</title>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/base.css">
-	<base href="/"/>
 </head>
 <body>
 <section class='container'>
-	{% include "../partials/test.html" %}
 	<nav class="menu">
 		<ul class="list">
 			<li class="list__item"><a class="link" ui-sref="flux">Flux</a></li>
@@ -18,6 +18,8 @@
 			<li class="list__item"><a class="link" ui-sref="contact">Contact</a></li>
 		</ul>
 	</nav>
-	<script src="scripts/vendors/require.js" data-main="scripts/setup.js"></script>
+	<section class="page">
+		<div ui-view>{% block section %}soon{% endblock %}</div>
+	</section>
 </body>
 </html>
