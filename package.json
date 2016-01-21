@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "express": "^4.13.3",
-    "nunjucks": "^2.3.0"
+    "nunjucks": "^2.3.0",
+    "parse-cloud-express": "^1.1.0"
   },
   "engines": {
     "node": "0.12.7"
