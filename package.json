@@ -2,16 +2,16 @@
   "name": "Ambox",
   "version": "0.0.0",
   "description": "git-push powered folio",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
     "express": "^4.13.3",
-    "method-override": "^2.3.5",
     "nunjucks": "^2.3.0",
+    "body-parser": "^1.14.2",
+    "method-override": "^2.3.5",
     "parse-cloud-express": "^1.1.0"
   },
   "engines": {
