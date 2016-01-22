@@ -1,7 +1,7 @@
 {
   "name": "Ambox",
   "version": "0.0.0",
-  "description": "A git-push powered folio",
+  "description": "git-push powered folio",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -22,6 +22,7 @@
     "url": "https://github.com/heroku/node-js-getting-started"
   },
   "keywords": [
+    "ambox"
     "node",
     "heroku",
     "express"
