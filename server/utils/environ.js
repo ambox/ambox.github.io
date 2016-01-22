@@ -17,12 +17,12 @@ environ.load = function(filePath, overwrite){
 
 environ.set = function(variable, value, overwrite){
 	value = overwrite? value : environ.get(variable, value);
-	process.env[variable] = value;
+	process.env[variable] = String(value);
 	return process.env[variable];
 };
 
 environ.get = function(variable, defaultValue){
-	return process.env[variable] || defaultValue || variable;
+	return String(process.env[variable] || defaultValue || variable);
 };
 
 module.exports = environ;
