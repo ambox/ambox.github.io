@@ -2,8 +2,14 @@ var ParseCloud = require('parse-cloud-express');
 var Parse = ParseCloud.Parse;
 var nunjucks = require('nunjucks');
 var express = require('express');
-var info = require('./server/info');
+var info = {};//require('./server/info');
 var app = express();
+
+var Menu = {
+	'/flux':'Flux',
+	'/archives':'Archives',
+	'/contact':'Contact'
+};
 
 nunjucks.configure('views', {
 	autoescape:true,
@@ -21,7 +27,7 @@ app.use('/webhooks', ParseCloud.app);
 app.use(express.static(__dirname +'/public'));
 
 app.get('/', function(request, response){
-	response.render('index', { env:info });
+	response.render('index', { env:info, menu:Menu });
 });
 
 app.get('/flux/:project', function(request, response){
