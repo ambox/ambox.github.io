@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.1.5",
-  "description": "A sample Node.js app using Express 4",
+  "name": "Ambox",
+  "version": "0.0.0",
+  "description": "A git-push powered folio",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
