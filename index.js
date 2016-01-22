@@ -43,5 +43,7 @@ app.all('*', function(request, response){
 });
 
 app.listen(app.get('port'), function(){
-	console.log('Node app is running on port', app.get('port'));
+	var host = this.address().address;
+	var port = this.address().port;
+	console.log('Node app is running at http://%s:%s', host, port);
 });
