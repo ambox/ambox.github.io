@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.14.2",
+    "chalk": "^1.1.1",
     "express": "^4.13.3",
     "nunjucks": "^2.3.0",
     "parse-cloud-express": "^1.1.0"
