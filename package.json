@@ -22,7 +22,7 @@
     "url": "https://github.com/heroku/node-js-getting-started"
   },
   "keywords": [
-    "ambox"
+    "ambox",
     "node",
     "heroku",
     "express"
