@@ -1,6 +1,5 @@
-'use strict';
-
 var File = require('./File');
+
 var EnvFile = function(url, options){
 	var file = new File(url, options);
 	this.variables = {};
@@ -9,7 +8,7 @@ var EnvFile = function(url, options){
 	file.lines.filter(function(line){
 		return /\s*=\s*/i.test(line);
 	}).forEach(function(line, match, key, val){
-		line = line.replace(/exports(\s)+/, '');
+		line = line.replace(/exports)+/, '');
 		match = line.match(/^([^=]+)\s*=\s*(.*)$/) || ['','',''];
 		key = match[1];
 		val = match[2].match(/^(['"]?)([^\n]*)\1$/m)[2];

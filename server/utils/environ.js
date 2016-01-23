@@ -1,3 +1,4 @@
+/* global process */
 var fs = require('fs');
 var path = require('path');
 var scope = require('./scope');
@@ -30,4 +31,4 @@ environ.has = function(variable){
 	return !!process.env[variable];
 };
 
-module.exports = environ;
+module.exports.environ = environ;
