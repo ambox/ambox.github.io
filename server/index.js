@@ -28,7 +28,7 @@ nunjucks.configure('views', {
 //////////////////////////////////////////////////////////////
 
 environ(environ.get('ENVRC', info.url.base +'/.environment'));
-environ.set('LOG_DIR_PATH', process.cwd(), true);
+environ.set('LOG_DIR_PATH', info.url.base, true);
 app.set('port', environ.get('PORT', 3000));
 app.set('views', info.url.base +'/views');
 app.set('static', info.url.base +'/public');
@@ -54,13 +54,13 @@ app.get('/', function(request, response){
 	response.render('index', { env:info, menu:Menu });
 });
 
-app.get('/flux/:project', function(request, response){
-	info.params = request.params;
+app.get('/flux/:uid?', function(request, response){
+	info.params = { uid:request.params.uid };
 	response.render('pages/flux', { env:info });
 });
 
-app.get('/archives/:data', function(request, response){
-	info.params = request.params;
+app.get('/archives/:uid?', function(request, response){
+	info.params = { uid:request.params.uid };
 	response.render('pages/archives', { env:info });
 });
 
