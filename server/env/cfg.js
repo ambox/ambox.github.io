@@ -14,5 +14,5 @@ try{
 		module.exports=require('./localhost');
 	}
 }catch(error){
-	console.warn('[Environment '+ error.name +':', error.message +']');
+	console.warn('[Environment '+ error.stack +'\n]');
 }
