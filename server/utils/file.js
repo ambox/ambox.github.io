@@ -1,10 +1,9 @@
 /* global ambox */
 var fs = require('fs');
 var path = require('path');
-var scope = require('./scope');
 
 var File = function(url, options){
-	this.options = scope.merge({}, options);
+	this.options = ambox.merge({}, options);
 	this.url = this.url(url);
 	this.lines = [];
 };

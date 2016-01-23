@@ -1,7 +1,6 @@
 /* global ambox, process */
 var fs = require('fs');
 var path = require('path');
-var scope = require('./scope');
 var EnvFile = require('./envfile');
 
 var environ = function(filePath, overwrite){
@@ -9,7 +8,7 @@ var environ = function(filePath, overwrite){
 };
 
 environ.load = function(filePath, options){
-	options = scope.merge({}, options);
+	options = ambox.merge({}, options);
 	var file = new EnvFile(filePath, options);
 	file.eachVar(function(value, key){
 		environ.set(key, value, options.overwrite);
