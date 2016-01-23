@@ -1,3 +1,3 @@
 'use strict';
-// machine
+// machine (offline)
 
