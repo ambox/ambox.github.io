@@ -23,7 +23,7 @@ environ.set = function(variable, value, overwrite){
 };
 
 environ.get = function(variable, defaultValue){
-	return process.env[variable] || String(defaultValue || variable);
+	return process.env[variable] || defaultValue;
 };
 
 module.exports = environ;
