@@ -19,7 +19,7 @@ var merge = function(target){
 	return target;
 };
 
-var write = function(target, path, value){
+var write = function(target, path, value, overwrite){
 	var id = 0;
 	var keys = ls(path);
 	var total = keys.length - 1;
@@ -30,8 +30,9 @@ var write = function(target, path, value){
 		target = target[path] = isLikeObject? target[path]:{};
 	}
 	if(typeof(value) === 'undefined'){
-		delete(target[keys[id]]);
+		overwrite && delete(target[keys[id]]);
 	}else{
+		value = overwrite? value : target[keys[id]] || value;
 		target[keys[id]] = value;
 	}
 	return value;
@@ -50,8 +51,9 @@ var stub = function(target, namespace){
 	target.namespace = namespace;
 	target.merge = merge;
 	target.ls = ls;
-	target.uri = function(key, value){
-		return value? write(target, key, value) : read(target, key);
+	target.uri = function(key, value, overwrite){
+		overwrite = value && typeof overwrite === 'undefined'? true : !!overwrite;
+		return value? write(target, key, value, overwrite) : read(target, key);
 	};
 	return target;
 };
