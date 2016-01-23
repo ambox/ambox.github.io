@@ -6,12 +6,12 @@ try{
 	if(environ.has('HOST_ROLE')){
 		var role = environ.get('HOST_ROLE');
 		switch(role.toLowerCase()){
-			case 'master':require('./production');break;
-			case 'hml':require('./staging');break;
-			default:require('./development');break;
+			case 'master':module.exports=require('./production');break;
+			case 'hml':module.exports=require('./staging');break;
+			default:module.exports=require('./development');break;
 		}
 	}else{
-		require('./localhost');
+		module.exports=require('./localhost');
 	}
 }catch(error){
 	console.warn('[Environment '+ error.name +':', error.message +']');
