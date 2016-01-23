@@ -1,9 +1,5 @@
 'use strict';
 
-// THIS_DIR = os.path.dirname(__file__);
-// ROOT_DIR = rel('../../');
-// BASE_DIR = rel('..');
-
 var ParseCloud = require('parse-cloud-express');
 var Parse = ParseCloud.Parse;
 var methodOverride = require('method-override');
@@ -46,7 +42,7 @@ app.set('view engine', 'html');
 app.use('/webhooks', ParseCloud.app);
 app.use(express.static(app.get('static')));
 app.use(bodyParser.urlencoded({ extended:false }));
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 app.use(methodOverride());
 
 
@@ -72,17 +68,13 @@ app.get('/contact', function(request, response){
 	response.render('pages/contact', { env:info });
 });
 
-app.all('*', function(request, response){
-	response.status(404).render('server/404');
-});
-
-app.use(function(error, request, response, next){
-	console.error(error.stack);
-	response.status(error.status || 500).render('server/'+error.status, {
-		env:info,
-		message:error.message,
-		error:error
-	});
+app.all('*', function(request, response, next){
+	response.header('Access-Control-Allow-Origin', '*');
+	response.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	response.header('Access-Control-Allow-Methods','PUT,POST,GET,DELETE,OPTIONS');
+	response.header('X-Powered-By', ' 3.2.1');
+	response.header('Content-Type', 'application/json;charset=utf-8');
+	request.method === 'OPTIONS'? response.send(200) : next();
 });
 
 app.listen(app.get('port'), function(){
