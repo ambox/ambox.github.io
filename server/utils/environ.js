@@ -1,16 +1,17 @@
 var fs = require('fs');
 var path = require('path');
-var assert = require('assert');
+var merge = require('./merge');
 var EnvFile = require('./envfile');
 
 var environ = function(filePath, overwrite){
 	environ.load(filePath, overwrite);
 };
 
-environ.load = function(filePath, overwrite){
-	var file = new EnvFile(filePath);
+environ.load = function(filePath, options){
+	options = merge({}, options);
+	var file = new EnvFile(filePath, options);
 	file.eachVar(function(value, key){
-		environ.set(key, value, overwrite);
+		environ.set(key, value, options.overwrite);
 	});
 	return file;
 };
@@ -22,7 +23,7 @@ environ.set = function(variable, value, overwrite){
 };
 
 environ.get = function(variable, defaultValue){
-	return String(process.env[variable] || defaultValue || variable);
+	return process.env[variable] || String(defaultValue || variable);
 };
 
 module.exports = environ;

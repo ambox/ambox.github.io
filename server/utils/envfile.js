@@ -1,8 +1,8 @@
 'use strict';
 
 var File = require('./File');
-var EnvFile = function(url){
-	var file = new File(url);
+var EnvFile = function(url, options){
+	var file = new File(url, options);
 	this.variables = {};
 	this.text = file.readSync();
 	this.lines = file.lines;
