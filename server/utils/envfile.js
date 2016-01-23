@@ -9,12 +9,12 @@ var EnvFile = function(url, options){
 	file.lines.filter(function(line){
 		return /\s*=\s*/i.test(line);
 	}).forEach(function(line, match, key, val){
-		line = line.replace(/exports)+/, '');
+		line = line.replace(/(exports|set)(\s)+/, '');
 		match = line.match(/^([^=]+)\s*=\s*(.*)$/) || ['','',''];
 		key = match[1];
 		val = match[2].match(/^(['"]?)([^\n]*)\1$/m)[2];
 		if(key && val){
-			this.variables[key] = val;
+			this.variables[key.trim()] = val.trim();
 		}
 	}.bind(this));
 };
