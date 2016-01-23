@@ -51,21 +51,23 @@ app.use(methodOverride());
 //////////////////////////////////////////////////////////////
 
 app.get('/', function(request, response){
+	info.params = { debug:request.query.debug };
 	response.render('index', { env:info, menu:Menu });
 });
 
 app.get('/flux/:uid?', function(request, response){
-	info.params = { uid:request.params.uid };
-	response.render('pages/flux', { env:info });
+	info.params = { uid:request.params.uid, debug:request.query.debug };
+	response.render('pages/flux', { env:info, menu:Menu });
 });
 
 app.get('/archives/:uid?', function(request, response){
-	info.params = { uid:request.params.uid };
-	response.render('pages/archives', { env:info });
+	info.params = { uid:request.params.uid, debug:request.query.debug };
+	response.render('pages/archives', { env:info, menu:Menu });
 });
 
 app.get('/contact', function(request, response){
-	response.render('pages/contact', { env:info });
+	info.params = { debug:request.query.debug };
+	response.render('pages/contact', { env:info, menu:Menu });
 });
 
 app.all('*', function(request, response, next){
