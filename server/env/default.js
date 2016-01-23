@@ -1,12 +1,7 @@
-'use strict';
-// common
-
+/* global ambox */
 var environ = require('../utils/environ');
-var defaultSettings = {
-	protocol:environ.get('NODE_ENV') === 'secure'? 'https' : 'http',
-	port:environ.get('PORT', 3000),
-	host:environ.get('HOST', '0.0.0.0'),
-	templateEngine:'html'
-};
-
-module.exports = defaultSettings;
+ambox.uri('env.protocol', environ.get('NODE_ENV') === 'secure'? 'https' : 'http');
+ambox.uri('env.port', environ.get('PORT', 3000));
+ambox.uri('env.host', environ.get('HOST', '0.0.0.0'));
+ambox.uri('env.templateEngine', 'html');
+module.exports = ambox.uri('env');

@@ -22,6 +22,7 @@ define(function(){
 		}else{
 			target[keys[id]] = value;
 		}
+		return value;
 	};
 	
 	var read = function(target, path){
@@ -37,8 +38,7 @@ define(function(){
 		target.namespace = namespace;
 		target.ls = ls;
 		target.uri = function(key, value){
-			value? write(target, key, value) : read(target, key);
-			return value;
+			return value? write(target, key, value) : read(target, key);
 		};
 		return target;
 	};

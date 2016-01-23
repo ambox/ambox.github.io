@@ -22,6 +22,7 @@ var write = exports.write = function(target, path, value){
 	}else{
 		target[keys[id]] = value;
 	}
+	return value;
 };
 
 var read = exports.read = function(target, path){
@@ -37,8 +38,7 @@ var stub = exports.stub = function(target, namespace){
 	target.namespace = namespace;
 	target.ls = ls;
 	target.uri = function(key, value){
-		value? write(target, key, value) : read(target, key);
-		return value;
+		return value? write(target, key, value) : read(target, key);
 	};
 	return target;
 };

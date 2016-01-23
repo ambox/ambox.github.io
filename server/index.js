@@ -80,6 +80,5 @@ app.all('*', function(request, response, next){
 });
 
 app.listen(cfg.port, cfg.host, function(){
-	var server = (process.env.NODE_ENV === 'secure' ? 'https://' : 'http://') + cfg.host + ':' + cfg.port;
 	console.log('Node app is running at %s://%s:%s', cfg.protocol, cfg.host, cfg.port);
 });
