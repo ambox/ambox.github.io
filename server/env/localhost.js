@@ -1,4 +1,4 @@
 /* global ambox */
+var environ = require('../utils/environ');
 var stagingSettings = require('./staging');
-module.exports = scope.merge(stagingSettings, {	
-});
+module.exports = ambox.uri('env');

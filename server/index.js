@@ -1,5 +1,4 @@
-'use strict';
-
+/* global ambox */
 var ParseCloud = require('parse-cloud-express');
 var Parse = ParseCloud.Parse;
 var methodOverride = require('method-override');

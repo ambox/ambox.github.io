@@ -1,4 +1,4 @@
-/* global process */
+/* global ambox, process */
 var fs = require('fs');
 var path = require('path');
 var scope = require('./scope');
@@ -31,4 +31,4 @@ environ.has = function(variable){
 	return !!process.env[variable];
 };
 
-module.exports.environ = environ;
+module.exports = ambox.uri('utils.environ', environ);

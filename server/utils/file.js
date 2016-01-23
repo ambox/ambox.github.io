@@ -1,3 +1,4 @@
+/* global ambox */
 var fs = require('fs');
 var path = require('path');
 var scope = require('./scope');
@@ -33,4 +34,4 @@ File.prototype.url = function(url){
 	}
 };
 
-module.exports = File;
+module.exports = ambox.uri('utils.File', File);

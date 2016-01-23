@@ -1,3 +1,4 @@
+/* global ambox */
 var File = require('./File');
 
 var EnvFile = function(url, options){
@@ -32,4 +33,4 @@ EnvFile.prototype.eachLine = function(iterator, context){
 	}
 };
 
-module.exports = EnvFile;
+module.exports = ambox.uri('utils.EnvFile', EnvFile);

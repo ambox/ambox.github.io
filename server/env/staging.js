@@ -1,4 +1,4 @@
 /* global ambox */
+var environ = require('../utils/environ');
 var defaultSettings = require('./default');
-module.exports = scope.merge(defaultSettings, {	
-});
+module.exports = ambox.uri('env');
