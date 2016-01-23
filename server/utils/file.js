@@ -1,9 +1,9 @@
 var fs = require('fs');
 var path = require('path');
-var merge = require('./merge');
+var scope = require('./scope');
 
 var File = function(url, options){
-	this.options = merge({}, options);
+	this.options = scope.merge({}, options);
 	this.url = this.url(url);
 	this.lines = [];
 };

@@ -2,6 +2,6 @@
 // master branch
 
 var defaultSettings = require('./default');
-var merge = require('../utils/merge');
-module.exports = merge(defaultSettings, {	
+var scope = require('../utils/scope');
+module.exports = scope.merge(defaultSettings, {	
 });

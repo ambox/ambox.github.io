@@ -2,6 +2,6 @@
 // machine (offline)
 
 var stagingSettings = require('./staging');
-var merge = require('../utils/merge');
-module.exports = merge(stagingSettings, {	
+var scope = require('../utils/scope');
+module.exports = scope.merge(stagingSettings, {	
 });

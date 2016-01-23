@@ -8,7 +8,7 @@ var nunjucks = require('nunjucks');
 var express = require('express');
 var path = require('path');
 var environ = require('./utils/environ');
-var info = { url:{ base:path.resolve('.') } };
+var cfg = require('./env/cfg');
 var app = express();
 
 var Menu = {
@@ -27,11 +27,11 @@ nunjucks.configure('views', {
 // Configuration
 //////////////////////////////////////////////////////////////
 
-environ(environ.get('ENVRC', info.url.base +'/.environment'));
-environ.set('LOG_DIR_PATH', info.url.base, true);
-app.set('port', environ.get('PORT', 3000));
-app.set('views', info.url.base +'/views');
-app.set('static', info.url.base +'/public');
+environ(environ.get('ENVRC', cfg.host +'/.environment'));
+environ.set('LOG_DIR_PATH', cfg.host, true);
+app.set('port', cfg.port);
+app.set('views', cfg.host +'/views');
+app.set('static', cfg.host +'/public');
 app.set('view engine', 'html');
 
 
@@ -51,23 +51,23 @@ app.use(methodOverride());
 //////////////////////////////////////////////////////////////
 
 app.get('/', function(request, response){
-	info.params = { debug:request.query.debug };
-	response.render('index', { env:info, menu:Menu });
+	cfg.query = request.query;
+	response.render('index', { env:cfg, menu:Menu });
 });
 
 app.get('/flux/:uid?', function(request, response){
-	info.params = { uid:request.params.uid, debug:request.query.debug };
-	response.render('pages/flux', { env:info, menu:Menu });
+	cfg.query = request.query;
+	response.render('pages/flux', { env:cfg, menu:Menu });
 });
 
 app.get('/archives/:uid?', function(request, response){
-	info.params = { uid:request.params.uid, debug:request.query.debug };
-	response.render('pages/archives', { env:info, menu:Menu });
+	cfg.query = request.query;
+	response.render('pages/archives', { env:cfg, menu:Menu });
 });
 
 app.get('/contact', function(request, response){
-	info.params = { debug:request.query.debug };
-	response.render('pages/contact', { env:info, menu:Menu });
+	cfg.query = request.query;
+	response.render('pages/contact', { env:cfg, menu:Menu });
 });
 
 app.all('*', function(request, response, next){
@@ -79,8 +79,7 @@ app.all('*', function(request, response, next){
 	request.method === 'OPTIONS'? response.send(200) : next();
 });
 
-app.listen(app.get('port'), function(){
-	var host = this.address().address;
-	var port = this.address().port;
-	console.log('Node app is running at http://%s:%s', host, port);
+app.listen(cfg.port, cfg.host, function(){
+	var server = (process.env.NODE_ENV === 'secure' ? 'https://' : 'http://') + cfg.host + ':' + cfg.port;
+	console.log('Node app is running at %s://%s:%s', cfg.protocol, cfg.host, cfg.port);
 });
