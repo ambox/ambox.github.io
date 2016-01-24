@@ -20,8 +20,8 @@ Parse.defaults = {
 ['get', 'delete', 'head', 'jsonp'].forEach(function(method){
 	Parse[method] = function(hook, options){
 		return Parse(ambox.merge({}, options, {
-			method:method,
-			path:hook
+			path:'/1/'+ hook,
+			method:method
 		}));
 	};
 });
@@ -29,9 +29,9 @@ Parse.defaults = {
 ['post', 'put', 'patch'].forEach(function(method){
 	Parse[method] = function(hook, data, options){
 		return Parse(ambox.merge({}, options, {
+			path:'/1/'+ hook,
 			method:method,
-			data:data,
-			path:hook
+			data:data
 		}));
 	};
 });
