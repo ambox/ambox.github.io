@@ -11,4 +11,6 @@ ambox.uri('env.url.host', environ.get('HOST', '0.0.0.0'));
 ambox.uri('env.url.server', ambox.env.url.protocol +'://'+ ambox.env.url.host +':'+ ambox.env.url.port);
 ambox.uri('env.service.googleAnalytics.appId', '');
 ambox.uri('env.service.facebook.appId', '');
+ambox.uri('env.service.parse.appId', '');
+ambox.uri('env.service.parse.masterKey', '');
 module.exports = ambox.uri('env');
