@@ -1,8 +1,7 @@
 'use strict';
 
-var environ = require('./environ');
-
 try{
+	var environ = require('./environ');
 	if(environ.has('NODE_ENV')){
 		var role = environ.get('NODE_ENV');
 		switch(role.toLowerCase()){
