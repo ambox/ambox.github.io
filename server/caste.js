@@ -29,11 +29,12 @@ var write = exports.write = function(target, path, value, overwrite){
 		isLikeObject = target[path] === Object(target[path]);
 		target = target[path] = isLikeObject? target[path]:{};
 	}
+	path = keys[id];
 	if(typeof(value) === 'undefined'){
-		overwrite && delete(target[keys[id]]);
+		overwrite && delete(target[path]);
 	}else{
-		value = overwrite? value : target[keys[id]] || value;
-		target[keys[id]] = value;
+		value = overwrite? value : target[path] || value;
+		target[path] = value;
 	}
 	return value;
 };

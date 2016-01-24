@@ -7,7 +7,7 @@ define(function(){
 		return keys.split('.');
 	};
 
-	var write = function(target, path, value){
+	var write = function(target, path, value, overwrite){
 		var id = 0;
 		var keys = ls(path);
 		var total = keys.length - 1;
@@ -17,10 +17,12 @@ define(function(){
 			isLikeObject = target[path] === Object(target[path]);
 			target = target[path] = isLikeObject? target[path]:{};
 		}
+		path = keys[id];
 		if(typeof(value) === 'undefined'){
-			delete(target[keys[id]]);
+			overwrite && delete(target[path]);
 		}else{
-			target[keys[id]] = value;
+			value = overwrite? value : target[path] || value;
+			target[path] = value;
 		}
 		return value;
 	};
@@ -37,9 +39,10 @@ define(function(){
 		target = target[namespace] = target[namespace] || {};
 		target.namespace = namespace;
 		target.ls = ls;
-		target.uri = function(key, value){
+		target.uri = function(key, value, overwrite){
 			var hasValue = arguments.length > 1;
-			return hasValue? write(target, key, value) : read(target, key);
+			overwrite = value && typeof overwrite === 'undefined'? true : !!overwrite;
+			return hasValue? write(target, key, value, overwrite) : read(target, key);
 		};
 		return target;
 	};
