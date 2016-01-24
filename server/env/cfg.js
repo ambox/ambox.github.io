@@ -8,7 +8,7 @@ try{
 		switch(role.toLowerCase()){
 			case 'master':module.exports=require('./production');break;
 			case 'hml':module.exports=require('./staging');break;
-			default:module.exports=require('./development');break;
+			default:module.exports=require('./localhost');break;
 		}
 	}else{
 		module.exports=require('./localhost');
