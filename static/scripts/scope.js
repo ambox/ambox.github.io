@@ -29,7 +29,7 @@ define(function(){
 		var id = 0;
 		var keys = ls(path);
 		var total = keys.length;
-		while((target = target[keys[id++]]) !== null && id < total){}
+		while((target = target[keys[id++]]) && id < total){}
 		return id < total? void(0) : target;
 	};
 
@@ -38,7 +38,8 @@ define(function(){
 		target.namespace = namespace;
 		target.ls = ls;
 		target.uri = function(key, value){
-			return value? write(target, key, value) : read(target, key);
+			var hasValue = arguments.length > 1;
+			return hasValue? write(target, key, value) : read(target, key);
 		};
 		return target;
 	};
