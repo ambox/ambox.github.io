@@ -9,7 +9,6 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
-    "consolidate": "^0.13.1",
     "express": "^4.13.3",
     "helmet": "^1.1.0",
     "method-override": "^2.3.5",
