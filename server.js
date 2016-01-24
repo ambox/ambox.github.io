@@ -12,20 +12,44 @@ function onInitServer(app){
 		'/contact':'Contact'
 	};
 	
-	app.get('/', function(request, response){
+	app.route('/').get(function(request, response){
 		response.render('index', { menu:Menu });
 	});
 
-	app.get('/flux/:uid?', function(request, response){
+	app.route('/flux/:uid?').get(function(request, response){
 		response.render('pages/flux', { menu:Menu });
 	});
 
-	app.get('/archives/:uid?', function(request, response){
+	app.route('/archives/:uid?').get(function(request, response){
 		response.render('pages/archives', { menu:Menu });
 	});
 
-	app.get('/contact', function(request, response){
+	app.route('/contact').get(function(request, response){
 		response.render('pages/contact', { menu:Menu });
+	});
+	
+	app.route('/server-error').get(function(request, response){
+		response.status(500).render('server/500', {
+			error:'Oops! Something went wrong...'
+		});
+	});
+	
+	app.route('/:url/*').get(function(request, response){
+		response.status(404).format({
+			'text/html':function(){
+				response.render('server/404', {
+					url:request.originalUrl
+				});
+			},
+			'application/json':function(){
+				response.json({
+					error:'Path not found'
+				});
+			},
+			'default':function(){
+				response.send('Path not found');
+			}
+		});
 	});
 	
 }
