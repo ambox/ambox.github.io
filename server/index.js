@@ -64,7 +64,7 @@ Server.prototype.initHeaders = function(){
 };
 
 Server.prototype.initStaticFiles = function(){
-	app.use('/', express.static(path.resolve('public')));
+	app.use('/', express.static(path.resolve('static')));
 };
 
 Server.prototype.initErrorHandler = function(){
