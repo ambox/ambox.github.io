@@ -28,3 +28,5 @@ var Parse = function(options){
 Parse.request = function(options){
 	console.log('request:', options);
 };
+
+module.exports = ambox.uri('Parse', Parse);
