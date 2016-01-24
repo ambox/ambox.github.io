@@ -7,12 +7,13 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "chalk": "^1.1.1",
-    "express": "^4.13.3",
-    "nunjucks": "^2.3.0",
     "body-parser": "^1.14.2",
+    "chalk": "^1.1.1",
+    "consolidate": "^0.13.1",
+    "express": "^4.13.3",
+    "helmet": "^1.1.0",
     "method-override": "^2.3.5",
-    "parse-cloud-express": "^1.1.0"
+    "nunjucks": "^2.3.0"
   },
   "engines": {
     "node": "0.12.7"
