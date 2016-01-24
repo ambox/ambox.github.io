@@ -30,24 +30,21 @@ function onInitServer(app){
 	
 	app.route('/server-error').get(function(request, response){
 		response.status(500).render('server/500', {
-			error:'Oops! Something went wrong...'
+			menu:Menu
 		});
 	});
 	
-	app.route('/:url/*').get(function(request, response){
+	app.route('*').get(function(request, response){
 		response.status(404).format({
 			'text/html':function(){
-				response.render('server/404', {
-					url:request.originalUrl
-				});
+				var url = request.originalUrl;
+				response.render('server/404', { url:url, menu:Menu });
 			},
 			'application/json':function(){
-				response.json({
-					error:'Path not found'
-				});
+				response.json({ menu:Menu });
 			},
 			'default':function(){
-				response.send('Path not found');
+				response.send({ menu:Menu });
 			}
 		});
 	});
