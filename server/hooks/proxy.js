@@ -1,33 +1,49 @@
 /* global ambox */
-console.log('Parse.appId:', ambox.uri('env.service.parse.appId'));
-console.log('Parse.masterKey:', ambox.uri('env.service.parse.masterKey'));
+var https = require('https');
 
 var Parse = function(options){
 	Parse.request(options);
 };
 
+Parse.headers = {
+	'X-Parse-Application-Id':ambox.uri('env.service.parse.appId'),
+	'X-Parse-REST-API-Key':ambox.uri('env.service.parse.masterKey')
+};
+
+Parse.defaults = {
+	headers:Parse.headers,
+	host:'api.parse.com',
+	port:443
+};
+
 ['get', 'delete', 'head', 'jsonp'].forEach(function(method){
-	Parse[method] = function(url, options){
+	Parse[method] = function(hook, options){
 		return Parse(ambox.merge({}, options, {
 			method:method,
-			url:url
+			path:hook
 		}));
 	};
 });
 
 ['post', 'put', 'patch'].forEach(function(method){
-	Parse[method] = function(url, data, options){
+	Parse[method] = function(hook, data, options){
 		return Parse(ambox.merge({}, options, {
 			method:method,
 			data:data,
-			url:url
+			path:hook
 		}));
 	};
 });
 
 Parse.request = function(options){
-	options = ambox.merge({}, options);
+	options = ambox.merge({}, Parse.defaults, options);
 	console.log('request:', options);
+};
+
+Parse.onRequestResolve = function(){
+};
+
+Parse.onRequestReject = function(){
 };
 
 module.exports = ambox.uri('Parse', Parse);
