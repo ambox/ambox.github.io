@@ -50,14 +50,14 @@ Server.prototype.initViewEngine = function(){
 };
 
 Server.prototype.initHeaders = function(){
-	var FOUR_AND_HALF_MONTHS = 10886400000;
+	var EIGHTEEN_WEAKS = 10886400000;
 	app.disable('x-powered-by');
 	app.use(helmet.xframe());
 	app.use(helmet.xssFilter());
 	app.use(helmet.nosniff());
 	app.use(helmet.ienoopen());
 	app.use(helmet.hsts({
-		maxAge:FOUR_AND_HALF_MONTHS,
+		maxAge:EIGHTEEN_WEAKS,
 		includeSubdomains:true,
 		force:true
 	}));
