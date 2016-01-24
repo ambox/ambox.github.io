@@ -26,6 +26,7 @@ var Parse = function(options){
 });
 
 Parse.request = function(options){
+	options = ambox.merge({}, options);
 	console.log('request:', options);
 };
 
