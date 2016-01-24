@@ -40,10 +40,4 @@ Parse.request = function(options){
 	console.log('request:', options);
 };
 
-Parse.onRequestResolve = function(){
-};
-
-Parse.onRequestReject = function(){
-};
-
 module.exports = ambox.uri('Parse', Parse);
