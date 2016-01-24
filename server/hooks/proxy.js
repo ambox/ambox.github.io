@@ -1,4 +1,5 @@
 /* global ambox */
+var qs = require('querystring');
 var https = require('https');
 
 var Parse = function(options){
