@@ -42,7 +42,7 @@ var read = exports.read = function(target, path){
 	var id = 0;
 	var keys = ls(path);
 	var total = keys.length;
-	while((target = target[keys[id++]]) !== null && id < total){}
+	while((target = target[keys[id++]]) && id < total){}
 	return id < total? void(0) : target;
 };
 
