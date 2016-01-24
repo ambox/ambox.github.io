@@ -1,7 +1,7 @@
 /* global ambox, process */
 var fs = require('fs');
 var path = require('path');
-var EnvFile = require('./envfile');
+var EnvFile = require('../files/EnvFile');
 
 var environ = function(filePath, overwrite){
 	environ.load(filePath, overwrite);

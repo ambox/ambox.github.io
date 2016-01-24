@@ -1,11 +1,11 @@
-var ls = function(path){
+var ls = exports.ls = function(path){
 	var objectAssessor = /\[(["']?)([^\1]+?)\1?\]/g;
 	var keys = path.replace(objectAssessor, '.$2');
 	keys = keys.replace(/^\./, '');
 	return keys.split('.');
 };
 
-var merge = function(target){
+var merge = exports.merge = function(target){
 	var params = Array.prototype.slice.call(arguments);
 	var id, source, property;
 	for(id = 1; id < params.length; id++){
@@ -19,7 +19,7 @@ var merge = function(target){
 	return target;
 };
 
-var write = function(target, path, value, overwrite){
+var write = exports.write = function(target, path, value, overwrite){
 	var id = 0;
 	var keys = ls(path);
 	var total = keys.length - 1;
@@ -38,7 +38,7 @@ var write = function(target, path, value, overwrite){
 	return value;
 };
 
-var read = function(target, path){
+var read = exports.read = function(target, path){
 	var id = 0;
 	var keys = ls(path);
 	var total = keys.length;
@@ -46,7 +46,7 @@ var read = function(target, path){
 	return id < total? void(0) : target;
 };
 
-var stub = function(target, namespace){
+var stub = exports.stub = function(target, namespace){
 	target = target[namespace] = target[namespace] || {};
 	target.namespace = namespace;
 	target.merge = merge;
@@ -58,9 +58,3 @@ var stub = function(target, namespace){
 	};
 	return target;
 };
-
-module.exports.ls = ls;
-module.exports.merge = merge;
-module.exports.write = write;
-module.exports.read = read;
-module.exports.stub = stub;
