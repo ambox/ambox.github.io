@@ -1,6 +1,6 @@
 'use strict';
 
-var environ = require('../utils/environ');
+var environ = require('./environ');
 
 try{
 	if(environ.has('NODE_ENV')){

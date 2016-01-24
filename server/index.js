@@ -7,7 +7,7 @@ var nunjucks = require('nunjucks');
 var helmet = require('helmet');
 var chalk = require('chalk');
 var path = require('path');
-var environ = require('./utils/environ');
+var environ = require('./env/environ');
 var cfg = require('./env/cfg');
 var app = express();
 

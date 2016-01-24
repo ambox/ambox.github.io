@@ -1,6 +1,6 @@
 /* global global, ambox */
-var scope = require('./server/utils/scope').stub(global, 'ambox');
-var server = scope.uri('server', require('./server/index').create());
+var caste = require('./server/caste').stub(global, 'ambox');
+var server = caste.uri('server', require('./server/index').create());
 var app = server.init(onInitServer);
 server.start();
 

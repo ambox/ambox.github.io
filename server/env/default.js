@@ -1,5 +1,5 @@
 /* global ambox */
-var environ = require('../utils/environ');
+var environ = require('./environ');
 ambox.uri('env.app.title', 'Ambox');
 ambox.uri('env.app.description', 'git-push powered folio');
 ambox.uri('env.app.keywords', 'ambox,node,heroku,express');
