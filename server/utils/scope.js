@@ -52,8 +52,9 @@ var stub = function(target, namespace){
 	target.merge = merge;
 	target.ls = ls;
 	target.uri = function(key, value, overwrite){
+		var hasValue = arguments.length > 1;
 		overwrite = value && typeof overwrite === 'undefined'? true : !!overwrite;
-		return value? write(target, key, value, overwrite) : read(target, key);
+		return hasValue? write(target, key, value, overwrite) : read(target, key);
 	};
 	return target;
 };
