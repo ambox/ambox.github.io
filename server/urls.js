@@ -1,6 +1,7 @@
 /* global ambox */
 var admin = require('./hooks/admin');
 var comments = require('./hooks/comments');
+var core = require('./hooks/core');
 var jobs = require('./hooks/jobs');
 var main = require('./hooks/main');
 var posts = require('./hooks/posts');
@@ -11,8 +12,6 @@ module.exports = function(app){
 	app.route('/flux/:UID?').get(main.flux);
 	app.route('/archives/:UID?').get(main.archives);
 	app.route('/contact').get(main.contact);
-	app.route('/server-error').get(main.badRequest);
-	app.route('*').get(main.notFound);
 	
 	// jobs
 	app.route('/jobs').get(jobs.index).post(jobs.create);
@@ -35,4 +34,8 @@ module.exports = function(app){
 	app.route('/admin/jobs').get(admin.index);
 	app.route('/admin/posts').get(admin.index);
 	app.route('/admin/comments').get(admin.index);
+	
+	// core
+	app.route('/server-error').get(core.badRequest);
+	app.route('*').get(core.notFound);
 };
