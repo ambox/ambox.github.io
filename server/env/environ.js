@@ -26,8 +26,4 @@ environ.get = function(variable, defaultValue){
 	return process.env[variable] || defaultValue;
 };
 
-environ.has = function(variable){
-	return !!process.env[variable];
-};
-
 module.exports = ambox.uri('utils.environ', environ);
