@@ -18,7 +18,7 @@ environ.load = function(filePath, options){
 
 environ.set = function(variable, value, overwrite){
 	value = overwrite? value : environ.get(variable, value);
-	process.env[variable] = JSON.stringify(value);
+	process.env[variable] = String(value);
 	return process.env[variable];
 };
 
