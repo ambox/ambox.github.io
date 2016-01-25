@@ -23,7 +23,7 @@ var pick = exports.pick = function(object){
 	var hash = {};
 	var properties = Array.prototype.slice.call(arguments, 1);
 	for(var id = 0, total = properties.length; id < total; id++){
-		if(hash === Object(hash) && properties[id]){
+		if(object === Object(object) && properties[id]){
 			hash[properties[id]] = object[properties[id]];
 		}
 	}
