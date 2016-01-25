@@ -13,6 +13,7 @@
     "helmet": "^1.1.0",
     "method-override": "^2.3.5",
     "nunjucks": "^2.3.0",
+    "parse": "^1.7.0",
     "q": "^1.4.1",
     "request": "^2.67.0"
   },

@@ -1,4 +1,5 @@
 /* global ambox */
+var Parse = require('parse');
 
 // Display all posts.
 exports.index = function(request, response){

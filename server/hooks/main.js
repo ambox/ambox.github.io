@@ -1,5 +1,5 @@
 /* global ambox */
-var Parse = require('../proxies/Parse');
+var Parse = require('parse');
 var Menu = {
 	'/flux':'Flux',
 	'/archives':'Archives',

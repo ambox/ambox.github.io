@@ -1,5 +1,5 @@
 /* global ambox */
-var Parse = require('../proxies/Parse');
+var Parse = require('parse');
 
 exports.badRequest = function(request, response){
 	response.status(500).render('server/500', {
