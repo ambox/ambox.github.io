@@ -19,6 +19,17 @@ var merge = exports.merge = function(target){
 	return target;
 };
 
+var pick = exports.pick = function(object){
+	var hash = {};
+	var properties = Array.prototype.slice.call(arguments, 1);
+	for(var id = 0, total = properties.length; id < total; id++){
+		if(hash === Object(hash) && properties[id]){
+			hash[properties[id]] = object[properties[id]];
+		}
+	}
+	return hash;
+};
+
 var write = exports.write = function(target, path, value, overwrite){
 	var id = 0;
 	var keys = ls(path);
@@ -52,6 +63,7 @@ var stub = exports.stub = function(target, namespace){
 	target.namespace = namespace;
 	target.merge = merge;
 	target.stub = stub;
+	target.pick = pick;
 	target.ls = ls;
 	target.uri = function(key, value, overwrite){
 		var hasValue = arguments.length > 1;
