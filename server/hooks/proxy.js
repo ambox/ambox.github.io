@@ -43,7 +43,7 @@ Parse.batch = function(requests){
 
 Parse.request = function(options){
 	var defer = q.defer();
-	options = ambox.merge({}, Parse.defaults, options);
+	options = ambox.merge({}, options, Parse.defaults);
 	console.log('request:', options);
 	return defer.promise;
 };
