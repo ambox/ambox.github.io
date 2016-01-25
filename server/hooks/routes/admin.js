@@ -1,9 +1,9 @@
 /* global ambox */
 var admin = require('../controllers/admin');
 
-module.exports = function(app, basicAuth){
-	app.route('/admin').get(basicAuth, admin.index);
-	app.route('/admin/jobs').get(basicAuth, admin.index);
-	app.route('/admin/posts').get(basicAuth, admin.index);
-	app.route('/admin/comments').get(basicAuth, admin.index);
+module.exports = function(app){
+	app.route('/admin').get(admin.index);
+	app.route('/admin/jobs').get(admin.index);
+	app.route('/admin/posts').get(admin.index);
+	app.route('/admin/comments').get(admin.index);
 };

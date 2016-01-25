@@ -67,6 +67,12 @@ Server.prototype.initStaticFiles = function(){
 	app.use('/', express.static(path.resolve('static')));
 };
 
+Server.prototype.initModules = function(list){
+	list.forEach(function(module){
+    module(app, cfg);
+  });
+};
+
 Server.prototype.initErrorHandler = function(){
 	app.use(function(error, request, response, next){
 		if(!error){
@@ -77,13 +83,13 @@ Server.prototype.initErrorHandler = function(){
 	});
 };
 
-Server.prototype.init = function(callback){
+Server.prototype.init = function(modules, callback){
 	this.initLocalVars();
 	this.initMiddleware();
 	this.initViewEngine();
 	this.initHeaders();
 	this.initStaticFiles();
-	callback && callback(app, cfg);
+	this.initModules(modules);
 	this.initErrorHandler();
 	return app;
 };
