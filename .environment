@@ -1,0 +1,48 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Base
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports PORT=5000
+exports HOST=0.0.0.0
+exports DEBUG=true
+exports TEMPLATE_DEBUG=true
+exports SECRET_KEY=!iudke*hi8vo#qyntq5yxm&p2itkuqgam@bo8o%+cbnq(h%@@-
+exports SESSION_SECRET=Ambox
+exports NODE_ENV=dev
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Logger
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports LOG_FORMAT=combined
+exports LOG_DIR_PATH=/
+exports LOG_FILE=access.log
+exports LOG_ROTATING_FILE=access-%DATE%.log
+exports LOG_ROTATING_ACTIVE=true
+exports LOG_ROTATING_FREQUENCY=daily
+exports LOG_ROTATING_VERBOSE=true
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Services
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports GOOGLE_ANALYTICS_TRACKING_ID=GOOGLE_ANALYTICS_TRACKING_ID
+exports FACEBOOK_ID=APP_ID
+exports FACEBOOK_SECRET=APP_SECRET
+exports GOOGLE_ID=APP_ID
+exports GOOGLE_SECRET=APP_SECRET
+exports LINKEDIN_ID=APP_ID
+exports LINKEDIN_SECRET=APP_SECRET
+exports GITHUB_ID=APP_ID
+exports GITHUB_SECRET=APP_SECRET
+exports TWITTER_KEY=CONSUMER_KEY
+exports TWITTER_SECRET=CONSUMER_SECRET
+exports PAYPAL_ID=CLIENT_ID
+exports PAYPAL_SECRET=CLIENT_SECRET
+exports PARSE_ID=PARSE_ID
+exports PARSE_SECRET=PARSE_SECRET
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Mailer
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports MAILER_FROM=MAILER_FROM
+exports MAILER_SERVICE_PROVIDER=MAILER_SERVICE_PROVIDER
+exports MAILER_EMAIL_ID=MAILER_EMAIL_ID
+exports MAILER_PASSWORD=MAILER_PASSWORD
