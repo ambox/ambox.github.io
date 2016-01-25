@@ -19,7 +19,7 @@ Parse.defaults = {
 
 ['get', 'delete', 'head', 'jsonp'].forEach(function(method){
 	Parse[method] = function(hook, options){
-		return Parse(ambox.merge({}, options, {
+		return this.request(ambox.merge({}, options, {
 			path:'/1/'+ hook,
 			method:method
 		}));
@@ -28,7 +28,7 @@ Parse.defaults = {
 
 ['post', 'put', 'patch'].forEach(function(method){
 	Parse[method] = function(hook, data, options){
-		return Parse(ambox.merge({}, options, {
+		return this.request(ambox.merge({}, options, {
 			path:'/1/'+ hook,
 			method:method,
 			data:data
@@ -36,9 +36,14 @@ Parse.defaults = {
 	};
 });
 
+Parse.batch = function(requests){
+	return Parse.post('batch', { requests:requests });
+};
+
 Parse.request = function(options){
 	options = ambox.merge({}, Parse.defaults, options);
 	console.log('request:', options);
+	return null;
 };
 
 module.exports = ambox.uri('Parse', Parse);
