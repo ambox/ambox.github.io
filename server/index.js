@@ -27,6 +27,7 @@ Server.prototype.initLocalVars = function(){
 	app.locals.logo = ambox.uri('env.app.logo');
 	app.locals.googleAnalyticsAppId = ambox.uri('env.service.googleAnalytics.appId');
 	app.locals.facebookAppId = ambox.uri('env.service.facebook.appId');
+	app.locals.server = ambox.uri('env.url.server');
 	app.use(function(request, response, next){
 		var url = request.headers.host + request.originalUrl;
 		response.locals.host = request.protocol + '://' + request.hostname;

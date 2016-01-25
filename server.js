@@ -25,7 +25,6 @@ function onInitServer(app){
 	});
 
 	app.route('/contact').get(function(request, response){
-		Parse.post({});
 		response.render('pages/contact', { menu:Menu });
 	});
 	

@@ -51,6 +51,7 @@ var stub = exports.stub = function(target, namespace){
 	target = target[namespace] = target[namespace] || {};
 	target.namespace = namespace;
 	target.merge = merge;
+	target.stub = stub;
 	target.ls = ls;
 	target.uri = function(key, value, overwrite){
 		var hasValue = arguments.length > 1;
