@@ -50,7 +50,7 @@ Parse.request = function(options){
 	var defer = q.defer();
 	// var requestMethod = request[options.method.toLowerCase()];
 	// requestMethod(options.url, options, function(error, response, body){
-	options.form = typeof options.form === 'object' ? JSON.stringify(options.form) : options.form;
+	options.form = typeof options.form === 'object'? JSON.stringify(options.form) : options.form;
 	options.url += '?where='+ options.form;
 	console.log('opts:', options);
 	request(options, function(error, response, body){
