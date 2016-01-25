@@ -1,6 +1,5 @@
 /* global ambox */
 var methodOverride = require('method-override');
-var consolidate = require('consolidate');
 var bodyParser = require('body-parser');
 var express = require('express');
 var nunjucks = require('nunjucks');

@@ -1,7 +1,7 @@
 /* global ambox */
 var q = require('q');
-var qs = require('querystring');
-var https = require('https');
+var request = require('request');
+request.delete = request.del;
 
 var Parse = function(options){
 	Parse.request(options);
@@ -14,15 +14,15 @@ Parse.headers = {
 
 Parse.defaults = {
 	headers:Parse.headers,
-	host:'api.parse.com',
-	port:443
+	timeout:5000,
+	method:'get'
 };
 
-['get', 'delete', 'head', 'jsonp'].forEach(function(method){
+['get', 'delete', 'head'].forEach(function(method){
 	Parse[method] = function(hook, options){
 		return this.request(ambox.merge({}, options, {
-			path:'/1/'+ hook,
-			method:method
+			method:method,
+			url:'http://api.parse.com/1/'+ hook
 		}));
 	};
 });
@@ -30,9 +30,9 @@ Parse.defaults = {
 ['post', 'put', 'patch'].forEach(function(method){
 	Parse[method] = function(hook, data, options){
 		return this.request(ambox.merge({}, options, {
-			path:'/1/'+ hook,
 			method:method,
-			data:data
+			url:'http://api.parse.com/1/'+ hook,
+			form:data
 		}));
 	};
 });
@@ -42,10 +42,20 @@ Parse.batch = function(requests){
 };
 
 Parse.request = function(options){
-	var defer = q.defer();
 	options = ambox.merge({}, options, Parse.defaults);
-	console.log('request:', options);
+	var defer = q.defer();
+	var requestMethod = request[options.method.toLowerCase()];
+	requestMethod(options.url, options, function(error, response, body){
+		if(error){
+			return defer.reject(error);
+		}
+		defer.resolve(body);
+	});
 	return defer.promise;
+};
+
+Parse.createObject = function(className, data){
+	return Parse.post('classes/'+ className, data, { 'Content-Type':'application/json' });
 };
 
 module.exports = ambox.uri('Parse', Parse);

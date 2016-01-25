@@ -14,7 +14,11 @@ File.prototype.readSync = function(){
 			var file = fs.readFileSync(this.url, 'utf8') || '';
 			this.lines = file.split(/\r?\n|\r/g);
 			return file;
-		}catch(fault){}
+		}catch(error){
+			console.warn('[File '+ error.stack +'\n]');
+		}
+	}else{
+		console.warn('[File '+ this.url +' does not exists.]');
 	}
 	return '';
 };
@@ -28,7 +32,8 @@ File.prototype.eachLine = function(iterator, context){
 File.prototype.url = function(url){
 	try{
 		return path.resolve(url);
-	}catch(fault){
+	}catch(error){
+		console.warn('[File '+ error.stack +'\n]');
 		return '';
 	}
 };
