@@ -1,7 +1,7 @@
 /* global ambox */
 var admin = require('./hooks/admin');
 var comments = require('./hooks/comments');
-var core = require('./hooks/core');
+var errors = require('./hooks/errors');
 var jobs = require('./hooks/jobs');
 var main = require('./hooks/main');
 var posts = require('./hooks/posts');
@@ -35,7 +35,7 @@ module.exports = function(app){
 	app.route('/admin/posts').get(admin.index);
 	app.route('/admin/comments').get(admin.index);
 	
-	// core
-	app.route('/server-error').get(core.badRequest);
-	app.route('*').get(core.notFound);
+	// errors
+	app.route('/server-error').get(errors.badRequest);
+	app.route('*').get(errors.notFound);
 };
