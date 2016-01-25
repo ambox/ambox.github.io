@@ -68,8 +68,11 @@ Server.prototype.initStaticFiles = function(){
 };
 
 Server.prototype.initModules = function(list){
+	list = Array.isArray(list)? list : [list];
 	list.forEach(function(module){
-    module(app, cfg);
+		if(typeof module === 'function'){
+			module(app, cfg);
+		}
   });
 };
 
