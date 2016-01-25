@@ -14,12 +14,6 @@ module.exports = function(app){
 	app.route('/server-error').get(main.badRequest);
 	app.route('*').get(main.notFound);
 	
-	// admin
-	app.route('/admin').get(admin.index);
-	app.route('/admin/jobs').get(admin.index);
-	app.route('/admin/posts').get(admin.index);
-	app.route('/admin/comments').get(admin.index);
-	
 	// jobs
 	app.route('/jobs').get(jobs.index).post(jobs.create);
 	app.route('/jobs/new').get(jobs.new);
@@ -35,4 +29,10 @@ module.exports = function(app){
 	// comments
 	app.route('/posts/:postUID/comments').post(comments.create);
 	app.route('/posts/:postUID/comments/:UID').delete(comments.delete);
+	
+	// admin
+	app.route('/admin').get(admin.index);
+	app.route('/admin/jobs').get(admin.index);
+	app.route('/admin/posts').get(admin.index);
+	app.route('/admin/comments').get(admin.index);
 };
