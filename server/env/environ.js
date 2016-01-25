@@ -23,7 +23,7 @@ environ.set = function(variable, value, overwrite){
 };
 
 environ.get = function(variable, defaultValue){
-	defaultValue = typeof defaultValue !== 'undefined'? defaultValue : '';
+	defaultValue = typeof defaultValue === 'undefined'? '' : defaultValue;
 	return process.env[variable] || JSON.stringify(defaultValue);
 };
 
