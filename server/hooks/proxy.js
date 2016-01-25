@@ -9,7 +9,7 @@ var Parse = function(options){
 
 Parse.headers = {
 	'X-Parse-Application-Id':ambox.uri('env.service.parse.appId'),
-	'X-Parse-REST-API-Key':ambox.uri('env.service.parse.apiKey')
+	'X-Parse-REST-API-Key':ambox.uri('env.service.parse.secret')
 };
 
 Parse.defaults = {
