@@ -38,6 +38,7 @@ define(function(){
 	var stub = function(target, namespace){
 		target = target[namespace] = target[namespace] || {};
 		target.namespace = namespace;
+		target.stub = stub;
 		target.ls = ls;
 		target.uri = function(key, value, overwrite){
 			var hasValue = arguments.length > 1;
