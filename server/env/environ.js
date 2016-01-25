@@ -23,7 +23,7 @@ environ.set = function(variable, value, overwrite){
 };
 
 environ.get = function(variable, defaultValue){
-	return process.env[variable] || JSON.stringify(defaultValue) || '';
+	return process.env[variable] || String(defaultValue);
 };
 
 module.exports = ambox.uri('utils.environ', environ);
