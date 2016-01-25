@@ -5,7 +5,7 @@ var app = server.init(onInitServer);
 server.start();
 
 function onInitServer(app){
-	
+	var Parse = require('./server/hooks/proxy');	
 	var Menu = {
 		'/flux':'Flux',
 		'/archives':'Archives',
@@ -25,6 +25,7 @@ function onInitServer(app){
 	});
 
 	app.route('/contact').get(function(request, response){
+		Parse.post({});
 		response.render('pages/contact', { menu:Menu });
 	});
 	

@@ -18,12 +18,12 @@ environ.load = function(filePath, options){
 
 environ.set = function(variable, value, overwrite){
 	value = overwrite? value : environ.get(variable, value);
-	process.env[variable] = String(value);
+	process.env[variable] = JSON.stringify(value);
 	return process.env[variable];
 };
 
 environ.get = function(variable, defaultValue){
-	return process.env[variable] || String(defaultValue);
+	return process.env[variable] || defaultValue;
 };
 
 module.exports = ambox.uri('utils.environ', environ);
