@@ -1,12 +1,3 @@
-# Environment variables
-
-```bash
-export PARSE_APP_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export PARSE_MASTER_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export PARSE_WEBHOOK_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-
 # About
 - [public/robots.txt][about/public/robots.txt]
 - [public/humans.txt][about/public/humans.txt]
