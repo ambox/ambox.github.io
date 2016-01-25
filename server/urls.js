@@ -1,9 +1,9 @@
 /* global ambox */
-var admin = require('./controllers/admin');
-var comments = require('./controllers/comments');
-var jobs = require('./controllers/jobs');
-var main = require('./controllers/main');
-var posts = require('./controllers/posts');
+var admin = require('./hooks/admin');
+var comments = require('./hooks/comments');
+var jobs = require('./hooks/jobs');
+var main = require('./hooks/main');
+var posts = require('./hooks/posts');
 
 module.exports = function(app){
 	// main
