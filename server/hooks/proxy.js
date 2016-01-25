@@ -1,4 +1,5 @@
 /* global ambox */
+var q = require('q');
 var qs = require('querystring');
 var https = require('https');
 
@@ -41,9 +42,10 @@ Parse.batch = function(requests){
 };
 
 Parse.request = function(options){
+	var defer = q.defer();
 	options = ambox.merge({}, Parse.defaults, options);
 	console.log('request:', options);
-	return null;
+	return defer.promise;
 };
 
 module.exports = ambox.uri('Parse', Parse);

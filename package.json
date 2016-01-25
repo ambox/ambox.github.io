@@ -12,7 +12,8 @@
     "express": "^4.13.3",
     "helmet": "^1.1.0",
     "method-override": "^2.3.5",
-    "nunjucks": "^2.3.0"
+    "nunjucks": "^2.3.0",
+    "q": "^1.4.1"
   },
   "engines": {
     "node": "0.12.7"
