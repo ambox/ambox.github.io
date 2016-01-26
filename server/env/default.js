@@ -1,6 +1,8 @@
 /* global ambox */
 var environ = require('./environ');
+
 environ('.environment');
+
 ambox.uri('env.app.title', 'Ambox');
 ambox.uri('env.app.description', 'git-push powered folio');
 ambox.uri('env.app.keywords', 'ambox,node,heroku,express');
@@ -25,4 +27,5 @@ ambox.uri('env.service.paypal.appId', environ.get('PAYPAL_ID', ''));
 ambox.uri('env.service.paypal.secret', environ.get('PAYPAL_SECRET', ''));
 ambox.uri('env.service.parse.appId', environ.get('PARSE_ID', ''));
 ambox.uri('env.service.parse.secret', environ.get('PARSE_SECRET', ''));
+
 module.exports = ambox.uri('env');
