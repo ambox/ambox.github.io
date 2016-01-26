@@ -1,5 +1,4 @@
 /* global ambox */
-var Parse = require('parse/node');
 var root = require('./hooks/root');
 var flux = require('./hooks/flux');
 var archives = require('./hooks/archives');
@@ -10,7 +9,6 @@ var errors = require('./hooks/errors');
 var admin = require('./hooks/admin');
 
 module.exports = function(app, basicAuth){
-	Parse.initialize(ambox.uri('env.service.parse.appId'), ambox.uri('env.service.parse.secret'));
 	
 	// main
 	app.route('/').get(root.index);
@@ -25,7 +23,7 @@ module.exports = function(app, basicAuth){
 	// app.route('/archives/:uid/edit').get(archives.edit);
 	
 	// contact
-	// app.route('/contact').get(contact.index);
+	app.route('/contact').get(contact.index);
 	
 	// posts
 	// app.route('/posts').get(posts.index).post(posts.create);

@@ -7,6 +7,7 @@ var nunjucks = require('nunjucks');
 var helmet = require('helmet');
 var chalk = require('chalk');
 var path = require('path');
+var Parse = require('parse/node');
 var basicAuth = require('basic-auth');
 var environ = require('./env/environ');
 var cfg = require('./env/cfg');
@@ -42,8 +43,8 @@ Server.prototype.initLocalVars = function(){
 	app.locals.server = ambox.uri('env.url.server');
 	app.use(function(request, response, next){
 		var url = request.headers.host + request.originalUrl;
-		response.locals.host = request.protocol + '://' + request.hostname;
-		response.locals.url = request.protocol + '://' + url;
+		response.locals.host = request.protocol +'://'+ request.hostname;
+		response.locals.url = request.protocol +'://'+ url;
 		next();
 	});
 };
@@ -51,7 +52,6 @@ Server.prototype.initLocalVars = function(){
 Server.prototype.initMiddleware = function(){
 	app.set('showStackError', true);
 	app.enable('jsonp callback');
-	app.use(favicon(app.locals.favicon));
 	app.use(bodyParser.urlencoded({ extended:true }));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
@@ -79,6 +79,13 @@ Server.prototype.initHeaders = function(){
 
 Server.prototype.initStaticFiles = function(){
 	app.use('/', express.static(path.resolve('static')));
+	app.use(favicon('static/'+ app.locals.favicon));
+};
+
+Server.prototype.initSession = function(){
+	var appId = ambox.uri('env.service.parse.appId');
+	var jsKey = ambox.uri('env.service.parse.secret');
+	Parse.initialize(appId, jsKey);
 };
 
 Server.prototype.initModules = function(list){
@@ -101,22 +108,15 @@ Server.prototype.initErrorRoutes = function(){
 	});
 };
 
-Server.prototype.configureSocketIO = function(){
-	// N/A yet.
-};
-
 Server.prototype.init = function(modules, callback){
 	this.initLocalVars();
 	this.initMiddleware();
 	this.initViewEngine();
 	this.initHeaders();
 	this.initStaticFiles();
-	// this.initSession();
-	this.initModules(modules);//config.files.server.configs
-	// this.initModulesServerPolicies();
-	// this.initModulesServerRoutes();//config.files.server.routes
+	this.initSession();
+	this.initModules(modules);
 	this.initErrorRoutes();
-	// this.configureSocketIO();
 	return app;
 };
 
