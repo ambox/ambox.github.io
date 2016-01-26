@@ -44,12 +44,6 @@ Server.prototype.initLocalVars = function(){
 	app.locals.googleAnalyticsAppId = ambox.uri('env.service.googleAnalytics.appId');
 	app.locals.facebookAppId = ambox.uri('env.service.facebook.appId');
 	app.locals.server = ambox.uri('env.url.server');
-	app.use(function(request, response, next){
-		var url = request.headers.host + request.originalUrl;
-		response.locals.host = request.protocol +'://'+ request.hostname;
-		response.locals.url = request.protocol +'://'+ url;
-		next();
-	});
 };
 
 Server.prototype.initMiddleware = function(){
