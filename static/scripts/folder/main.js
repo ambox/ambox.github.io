@@ -30,13 +30,12 @@ define(['scope', 'jquery'], function(scope, $){
 	};
 	
 	Folder.prototype.loadPage = function(url){
-		var html = $('[ui-view]').html();
-		console.log('loadPage:', url, html);
-		// $('[ui-view]').load(url +' main>*', this.onLoadPage);
+		$.get(url, this.onLoadPage);
 	};
 	
 	Folder.prototype.onLoadPage = function(html){
-		console.log('html:', html);
+		console.log('[ui-view]:', html);
+		$('[ui-view]').html(html);
 	};
 	
 	Folder.prototype.resize = function(evt){
