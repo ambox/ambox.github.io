@@ -1,17 +1,20 @@
 /* global ambox */
-var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
-var express = require('express');
-var nunjucks = require('nunjucks');
-var helmet = require('helmet');
-var chalk = require('chalk');
-var path = require('path');
-var Parse = require('parse/node');
-var basicAuth = require('basic-auth');
-var environ = require('./env/environ');
-var cfg = require('./env/cfg');
-var app = express();
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const express = require('express');
+const nunjucks = require('nunjucks');
+const helmet = require('helmet');
+const chalk = require('chalk');
+const path = require('path');
+const compress = require('compression');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const Parse = require('parse/node');
+const basicAuth = require('basic-auth');
+const environ = require('./env/environ');
+const cfg = require('./env/cfg');
+const app = express();
 
 var Server = function(options){
 	this.options = ambox.merge({}, options);
@@ -55,6 +58,16 @@ Server.prototype.initMiddleware = function(){
 	app.use(bodyParser.urlencoded({ extended:true }));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+	app.use(cookieParser());
+	app.use(flash());
+	app.use(compress({
+		filter:function(request, response){
+			var content = /json|text|javascript|css|font|svg/;
+			var header = response.getHeader('Content-Type');
+			return content.test(header);
+		},
+		level:9
+	}));
 };
 
 Server.prototype.initViewEngine = function(){
