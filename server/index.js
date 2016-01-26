@@ -1,6 +1,7 @@
 /* global ambox */
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 var express = require('express');
 var nunjucks = require('nunjucks');
 var helmet = require('helmet');
@@ -50,6 +51,7 @@ Server.prototype.initLocalVars = function(){
 Server.prototype.initMiddleware = function(){
 	app.set('showStackError', true);
 	app.enable('jsonp callback');
+	app.use(favicon(app.locals.favicon));
 	app.use(bodyParser.urlencoded({ extended:true }));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
@@ -89,7 +91,7 @@ Server.prototype.initModules = function(list){
   });
 };
 
-Server.prototype.initErrorHandler = function(){
+Server.prototype.initErrorRoutes = function(){
 	app.use(function(error, request, response, next){
 		if(!error){
 			return next();
@@ -99,14 +101,22 @@ Server.prototype.initErrorHandler = function(){
 	});
 };
 
+Server.prototype.configureSocketIO = function(){
+	// N/A yet.
+};
+
 Server.prototype.init = function(modules, callback){
 	this.initLocalVars();
 	this.initMiddleware();
 	this.initViewEngine();
 	this.initHeaders();
 	this.initStaticFiles();
-	this.initModules(modules);
-	this.initErrorHandler();
+	// this.initSession();
+	this.initModules(modules);//config.files.server.configs
+	// this.initModulesServerPolicies();
+	// this.initModulesServerRoutes();//config.files.server.routes
+	this.initErrorRoutes();
+	// this.configureSocketIO();
 	return app;
 };
 
