@@ -55,19 +55,18 @@ Server.prototype.initLocalVars = function(){
 Server.prototype.initMiddleware = function(){
 	app.set('showStackError', true);
 	app.enable('jsonp callback');
+	app.use(compress({ filter:this.initCompress, level:9 }));
 	app.use(bodyParser.urlencoded({ extended:true }));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 	app.use(cookieParser());
 	app.use(flash());
-	app.use(compress({
-		filter:function(request, response){
-			var content = /json|text|javascript|css|font|svg/;
-			var header = response.getHeader('Content-Type');
-			return content.test(header);
-		},
-		level:9
-	}));
+};
+
+Server.prototype.initCompress = function(request, response){
+	var content = /javascript|json|text|css|font|svg/;
+	var header = response.getHeader('Content-Type');
+	return content.test(header);
 };
 
 Server.prototype.initViewEngine = function(){
