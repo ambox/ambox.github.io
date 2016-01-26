@@ -7,6 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "basic-auth": "^1.0.3",
     "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
     "express": "^4.13.3",

@@ -1,0 +1,12 @@
+<!-- content -->
+<div class='header'></div>
+
+{% include "post.html" %}
+
+<div class='comments'>
+	<div class='number'>{{comments.length}} {% "comment" if comments.length == 1 else "comments" %}</div>
+	{% for comment in comments %}
+		{% include "../comments/comment.html" %}
+	{% endfor %}
+	{% include "../comments/new.html" %}
+</div>

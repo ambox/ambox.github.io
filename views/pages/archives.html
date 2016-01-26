@@ -5,4 +5,9 @@
 		<h1>Archives/{{env.params.uid}}</h1>
 		<p>Hello stranger</p>
 	</header>
+	<ul class="list">
+	{% for archive in archives %}
+		<li class="list__item"><a class="link" ui-sref="{{archive.id}}">{{archive.get('name')}}</a></li>
+	{% endfor %}
+	</ul>
 {% endblock %}

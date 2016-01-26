@@ -1,9 +1,8 @@
 /* global ambox */
-var Parse = require('parse');
+var Parse = require('parse/node');
 
 exports.badRequest = function(request, response){
-	response.status(500).render('server/500', {
-	});
+	response.status(500).render('server/500', {});
 };
 
 exports.notFound = function(request, response){

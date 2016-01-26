@@ -6,6 +6,7 @@ var nunjucks = require('nunjucks');
 var helmet = require('helmet');
 var chalk = require('chalk');
 var path = require('path');
+var basicAuth = require('basic-auth');
 var environ = require('./env/environ');
 var cfg = require('./env/cfg');
 var app = express();
@@ -16,6 +17,17 @@ var Server = function(options){
 
 Server.create = function(options){
 	return new Server(options);
+};
+
+Server.basicAuth = function(username, password){
+	return function(request, response, next){
+		var user = basicAuth(request);
+		if(!user || user.name !== username || user.pass !== password){
+			response.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+			return response.sendStatus(401);
+		}
+		next();
+	};
 };
 
 Server.prototype.initLocalVars = function(){
@@ -68,10 +80,11 @@ Server.prototype.initStaticFiles = function(){
 };
 
 Server.prototype.initModules = function(list){
+	var auth = Server.basicAuth('admin', 'admin');
 	list = Array.isArray(list)? list : [list];
 	list.forEach(function(module){
 		if(typeof module === 'function'){
-			module(app, cfg);
+			module(app, auth);
 		}
   });
 };

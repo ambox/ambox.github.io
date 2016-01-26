@@ -30,13 +30,13 @@ define(['scope', 'jquery'], function(scope, $){
 	};
 	
 	Folder.prototype.loadPage = function(url){
-		$('main').load(url +' main>*', this.onLoadPage);
+		var html = $('[ui-view]').html();
+		console.log('loadPage:', url, html);
+		// $('[ui-view]').load(url +' main>*', this.onLoadPage);
 	};
 	
 	Folder.prototype.onLoadPage = function(html){
-		var title = html.match(/<title>(.*?)<\/title>/)[1].trim();
-		console.log('title:', title);
-		document.title = title;
+		console.log('html:', html);
 	};
 	
 	Folder.prototype.resize = function(evt){

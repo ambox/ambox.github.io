@@ -1,5 +1,5 @@
 /* global ambox */
-var Parse = require('parse');
+var Parse = require('parse/node');
 
 // Display all comments.
 exports.index = function(request, response){

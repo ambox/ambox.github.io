@@ -1,5 +1,5 @@
 /* global ambox */
-var Parse = require('parse');
+var Parse = require('parse/node');
 
 // Display all posts.
 exports.index = function(request, response){
@@ -7,6 +7,7 @@ exports.index = function(request, response){
 
 // Display a form for creating a new post.
 exports.new = function(request, response){
+	response.render('partials/posts/new', {});
 };
 
 // Create a new post with specified title and body.

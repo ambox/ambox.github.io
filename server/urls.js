@@ -1,39 +1,47 @@
 /* global ambox */
-var admin = require('./hooks/admin');
+var Parse = require('parse/node');
+var root = require('./hooks/root');
+var flux = require('./hooks/flux');
+var archives = require('./hooks/archives');
+var contact = require('./hooks/contact');
 var comments = require('./hooks/comments');
-var errors = require('./hooks/errors');
-var jobs = require('./hooks/jobs');
-var main = require('./hooks/main');
 var posts = require('./hooks/posts');
+var errors = require('./hooks/errors');
+var admin = require('./hooks/admin');
 
-module.exports = function(app){
-	// main
-	app.route('/').get(main.index);
-	app.route('/flux/:UID?').get(main.flux);
-	app.route('/archives/:UID?').get(main.archives);
-	app.route('/contact').get(main.contact);
+module.exports = function(app, basicAuth){
+	Parse.initialize(ambox.uri('env.service.parse.appId'), ambox.uri('env.service.parse.secret'));
 	
-	// jobs
-	app.route('/jobs').get(jobs.index).post(jobs.create);
-	app.route('/jobs/new').get(jobs.new);
-	app.route('/jobs/:UID').get(jobs.show).put(jobs.update).delete(jobs.delete);
-	app.route('/jobs/:UID/edit').get(jobs.edit);
+	// main
+	app.route('/').get(root.index);
+	
+	// flux
+	app.route('/flux').get(flux.index);
+	
+	// archives
+	app.route('/archives').get(archives.index).post(archives.create);
+	app.route('/archives/new').get(basicAuth, archives.new);
+	// app.route('/archives/:uid').get(archives.show).put(archives.update).delete(archives.delete);
+	// app.route('/archives/:uid/edit').get(archives.edit);
+	
+	// contact
+	// app.route('/contact').get(contact.index);
 	
 	// posts
-	app.route('/posts').get(posts.index).post(posts.create);
-	app.route('/posts/new').get(posts.new);
-	app.route('/posts/:UID').get(posts.show).put(posts.update).delete(posts.delete);
-	app.route('/posts/:UID/edit').get(posts.edit);
+	// app.route('/posts').get(posts.index).post(posts.create);
+	// app.route('/posts/new').get(posts.new);
+	// app.route('/posts/:uid').get(posts.show).put(posts.update).delete(posts.delete);
+	// app.route('/posts/:uid/edit').get(posts.edit);
 	
 	// comments
-	app.route('/posts/:postUID/comments').post(comments.create);
-	app.route('/posts/:postUID/comments/:UID').delete(comments.delete);
+	// app.route('/posts/:post_uid/comments').post(comments.create);
+	// app.route('/posts/:post_uid/comments/:uid').delete(comments.delete);
 	
 	// admin
-	app.route('/admin').get(admin.index);
-	app.route('/admin/jobs').get(admin.index);
-	app.route('/admin/posts').get(admin.index);
-	app.route('/admin/comments').get(admin.index);
+	// app.route('/admin').get(admin.index);
+	// app.route('/admin/jobs').get(admin.index);
+	// app.route('/admin/posts').get(admin.index);
+	// app.route('/admin/comments').get(admin.index);
 	
 	// errors
 	app.route('/server-error').get(errors.badRequest);
