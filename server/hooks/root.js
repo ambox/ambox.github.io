@@ -8,5 +8,5 @@ var menu = {
 };
 
 exports.index = function(request, response){
-	response.render('index', { menu:menu });
+	response.render('pages/flux', { menu:menu });
 };
