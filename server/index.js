@@ -66,7 +66,7 @@ Server.prototype.initCompress = function(request, response){
 Server.prototype.initViewEngine = function(){
 	nunjucks.configure('views', { autoescape:true, express:app });
 	app.set('view engine', 'html');
-	app.set('views', cfg.url.host +'/views');
+	app.set('views', ambox.uri('env.url.host') +'/views');
 };
 
 Server.prototype.initHeaders = function(){
@@ -134,7 +134,7 @@ Server.prototype.start = function(callback){
 	var port = ambox.uri('env.url.port');
 	var host = ambox.uri('env.url.host');
 	app.listen(port, host, function(){
-		console.log('['+ chalk.white(cfg.app.title)+ ']\n|');
+		console.log('['+ chalk.white(ambox.uri('env.app.title'))+ ']\n|');
 		console.log('|    '+chalk.green('Environment: ')+ environ.get('NODE_ENV', 'localhost'));
 		console.log('|    '+chalk.green('Server: ')+ ambox.uri('env.url.server'));
 		console.log('|_');
