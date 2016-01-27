@@ -12,7 +12,6 @@ var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var Parse = require('parse/node');
 var basicAuth = require('basic-auth');
-var environ = require('./env/environ');
 
 var Server = function(cfg){
 	this.cfg = ambox.merge({}, cfg);
@@ -134,7 +133,7 @@ Server.prototype.start = function(callback){
 	var host = ambox.uri('env.url.host');
 	this.app.listen(port, host, function(){
 		console.log('['+ chalk.white(ambox.uri('env.app.title'))+ ']\n|');
-		console.log('|    '+chalk.green('Environment: ')+ environ.get('NODE_ENV', 'localhost'));
+		console.log('|    '+chalk.green('Environment: ')+ ambox.uri('env.node'), 'localhost'));
 		console.log('|    '+chalk.green('Server: ')+ ambox.uri('env.url.server'));
 		console.log('|_');
 		callback && callback(this.app, this.cfg);
