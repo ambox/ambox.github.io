@@ -17,8 +17,8 @@ module.exports = function(app, basicAuth){
 	app.route('/flux').get(flux.index);
 	
 	// archives
-	app.route('/archives').get(archives.index).post(archives.create);
-	app.route('/archives/new').get(basicAuth, archives.new);
+	app.route('/archives').get(archives.findAll).post(archives.create);
+	app.route('/archives/new').get(basicAuth, archives.renderNew);
 	// app.route('/archives/:uid').get(archives.show).put(archives.update).delete(archives.delete);
 	// app.route('/archives/:uid/edit').get(archives.edit);
 	
