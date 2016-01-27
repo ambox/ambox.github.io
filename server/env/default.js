@@ -3,7 +3,7 @@ var environ = require('./environ');
 
 environ('.environment');
 
-ambox.uri('env.app.title', 'ambox');
+ambox.uri('env.app.title', 'Ambox');
 ambox.uri('env.app.description', 'git-push powered folio');
 ambox.uri('env.app.keywords', 'ambox,node,heroku,express');
 ambox.uri('env.app.favicon', 'favicon.ico');

@@ -1,20 +1,20 @@
 /* global ambox */
-const methodOverride = require('method-override');
-const bodyParser = require('body-parser');
-const favicon = require('serve-favicon');
-const express = require('express');
-const nunjucks = require('nunjucks');
-const helmet = require('helmet');
-const chalk = require('chalk');
-const path = require('path');
-const compress = require('compression');
-const cookieParser = require('cookie-parser');
-const flash = require('connect-flash');
-const Parse = require('parse/node');
-const basicAuth = require('basic-auth');
-const environ = require('./env/environ');
-const cfg = require('./env/cfg');
-const app = express();
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
+var express = require('express');
+var nunjucks = require('nunjucks');
+var helmet = require('helmet');
+var chalk = require('chalk');
+var path = require('path');
+var compress = require('compression');
+var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
+var Parse = require('parse/node');
+var basicAuth = require('basic-auth');
+var environ = require('./env/environ');
+var cfg = require('./env/cfg');
+var app = express();
 
 var Server = function(options){
 	this.options = ambox.merge({}, options);
@@ -91,6 +91,10 @@ Server.prototype.initStaticFiles = function(){
 Server.prototype.initSession = function(){
 	var appId = ambox.uri('env.service.parse.appId');
 	var jsKey = ambox.uri('env.service.parse.secret');
+	console.log('['+ chalk.white('Parse')+ ']\n|');
+	console.log('|    '+chalk.green('appId: ')+ appId);
+	console.log('|    '+chalk.green('jsKey: ')+ jsKey);
+	console.log('|_');
 	Parse.initialize(appId, jsKey);
 };
 
@@ -101,7 +105,7 @@ Server.prototype.initModules = function(list){
 		if(typeof module === 'function'){
 			module(app, auth);
 		}
-  });
+	});
 };
 
 Server.prototype.initErrorRoutes = function(){
@@ -130,7 +134,7 @@ Server.prototype.start = function(callback){
 	var port = ambox.uri('env.url.port');
 	var host = ambox.uri('env.url.host');
 	app.listen(port, host, function(){
-		console.log('['+chalk.white(cfg.app.title)+']\n|');
+		console.log('['+ chalk.white(cfg.app.title)+ ']\n|');
 		console.log('|    '+chalk.green('Environment: ')+ environ.get('NODE_ENV', 'localhost'));
 		console.log('|    '+chalk.green('Server: ')+ ambox.uri('env.url.server'));
 		console.log('|_');
