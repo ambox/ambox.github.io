@@ -30,6 +30,7 @@ define(['scope', 'jquery'], function(scope, $){
 	};
 	
 	Folder.prototype.loadPage = function(url){
+		console.log('[ui-sref]:', url);
 		$.get(url, this.onLoadPage);
 	};
 	
