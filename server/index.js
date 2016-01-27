@@ -33,6 +33,16 @@ Server.basicAuth = function(username, password){
 	};
 };
 
+Server.historyAPIFallback = function(path, options){
+	return function(request, response, next){
+		if(request.method === 'GET' && request.accepts('html')){
+			response.sendFile(path, options, function(error){
+				return error && next();
+			});
+		} else next();
+	};
+};
+
 Server.prototype.initLocalVars = function(){
 	this.app.locals.title = ambox.uri('env.app.title');
 	this.app.locals.description = ambox.uri('env.app.description');
@@ -82,7 +92,9 @@ Server.prototype.initHeaders = function(){
 };
 
 Server.prototype.initStaticFiles = function(){
+	var history = Server.historyAPIFallback;
 	this.app.use('/', express.static(path.resolve('static')));
+	this.app.use(history('base.html', { root:__dirname+'/static' }));
 	this.app.use(favicon('static/'+ this.app.locals.favicon));
 };
 
