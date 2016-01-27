@@ -5,8 +5,8 @@ define(['scope', 'jquery'], function(scope, $){
 		this.resize = this.resize.bind(this);
 		this.onUserInteract = this.onUserInteract.bind(this);
 		this.onPopState = this.onPopState.bind(this);
-		this.loadPage = this.loadPage.bind(this);
-		this.onLoadPage = this.onLoadPage.bind(this);
+		this.loadView = this.loadView.bind(this);
+		this.onLoadView = this.onLoadView.bind(this);
 	}
 
 	Folder.prototype.startup = function(){
@@ -15,28 +15,30 @@ define(['scope', 'jquery'], function(scope, $){
 	};
 
 	Folder.prototype.onUserInteract = function(evt){
-		var state = $(evt.currentTarget).attr('ui-sref');
+		evt.preventDefault();
+		var state = $(evt.currentTarget).attr('href');
 		if(state.indexOf(document.domain) > -1 || state.indexOf(':') === -1){
 			history.pushState({}, '', state);
-			this.loadPage(state);
+			this.loadView(state);
 			return false;
 		}
 	};
 	
 	Folder.prototype.onPopState = function(evt){
 		if(evt.originalEvent.state !== null){
-			this.loadPage(window.location.href);
+			this.loadView(window.location.href);
 		}
 	};
 	
-	Folder.prototype.loadPage = function(url){
+	Folder.prototype.loadView = function(url){
 		console.log('[ui-sref]:', url);
-		$.get(url, this.onLoadPage);
+		$.getJSON(url, { format:'json' }, this.onLoadView);
 	};
 	
-	Folder.prototype.onLoadPage = function(html){
-		console.log('[ui-view]:', html);
-		$('[ui-view]').html(html);
+	Folder.prototype.onLoadView = function(view){
+		console.log('[ui-view]:', view);
+		// view.html = $(view.html).find('[ui-view]').html();
+		// $('[ui-view]').html(view.html);
 	};
 	
 	Folder.prototype.resize = function(evt){

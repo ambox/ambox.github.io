@@ -38,4 +38,4 @@ File.prototype.url = function(url){
 	}
 };
 
-module.exports = ambox.uri('utils.File', File);
+module.exports = ambox.uri('files.File', File);

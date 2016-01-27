@@ -33,4 +33,4 @@ EnvFile.prototype.eachLine = function(iterator, context){
 	}
 };
 
-module.exports = ambox.uri('utils.EnvFile', EnvFile);
+module.exports = ambox.uri('files.EnvFile', EnvFile);
