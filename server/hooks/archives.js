@@ -34,7 +34,7 @@ ArchivesCtrl.prototype.renderEdit = function(request, response){
 			response.render('partials/archives/edit', data);
 		}else{
 			data.error = true;
-			data.message = 'specified archive does not exist';
+			data.message = 'Specified archive does not exist';
 			response.status(404).send(data);
 		}
 	}, function(reason){
