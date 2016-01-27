@@ -25,6 +25,7 @@ define(['scope', 'jquery'], function(scope, $){
 	};
 	
 	Folder.prototype.onPopState = function(evt){
+		console.log('[popstate]:', evt);
 		if(evt.originalEvent.state !== null){
 			this.loadView(window.location.href);
 		}
