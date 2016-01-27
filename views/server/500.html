@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Ambox // Server error{% endblock %}
-{% block section %}
+{% set view = "error_500" %}
+{% block view %}
 	<header>
 		<h1>Internal Server Error</h1>
 		<p>A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.</p>

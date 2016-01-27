@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Ambox // Permission denied{% endblock %}
-{% block section %}
+{% set view = "error_403" %}
+{% block view %}
 	<header>
 		<h1>Permission denied</h1>
 		<p>The request was a valid request, but the server is refusing to respond to it.</p>

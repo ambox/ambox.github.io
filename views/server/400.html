@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Ambox // Bad Request{% endblock %}
-{% block section %}
+{% set view = "error_400" %}
+{% block view %}
 	<header>
 		<h1>Bad Request</h1>
 		<p>The request cannot be fulfilled due to bad syntax</p>

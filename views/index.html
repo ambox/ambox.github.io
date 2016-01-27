@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/base.css">
 </head>
-<body>
+<body class="{{view}}">
 	<nav class="menu">
 		<ul class="list">
 		{% for state, name in menu %}
@@ -17,8 +17,8 @@
 		{% endfor %}
 		</ul>
 	</nav>
-	<section class="page">
-		<div ui-view>{% block section %}index{% endblock %}</div>
+	<section class="view">
+		<div ui-view>{% block view %}index{% endblock %}</div>
 	</section>
 	<script data-main="scripts/setup.js" src="scripts/vendors/require/require.js"></script>
 </body>

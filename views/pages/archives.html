@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Ambox // Archives{% endblock %}
-{% block section %}
+{% set view = "archives" %}
+{% block view %}
 	<header>
 		<h1>Archives/{{env.params.uid}}</h1>
 		<p>Hello stranger</p>

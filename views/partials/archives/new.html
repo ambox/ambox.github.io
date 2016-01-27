@@ -1,17 +1,17 @@
 <form class='new_job' method='post' action='/archives'>
-	<div class='form_section'>
+	<div class='form_field'>
 		<label>Name</label>
 		<input class='job_name' name='name' />
 	</div>
-	<div class="form_file">
+	<div class="form_field">
 		<input class="file" type="file" name="files[]" multiple></input>
 	    <input class="uploadbutton" type="button" value="Upload to Parse"/>
 	</div>
-	<div class='form_section'>
+	<div class='form_field'>
 		<label>Description</label>
 		<textarea class='job_description' name='description'></textarea>
 	</div>
-	<div class='form_section'>
+	<div class='form_field'>
 		<input class='button' type='submit' value='Publish' />
 	</div>
 </form>
