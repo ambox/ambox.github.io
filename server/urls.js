@@ -19,8 +19,8 @@ module.exports = function(app, basicAuth){
 	// archives
 	app.route('/archives').get(archives.findAll).post(archives.create);
 	app.route('/archives/new').get(basicAuth, archives.renderNew);
-	// app.route('/archives/:uid').get(archives.show).put(archives.update).delete(archives.delete);
-	// app.route('/archives/:uid/edit').get(archives.edit);
+	// app.route('/archives/:uid').get(archives.findOne).put(archives.update).delete(archives.delete);
+	// app.route('/archives/:uid/edit').get(archives.renderEdit);
 	
 	// contact
 	app.route('/contact').get(contact.index);
