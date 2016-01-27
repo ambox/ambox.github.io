@@ -1,3 +1,11 @@
+var browse = exports.browse = function(fn){
+	return function(){
+		return Function.call.apply(fn, arguments);
+	};
+};
+
+var slice = exports.slice = browse(Array.prototype.slice);
+
 var ls = exports.ls = function(path){
 	var objectAssessor = /\[(["']?)([^\1]+?)\1?\]/g;
 	var keys = path.replace(objectAssessor, '.$2');
@@ -6,7 +14,7 @@ var ls = exports.ls = function(path){
 };
 
 var merge = exports.merge = function(target){
-	var params = Array.prototype.slice.call(arguments);
+	var params = slice(arguments);
 	var id, source, property;
 	for(id = 1; id < params.length; id++){
 		source = params[id];
@@ -21,13 +29,48 @@ var merge = exports.merge = function(target){
 
 var pick = exports.pick = function(object){
 	var hash = {};
-	var properties = Array.prototype.slice.call(arguments, 1);
+	var properties = slice(arguments, 1);
 	for(var id = 0, total = properties.length; id < total; id++){
 		if(object === Object(object) && properties[id]){
 			hash[properties[id]] = object[properties[id]];
 		}
 	}
 	return hash;
+};
+
+var bind = exports.bind = function(fn, context){
+	var args = slice(arguments, 2);
+	var proxy = function(){
+		return fn.apply(context, args.concat(slice(arguments)));
+	};
+	proxy.__originalFn__ = proxy.__originalFn__ || fn;
+	return proxy;
+};
+
+var unbind = exports.unbind = function(fn, context){
+	var originalFn = fn.__originalFn__;
+	delete(fn.__originalFn__);
+	return originalFn;
+};
+
+var bindAll = exports.bindAll = function(context, methods){
+	methods = Array.isArray(methods)? methods : slice(arguments, 1);
+	for(var id = 0; id < methods.length; id++){
+		if(typeof context[methods[id]] === 'function'){
+			context[methods[id]] = bind(context[methods[id]], context);
+		}
+	}
+	return context;
+};
+
+var unbindAll = exports.unbindAll = function(context, methods){
+	methods = Array.isArray(methods)? methods : slice(arguments, 1);
+	for(var id = 0; id < methods.length; id++){
+		if(typeof context[methods[id]] === 'function'){
+			context[methods[id]] = unbind(context[methods[id]], context);
+		}
+	}
+	return context;
 };
 
 var write = exports.write = function(target, path, value, overwrite){
@@ -61,6 +104,12 @@ var read = exports.read = function(target, path){
 var stub = exports.stub = function(target, namespace){
 	target = target[namespace] = target[namespace] || {};
 	target.namespace = namespace;
+	target.unbindAll = unbindAll;
+	target.bindAll = bindAll;
+	target.unbind = unbind;
+	target.browse = browse;
+	target.slice = slice;
+	target.bind = bind;
 	target.merge = merge;
 	target.stub = stub;
 	target.pick = pick;

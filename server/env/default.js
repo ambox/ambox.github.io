@@ -1,15 +1,11 @@
 /* global ambox */
 var environ = require('./environ');
-
-environ('.environment');
-
-ambox.uri('env.node', environ.get('NODE_ENV'));
 ambox.uri('env.app.title', 'Ambox');
 ambox.uri('env.app.description', 'git-push powered folio');
 ambox.uri('env.app.keywords', 'ambox,node,heroku,express');
 ambox.uri('env.app.favicon', 'favicon.ico');
 ambox.uri('env.app.logo', 'images/share.jpg');
-ambox.uri('env.url.protocol', ambox.env.node === 'secure'? 'https' : 'http');
+ambox.uri('env.url.protocol', ambox.env.role === 'secure'? 'https' : 'http');
 ambox.uri('env.url.port', environ.get('PORT', 3000));
 ambox.uri('env.url.host', environ.get('HOST', '0.0.0.0'));
 ambox.uri('env.url.server', ambox.env.url.protocol +'://'+ ambox.env.url.host +':'+ ambox.env.url.port);
@@ -28,5 +24,4 @@ ambox.uri('env.service.paypal.appId', environ.get('PAYPAL_ID', ''));
 ambox.uri('env.service.paypal.secret', environ.get('PAYPAL_SECRET', ''));
 ambox.uri('env.service.parse.appId', environ.get('PARSE_ID', ''));
 ambox.uri('env.service.parse.secret', environ.get('PARSE_SECRET', ''));
-
 module.exports = ambox.uri('env');
