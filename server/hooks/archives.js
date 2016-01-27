@@ -3,6 +3,12 @@ var Parse = require('parse/node');
 var Archive = Parse.Object.extend('Archive');
 var Tag = Parse.Object.extend('Tag');
 
+var menu = {
+	'/flux': 'Flux',
+	'/archives': 'Archives',
+	'/contact': 'Contact'
+};
+
 var ArchivesCtrl = function(){
 	ambox.bindAll(this,
 		'findAll',
@@ -15,7 +21,7 @@ var ArchivesCtrl = function(){
 
 // Display a form for creating a new archive.
 ArchivesCtrl.prototype.renderNew = function(request, response){
-	response.render('partials/archives/new', {});
+	response.render('partials/archives/new', { menu:menu });
 };
 
 // Display a form for editing a specified archive.
@@ -23,7 +29,7 @@ ArchivesCtrl.prototype.renderEdit = function(request, response){
 	var query = new Parse.Query(Archive);
 	query.get(request.params.id).then(function(value){
 		if(value){
-			response.render('partials/archives/edit', { archive:value });
+			response.render('partials/archives/edit', { archive:value, menu:menu });
 		}else{
 			response.status(404).send({
 				message:'specified archive does not exist',
@@ -40,11 +46,11 @@ ArchivesCtrl.prototype.renderEdit = function(request, response){
 };
 
 // Display all archives.
-ArchivesCtrl.prototype.findAll = function(request, response){console.log(this)
+ArchivesCtrl.prototype.findAll = function(request, response){
 	var query = new Parse.Query(Archive);
 	query.descending('createdAt');
 	query.find().then(function(value){
-		response.render('pages/archives', { archives:value });
+		response.render('pages/archives', { archives:value, menu:menu });
 	}, function(reason){
 		console.warn('[Archives.findAll\n    '+ reason +'\n]');
 		response.status(500).send({
@@ -58,7 +64,7 @@ ArchivesCtrl.prototype.findAll = function(request, response){console.log(this)
 ArchivesCtrl.prototype.findOne = function(request, response){
 	var query = new Parse.Query(Archive);
 	query.get(request.params.id).then(function(value){
-		response.render('posts/show', { archive:value, comments:[] });
+		response.render('posts/show', { archive:value, comments:[], menu:menu });
 	}, function(reason){
 		console.warn('[Archives.findOne\n    '+ reason +'\n]');
 		response.status(500).send({
