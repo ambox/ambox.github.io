@@ -44,14 +44,14 @@ Server.historyAPIFallback = function(path, options){
 };
 
 Server.prototype.initLocalVars = function(){
-	this.app.locals.title = ambox.uri('env.app.title');
-	this.app.locals.description = ambox.uri('env.app.description');
-	this.app.locals.keywords = ambox.uri('env.app.keywords');
-	this.app.locals.favicon = ambox.uri('env.app.favicon');
-	this.app.locals.logo = ambox.uri('env.app.logo');
-	this.app.locals.googleAnalyticsAppId = ambox.uri('env.service.googleAnalytics.appId');
-	this.app.locals.facebookAppId = ambox.uri('env.service.facebook.appId');
-	this.app.locals.server = ambox.uri('env.url.server');
+	this.app.locals.title = this.cfg.app.title;
+	this.app.locals.description = this.cfg.app.description;
+	this.app.locals.keywords = this.cfg.app.keywords;
+	this.app.locals.favicon = this.cfg.app.favicon;
+	this.app.locals.logo = this.cfg.app.logo;
+	this.app.locals.googleAnalyticsAppId = this.cfg.service.googleAnalytics.appId;
+	this.app.locals.facebookAppId = this.cfg.service.facebook.appId;
+	this.app.locals.server = this.cfg.url.server;
 };
 
 Server.prototype.initMiddleware = function(){
@@ -74,7 +74,7 @@ Server.prototype.initCompress = function(request, response){
 Server.prototype.initViewEngine = function(){
 	nunjucks.configure('views', { autoescape:true, express:this.app });
 	this.app.set('view engine', 'html');
-	this.app.set('views', ambox.uri('env.url.host') +'/views');
+	this.app.set('views', this.cfg.url.host +'/views');
 };
 
 Server.prototype.initHeaders = function(){
@@ -99,8 +99,8 @@ Server.prototype.initStaticFiles = function(){
 };
 
 Server.prototype.initSession = function(){
-	var appId = ambox.uri('env.service.parse.appId');
-	var jsKey = ambox.uri('env.service.parse.secret');
+	var appId = this.cfg.service.parse.appId;
+	var jsKey = this.cfg.service.parse.secret;
 	console.log('['+ chalk.white('Parse')+ ']\n|');
 	console.log('|    '+chalk.green('appId: ')+ appId);
 	console.log('|    '+chalk.green('jsKey: ')+ jsKey);
@@ -141,15 +141,15 @@ Server.prototype.init = function(modules, callback){
 };
 
 Server.prototype.start = function(callback){
-	var port = ambox.uri('env.url.port');
-	var host = ambox.uri('env.url.host');
-	this.app.listen(port, host, function(){
-		console.log('['+ chalk.white(ambox.uri('env.app.title'))+ ']\n|');
-		console.log('|    '+chalk.green('Environment: ')+ ambox.uri('env.role'));
-		console.log('|    '+chalk.green('Server: ')+ ambox.uri('env.url.server'));
+	var port = this.cfg.url.port;
+	var host = this.cfg.url.host;
+	this.app.listen(port, host, ambox.bind(function(){
+		console.log('['+ chalk.white(this.cfg.app.title)+ ']\n|');
+		console.log('|    '+chalk.green('Environment: ')+ this.cfg.role);
+		console.log('|    '+chalk.green('Server: ')+ this.cfg.url.server);
 		console.log('|_');
 		callback && callback(this.app, this.cfg);
-	});
+	}, this));
 };
 
 module.exports = ambox.uri('Server', Server);
