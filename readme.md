@@ -6,7 +6,7 @@
 - DELETE -> Delete
 
 
-## Status Code [HTTP Status](http://httpstatusdogs.com)
+## [Status Code](http://httpstatusdogs.com)
 
 - 200 - Ok
 - 404 - Not Found
