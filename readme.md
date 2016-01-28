@@ -6,7 +6,7 @@
 - DELETE -> Delete
 
 
-## Status Code [HTTP Status Cat](https://www.flickr.com/photos/girliemac/sets/72157628409467125)
+## Status Code [HTTP Status](http://httpstatusdogs.com)
 
 - 200 - Ok
 - 404 - Not Found
