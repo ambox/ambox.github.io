@@ -1,9 +1,9 @@
 ## Rest - http
 
-- POST -> Create
-- GET -> Retrieve
-- PUT -> Update
-- DELETE -> Delete
+- C:POST -> Create
+- R:GET -> Retrieve
+- U:PUT -> Update
+- D:DELETE -> Delete
 
 
 ## [Status Code](http://httpstatusdogs.com)
@@ -23,7 +23,7 @@ $ npm install
 $ npm start
 ```
 
-## Testando a API pelo terminal
+## Terminal commands test
 
 ### C:POST (create)
 ```bash
