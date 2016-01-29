@@ -1,17 +1,17 @@
 /* global ambox */
 var methodOverride = require('method-override');
+var connectFlash = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var compression = require('compression');
 var bodyParser = require('body-parser');
+var basicAuth = require('basic-auth');
+var nunjucks = require('nunjucks');
 var favicon = require('serve-favicon');
 var express = require('express');
-var nunjucks = require('nunjucks');
 var helmet = require('helmet');
+var Parse = require('parse/node');
 var chalk = require('chalk');
 var path = require('path');
-var compress = require('compression');
-var cookieParser = require('cookie-parser');
-var flash = require('connect-flash');
-var Parse = require('parse/node');
-var basicAuth = require('basic-auth');
 
 var Server = function(cfg){
 	this.cfg = ambox.merge({}, cfg);
@@ -57,15 +57,15 @@ Server.prototype.initLocalVars = function(){
 Server.prototype.initMiddleware = function(){
 	this.app.set('showStackError', true);
 	this.app.enable('jsonp callback');
-	this.app.use(compress({ filter:this.initCompress, level:9 }));
+	this.app.use(compression({ filter:this.initCompression, level:9 }));
 	this.app.use(bodyParser.urlencoded({ extended:true }));
 	this.app.use(bodyParser.json());
 	this.app.use(methodOverride());
 	this.app.use(cookieParser());
-	this.app.use(flash());
+	this.app.use(connectFlash());
 };
 
-Server.prototype.initCompress = function(request, response){
+Server.prototype.initCompression = function(request, response){
 	var content = /javascript|json|text|css|font|svg/;
 	var header = response.getHeader('Content-Type');
 	return content.test(header);
