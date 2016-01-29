@@ -10,20 +10,20 @@ var ArchivesModel = function(){
 // Single requests
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ArchivesModel.prototype.create = function(data){
-	// this.archives.save(data);
+ArchivesModel.prototype.create = function(data, callback){
+	this.archives.save(data, callback);
 };
 
-ArchivesModel.prototype.findOne = function(id){
-	// this.archives.findOne({ _id:mongo.ObjectId(id) });
+ArchivesModel.prototype.findOne = function(uid, callback){
+	this.archives.findOne({ _id:mongo.ObjectId(uid) }, callback);
 };
 
-ArchivesModel.prototype.updateOne = function(data){
-	// this.archives.update(data);
+ArchivesModel.prototype.updateOne = function(uid, data, callback){
+	// this.archives.update(data, callback);
 };
 
-ArchivesModel.prototype.deleteOne = function(id){
-	// this.archives.remove({ _id:id });
+ArchivesModel.prototype.deleteOne = function(uid, callback){
+	this.archives.remove({ _id:uid }, callback);
 };
 
 
@@ -31,16 +31,16 @@ ArchivesModel.prototype.deleteOne = function(id){
 // Bulk requests
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ArchivesModel.prototype.findAll = function(){
-	// this.archives.find({});
+ArchivesModel.prototype.findAll = function(callback){
+	this.archives.find({}, callback);
 };
 
-ArchivesModel.prototype.updateAll = function(data){
-	// this.archives.update(data);
+ArchivesModel.prototype.updateAll = function(data, callback){
+	// this.archives.update(data, callback);
 };
 
-ArchivesModel.prototype.deleteAll = function(){
-	// this.archives.remove();
+ArchivesModel.prototype.deleteAll = function(callback){
+	// this.archives.remove({}, callback);
 };
 
 module.exports = ambox.uri('models.ArchivesCtrl', ArchivesModel);
