@@ -34,18 +34,24 @@ ArchivesCtrl.prototype.create = function(request, response){
 };
 
 ArchivesCtrl.prototype.findOne = function(request, response){
-	console.log('[ArchivesCtrl.findOne.format]:', request.params.format);
-	console.log('[ArchivesCtrl.findOne.uid]:', request.params.uid);
+	var uid = request.params.uid;
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.findOne.format]:', format);
+	console.log('[ArchivesCtrl.findOne.uid]:', uid);
 };
 
 ArchivesCtrl.prototype.updateOne = function(request, response){
-	console.log('[ArchivesCtrl.updateOne.format]:', request.params.format);
-	console.log('[ArchivesCtrl.updateOne.uid]:', request.params.uid);
+	var uid = request.params.uid;
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.updateOne.format]:', format);
+	console.log('[ArchivesCtrl.updateOne.uid]:', uid);
 };
 
 ArchivesCtrl.prototype.deleteOne = function(request, response){
-	console.log('[ArchivesCtrl.deleteOne.format]:', request.params.format);
-	console.log('[ArchivesCtrl.deleteOne.uid]:', request.params.uid);
+	var uid = request.params.uid;
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.deleteOne.format]:', format);
+	console.log('[ArchivesCtrl.deleteOne.uid]:', uid);
 };
 
 
@@ -54,15 +60,18 @@ ArchivesCtrl.prototype.deleteOne = function(request, response){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ArchivesCtrl.prototype.findAll = function(request, response){
-	console.log('[ArchivesCtrl.findAll.format]:', request.params.format);
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.findAll.format]:', format);
 };
 
 ArchivesCtrl.prototype.updateAll = function(request, response){
-	console.log('[ArchivesCtrl.updateAll.format]:', request.params.format);
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.updateAll.format]:', format);
 };
 
 ArchivesCtrl.prototype.deleteAll = function(request, response){
-	console.log('[ArchivesCtrl.deleteAll.format]:', request.params.format);
+	var format = request.params.format || 'json';
+	console.log('[ArchivesCtrl.deleteAll.format]:', format);
 };
 
 module.exports = ambox.uri('controllers.ArchivesCtrl', ArchivesCtrl);

@@ -1,6 +1,6 @@
 /* global ambox */
 var ResponseFile = function(response, options){
-	ambox.bindAll(this, 'html', 'text', 'json', 'jsonp', 'default');
+	ambox.bindAll(this);
 	this.options = ambox.merge({}, ResponseFile.defaults, options);
 	this.options.error = ambox.merge({}, ResponseFile.defaults.error, this.options.error);
 	this.output = response;
@@ -14,7 +14,12 @@ ResponseFile.defaults = {
 	jsonp:{},
 	json:{},
 	html:'',
-	text:''
+	text:'',
+	xml:'',
+};
+
+ResponseFile.prototype.xml = function(){console.log('format.xml');
+	this.output.send(this.options.xml);
 };
 
 ResponseFile.prototype.html = function(){console.log('format.html');
