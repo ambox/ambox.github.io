@@ -13,11 +13,11 @@ var ArchivesModel = function(){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ArchivesModel.prototype.create = function(data, callback){
-	this.archives.save(data, callback);
+	// this.archives.save(data, callback);
 };
 
 ArchivesModel.prototype.findOne = function(uid, callback){
-	this.archives.findOne({ _id:mongo.ObjectId(uid) }, callback);
+	// this.archives.findOne({ _id:mongo.ObjectId(uid) }, callback);
 };
 
 ArchivesModel.prototype.updateOne = function(uid, data, callback){
@@ -25,7 +25,7 @@ ArchivesModel.prototype.updateOne = function(uid, data, callback){
 };
 
 ArchivesModel.prototype.deleteOne = function(uid, callback){
-	this.archives.remove({ _id:uid }, callback);
+	// this.archives.remove({ _id:uid }, callback);
 };
 
 
@@ -34,7 +34,7 @@ ArchivesModel.prototype.deleteOne = function(uid, callback){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ArchivesModel.prototype.findAll = function(callback){
-	this.archives.find({}, callback);
+	// this.archives.find({}, callback);
 };
 
 ArchivesModel.prototype.updateAll = function(data, callback){

@@ -1,43 +1,31 @@
 /* global ambox */
-var ResponseFile = function(response, options){
+var ResponseFile = function(request, response, options){
 	ambox.bindAll(this);
-	this.options = ambox.merge({}, ResponseFile.defaults, options);
-	this.options.error = ambox.merge({}, ResponseFile.defaults.error, this.options.error);
+	this.options = ambox.merge({}, options);
 	this.output = response;
+	this.input = request;
 };
 
-ResponseFile.defaults = {
-	error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
-	templateUrl:'',
-	params:{},
-	data:{},
-	jsonp:{},
-	json:{},
-	html:'',
-	text:'',
-	xml:'',
-	image:''
-};
-
-ResponseFile.renderResult = function(request, response){
+ResponseFile.renderResult = function(request, response, options){
+	options = ambox.merge({}, options);
 	return function(value){
-		response.format(new ResponseFile(response, {
+		response.format(new ResponseFile(request, response, {
 			error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
-			templateUrl:'pages/archives',
-			params:request.params,
-			data:data,
+			templateUrl:options.templateUrl,
+			data:options.data,
 			jsonp:value,
-			json:value//,
-			// html:'',
-			// text:'',
-			// xml:'',
-			// image:''
+			json:value,
+			html:value,
+			text:value,
+			xml:value,
+			image:value
 		}));
 	};
 };
 
 
-ResponseFile.renderFault = function(request, response){
+ResponseFile.renderFault = function(request, response, options){
+	options = ambox.merge({}, options);
 	return function(reason){
 		console.error(reason);
 	};
