@@ -19,6 +19,35 @@ ResponseFile.defaults = {
 	image:''
 };
 
+ResponseFile.renderResult = function(request, response){
+	return function(value){
+		response.format(new ResponseFile(response, {
+			error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
+			templateUrl:'pages/archives',
+			params:request.params,
+			data:data,
+			jsonp:value,
+			json:value//,
+			// html:'',
+			// text:'',
+			// xml:'',
+			// image:''
+		}));
+	};
+};
+
+
+ResponseFile.renderFault = function(request, response){
+	return function(reason){
+		console.error(reason);
+	};
+};
+
+ArchivesCtrl.prototype.generateFault = function(request, response){
+	return function(reason){
+	};
+};
+
 ResponseFile.prototype.image = function(){console.log('format.image');
 	this.output.send(this.options.image);
 };

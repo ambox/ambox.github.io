@@ -31,22 +31,12 @@ ArchivesCtrl.prototype.show = function(request, response){
 
 ArchivesCtrl.prototype.create = function(request, response){
 	var data = request.body;
-	this.model.create(data).then(function(value){
-		response.format(new ResponseFile(response, {
-			error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
-			templateUrl:'pages/archives',
-			params:request.params,
-			data:data,
-			jsonp:value,
-			json:value//,
-			// html:'',
-			// text:'',
-			// xml:'',
-			// image:''
-		}));
-	}).catch(function(reason){
-		console.error(reason);
-	});
+	console.log('[ArchivesCtrl.create.data]:', data);
+	this.model.create(data).then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 ArchivesCtrl.prototype.findOne = function(request, response){
@@ -54,39 +44,37 @@ ArchivesCtrl.prototype.findOne = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.findOne.format]:', format);
 	console.log('[ArchivesCtrl.findOne.uid]:', uid);
-	this.model.findOne(uid).then(function(value){
-		response.format(new ResponseFile(response, {
-			error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
-			templateUrl:'pages/archives',
-			params:request.params,
-			data:data,
-			jsonp:value,
-			json:value//,
-			// html:'',
-			// text:'',
-			// xml:'',
-			// image:''
-		}));
-	}).catch(function(reason){
-		console.error(reason);
-	});
+	this.model.findOne(uid).then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 ArchivesCtrl.prototype.updateOne = function(request, response){
 	var data = request.body;
 	var uid = request.params.uid;
 	var format = request.params.format || 'json';
-	// this.model.updateOne(uid, data).then(function(value){}).catch(function(reason){});
 	console.log('[ArchivesCtrl.updateOne.format]:', format);
+	console.log('[ArchivesCtrl.updateOne.data]:', data);
 	console.log('[ArchivesCtrl.updateOne.uid]:', uid);
+	this.model.updateOne(uid, data).then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 ArchivesCtrl.prototype.deleteOne = function(request, response){
 	var uid = request.params.uid;
 	var format = request.params.format || 'json';
-	// this.model.deleteOne(uid).then(function(value){}).catch(function(reason){});
 	console.log('[ArchivesCtrl.deleteOne.format]:', format);
 	console.log('[ArchivesCtrl.deleteOne.uid]:', uid);
+	this.model.deleteOne(uid).then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 
@@ -96,36 +84,34 @@ ArchivesCtrl.prototype.deleteOne = function(request, response){
 
 ArchivesCtrl.prototype.findAll = function(request, response){
 	var format = request.params.format || 'json';
-	this.model.findAll().then(function(value){
-		response.format(new ResponseFile(response, {
-			error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
-			templateUrl:'pages/archives',
-			params:request.params,
-			data:data,
-			jsonp:value,
-			json:value//,
-			// html:'',
-			// text:'',
-			// xml:'',
-			// image:''
-		}));
-	}).catch(function(reason){
-		console.error(reason);
-	});
 	console.log('[ArchivesCtrl.findAll.format]:', format);
+	this.model.findAll().then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 ArchivesCtrl.prototype.updateAll = function(request, response){
 	var data = request.body;
 	var format = request.params.format || 'json';
-	// this.model.updateAll(data).then(function(value){}).catch(function(reason){});
 	console.log('[ArchivesCtrl.updateAll.format]:', format);
+	console.log('[ArchivesCtrl.updateAll.data]:', data);
+	this.model.updateAll(data).then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 ArchivesCtrl.prototype.deleteAll = function(request, response){
 	var format = request.params.format || 'json';
-	// this.model.deleteAll().then(function(value){}).catch(function(reason){});
 	console.log('[ArchivesCtrl.deleteAll.format]:', format);
+	this.model.deleteAll().then(ResponseFile.renderResult(
+		request, response
+	)).catch(ResponseFile.renderFault(
+		request, response
+	));
 };
 
 module.exports = ambox.uri('controllers.ArchivesCtrl', ArchivesCtrl);
