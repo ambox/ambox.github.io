@@ -9,6 +9,7 @@ var nunjucks = require('nunjucks');
 var favicon = require('serve-favicon');
 var express = require('express');
 var helmet = require('helmet');
+var morgan = require('morgan');
 var Parse = require('parse/node');
 var chalk = require('chalk');
 var path = require('path');
@@ -57,6 +58,7 @@ Server.prototype.initLocalVars = function(){
 Server.prototype.initMiddleware = function(){
 	this.app.set('showStackError', true);
 	this.app.enable('jsonp callback');
+	this.app.use(morgan('dev'));
 	this.app.use(compression({ filter:this.initCompression, level:9 }));
 	this.app.use(bodyParser.urlencoded({ extended:true }));
 	this.app.use(bodyParser.json());
@@ -74,7 +76,7 @@ Server.prototype.initCompression = function(request, response){
 Server.prototype.initViewEngine = function(){
 	nunjucks.configure('views', { autoescape:true, express:this.app });
 	this.app.set('view engine', 'html');
-	this.app.set('views', this.cfg.url.host +'/views');
+	this.app.set('views', path.join(this.cfg.url.host, 'views'));
 };
 
 Server.prototype.initHeaders = function(){
@@ -94,8 +96,8 @@ Server.prototype.initHeaders = function(){
 Server.prototype.initStaticFiles = function(){
 	var history = Server.historyAPIFallback;
 	this.app.use('/', express.static(path.resolve('static')));
-	this.app.use(history('base.html', { root:__dirname+'/static' }));
-	this.app.use(favicon('static/'+ this.app.locals.favicon));
+	this.app.use(history('base.html', { root:path.join(__dirname, 'static') }));
+	this.app.use(favicon(path.join('static', this.app.locals.favicon)));
 };
 
 Server.prototype.initSession = function(){

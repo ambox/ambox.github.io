@@ -9,6 +9,7 @@ var ResponseFile = function(response, options){
 ResponseFile.defaults = {
 	error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
 	templateUrl:'',
+	params:{},
 	data:{},
 	jsonp:{},
 	json:{},

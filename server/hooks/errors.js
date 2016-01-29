@@ -17,6 +17,7 @@ exports.badRequest = function(request, response){
 exports.notFound = function(request, response){
 	response.status(404).format(new ResponseFile(response, {
 		templateUrl:'server/404',
+		params:request.params,
 		data:defaults,
 		jsonp:{},
 		json:{},

@@ -11,12 +11,34 @@ var defaults = {
 };
 
 exports.index = function(request, response){
-	response.format(new ResponseFile(response, {
+	response.render('pages/flux', defaults);
+};
+
+exports.findAll = function(request, response){
+	console.log('format:', request.params.format);
+	response.format(new ResponseFile(request, response, {
 		templateUrl:'pages/flux',
+		params:request.params,
 		data:defaults,
-		jsonp:{},
-		json:{},
-		html:'',
-		text:''
+		jsonp:{ jsonp:true },
+		json:{ json:true },
+		html:'<p data-html="true">html:true</p>',
+		text:'text:true'
 	}));
+};
+
+exports.findOne = function(request, response){
+	response.render('pages/flux', defaults);
+};
+
+exports.create = function(request, response){
+	response.render('pages/flux', defaults);
+};
+
+exports.update = function(request, response){
+	response.render('pages/flux', defaults);
+};
+
+exports.delete = function(request, response){
+	response.render('pages/flux', defaults);
 };

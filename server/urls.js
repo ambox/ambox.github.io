@@ -2,7 +2,8 @@
 exports.flux = function(app, basicAuth){
 	var flux = require('./hooks/flux');
 	app.route('/').get(flux.index);
-	app.route('/flux').get(flux.index);
+	app.route('/flux:format').get(flux.findAll);
+	app.route('/flux:format/:uid').get(flux.findOne).put(flux.update).delete(flux.delete);
 };
 
 exports.archives = function(app, basicAuth){
