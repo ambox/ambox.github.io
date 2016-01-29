@@ -74,8 +74,8 @@ $ curl -X POST -H "Content-Type: application/json" \
 **/archives** <br/>
 **POST:** create a new archive <br/>
 **GET:** list archives <br/>
-**PUT:** bulk update archives
-**DELETE:** delete all archives <br/>
+**PUT:** bulk update archives <br/>
+**DELETE:** delete all archives
 
 #### Elements
 
