@@ -53,3 +53,83 @@ $ curl -X POST -H "Content-Type: application/json" \
   http://localhost:3000/archives/2qwesdv3erfdb1qw23erfbvvd
 ```
 
+## RESTFul API design
+
+Verbs are bad, nouns are good.
+Plurals are better.
+Concrete is better than abstract.
+
+#### Collections
+
+**/archives** <br/>
+**DELETE:** delete all archives <br/>
+**POST:** create a new archive <br/>
+**GET:** list archives <br/>
+**PUT:** bulk update archives <br/>
+
+#### Elements
+
+**/archives/:uid** <br/>
+**DELETE:** delete Bo <br/>
+**POST:** error <br/>
+**GET:** show Bo <br/>
+**PUT:** if exists update Bo, if not error <br/>
+
+#### Method Parameter
+
+**CREATE:** /archives?**method=post** <br/>
+**READ:** /archives <br/>
+**UPDATE:** /archives/:uid?**method=put**&name=project+name <br/>
+**DELETE:** /archives/:uid?**method=delete**
+
+#### Please give me exactly what I need
+
+/archives**?fields=name,image,tags**
+
+#### What about searching?
+
+**Global:** /**search?q**=project+name` <br/>
+**Scoped:** /owners/:uid/archives/**search?q**=project+name` <br/>
+**Formated:** /**search.xml?q**=project+name` <br/>
+
+#### What about pagination?
+
+/archives?**limit**=10&**offset**=20
+
+#### What about counts?
+
+/archives/**count**
+
+#### What about formats?
+
+/archives**.json** <br>
+/archives/:uid**.json**
+
+#### What about defaults?
+
+Format: `json`
+Pagination <sub>(depends on data size)</sub>: `limit=10&offset=0`
+
+#### Versioning
+
+/**v1**/archives
+
+#### What about attribute names?
+
+JavaScript Convention aka `camelCase`
+
+#### What about non-resource-y stuff? aka (Calculate, Translate, Convert)
+
+User verbs **not** nouns `/**convert**?from=EUR&to=CNY&amount=10`
+
+#### Errors
+##### Message for people
+
+```json
+{
+	"responseCode": "401",
+	"message": "Verbose, plain language description of the problem with hints about how to fix it",
+	"moreInfo":"http://blablabla.com/errors/1234",
+	"code": 12345
+}
+```
