@@ -1,28 +1,45 @@
 /* global ambox */
+var defaults = {
+	menu:{
+		'/flux': 'Flux',
+		'/archives': 'Archives',
+		'/contact': 'Contact'
+	}
+};
+
 exports.flux = function(app, basicAuth){
-	var flux = require('./hooks/flux');
+	var data = null;
+	var cls = require('./hooks/flux');
+	var ctrl = new cls(data, defaults);
 	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
-	app.route('/').get(flux.findAll).post(flux.create).put(flux.updateAll).delete(flux.deleteAll);
-	app.route('/flux'+format).get(flux.findAll);
-	app.route('/flux/:uid'+format).get(flux.findOne).put(flux.update).delete(flux.delete);
+	app.route('/'+format.replace(/\./g, '')).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
+	app.route('/flux'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
+	app.route('/flux/:uid'+format).get(ctrl.findOne).put(ctrl.updateOne).delete(ctrl.deleteOne);
+	app.route('/flux/:uid/edit').get(ctrl.edit);
 };
 
 exports.archives = function(app, basicAuth){
-	var archives = require('./hooks/archives');
+	var data = null;
+	var cls = require('./hooks/archives');
+	var ctrl = new cls(data, defaults);
 	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
-	// app.route('/archives').get(archives.findAll).post(archives.create);
-	// app.route('/archives/new').get(basicAuth, archives.renderNew);
-	// app.route('/archives/:uid').get(archives.findOne).put(archives.update).delete(archives.delete);
-	// app.route('/archives/:uid/edit').get(archives.renderEdit);
+	app.route('/archives'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
+	app.route('/archives/:uid'+format).get(ctrl.findOne).put(ctrl.updateOne).delete(ctrl.deleteOne);
+	app.route('/archives/:uid/edit').get(ctrl.edit);
+	// app.route('/archives/new').get(ctrl.new);
 };
 
 exports.contact = function(app, basicAuth){
-	var contact = require('./hooks/contact');
-	app.route('/contact').get(contact.index);
+	var data = null;
+	var cls = require('./hooks/contact');
+	var ctrl = new cls(data, defaults);
+	app.route('/contact').get(ctrl.index);
 };
 
 exports.errors = function(app, basicAuth){
-	var errors = require('./hooks/errors');
-	app.route('/server-error').get(errors.badRequest);
-	app.route('*').get(errors.notFound);
+	var data = null;
+	var cls = require('./hooks/errors');
+	var ctrl = new cls(data, defaults);
+	app.route('/server-error').get(ctrl.badRequest);
+	app.route('*').get(ctrl.notFound);
 };

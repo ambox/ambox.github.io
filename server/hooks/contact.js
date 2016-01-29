@@ -1,14 +1,15 @@
 /* global ambox */
-var Parse = require('parse/node');
+var chalk = require('chalk');
+var ResponseFile = require('../files/ResponseFile');
 
-var defaults = {
-	menu:{
-		'/flux': 'Flux',
-		'/archives': 'Archives',
-		'/contact': 'Contact'
-	}
+var ContactCtrl = function(Model, defaults){
+	ambox.bindAll(this);
+	this.defaults = defaults;
+	this.model = Model;
 };
 
-exports.index = function(request, response){
-	response.render('pages/contact', defaults);
+ContactCtrl.prototype.index = function(request, response){
+	response.render('pages/contact', this.defaults);
 };
+
+module.exports = ambox.uri('controllers.ContactCtrl', ContactCtrl);

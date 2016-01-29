@@ -1,27 +1,19 @@
 /* global ambox */
-var Parse = require('parse/node');
+var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 
-var defaults = {
-	menu:{
-		'/flux': 'Flux',
-		'/archives': 'Archives',
-		'/contact': 'Contact'
-	}
+var ErrorsCtrl = function(Model, defaults){
+	ambox.bindAll(this);
+	this.defaults = defaults;
+	this.model = Model;
 };
 
-exports.badRequest = function(request, response){
-	response.status(500).render('server/500', defaults);
+ErrorsCtrl.prototype.notFound = function(request, response){
+	response.status(404).render('server/404', this.defaults);
 };
 
-exports.notFound = function(request, response){
-	response.status(404).format(new ResponseFile(response, {
-		templateUrl:'server/404',
-		params:request.params,
-		data:defaults,
-		jsonp:{},
-		json:{},
-		html:'',
-		text:''
-	}));
+ErrorsCtrl.prototype.badRequest = function(request, response){
+	response.status(500).render('server/500', this.defaults);
 };
+
+module.exports = ambox.uri('controllers.ErrorsCtrl', ErrorsCtrl);
