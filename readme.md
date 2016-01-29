@@ -15,6 +15,7 @@
 - 201 - Created
 - 400 - Bad Request
 - 403 - Forbidden
+- 406 - Not Acceptable
 - 500 - Internal Server Error
 
 
