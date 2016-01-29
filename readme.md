@@ -1,4 +1,6 @@
-## Rest - http
+# REST
+
+## Http
 
 - POST -> Create
 - GET -> Retrieve
