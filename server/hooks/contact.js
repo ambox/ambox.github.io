@@ -12,4 +12,13 @@ ContactCtrl.prototype.index = function(request, response){
 	response.render('pages/contact', this.defaults);
 };
 
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Single requests
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ContactCtrl.prototype.create = function(request, response){
+	response.render('pages/contact', this.defaults);
+};
+
 module.exports = ambox.uri('controllers.ContactCtrl', ContactCtrl);
