@@ -16,6 +16,11 @@ ResponseFile.defaults = {
 	html:'',
 	text:'',
 	xml:'',
+	image:''
+};
+
+ResponseFile.prototype.image = function(){console.log('format.image');
+	this.output.send(this.options.image);
 };
 
 ResponseFile.prototype.xml = function(){console.log('format.xml');
