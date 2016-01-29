@@ -55,9 +55,16 @@ $ curl -X POST -H "Content-Type: application/json" \
 
 ## RESTFul API design
 
-Verbs are bad, nouns are good.
-Plurals are better.
-Concrete is better than abstract.
+- Be RESTFul
+- Only 2 URLs
+- No verbs
+- Use nouns as plurals
+- Concrete over abstract
+- For JSON follow JavaScript conventions
+- Sweep complexity behind the '?'
+- Borrow from leading APIs
+- Account for exceptional clients
+- Add virtualization layer
 
 #### Collections
 
@@ -84,7 +91,9 @@ Concrete is better than abstract.
 
 #### Please give me exactly what I need
 
-/archives**?fields=name,image,tags**
+/archives**?fields=name,image,tags** <br/>
+Partials response syntax can help. <br/>
+`/owners/:uid?fields=name,tags(name)`
 
 #### What about searching?
 
