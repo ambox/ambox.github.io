@@ -127,7 +127,7 @@ Pagination <small>(depends on data size)</small>: `limit=10&offset=0`
 
 JavaScript Convention aka `camelCase`
 
-#### What about non-resource-y stuff? aka (Calculate, Translate, Convert)
+#### What about non-resource-y stuff (aka: Calculate, Translate, Convert)?
 
 User verbs **not** nouns: /**convert**?from=EUR&to=CNY&amount=10
 
