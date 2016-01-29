@@ -114,6 +114,12 @@ Server.prototype.initModules = function(list){
 	list.forEach(function(module){
 		if(typeof module === 'function'){
 			module(this.app, auth);
+		}else if(module === Object(module)){
+			Object.keys(module).forEach(function(key){
+				if(typeof module[key] === 'function'){
+					module[key](this.app, auth);
+				}
+			}.bind(this));
 		}
 	}.bind(this));
 };
