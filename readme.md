@@ -65,7 +65,7 @@ Concrete is better than abstract.
 **DELETE:** delete all archives <br/>
 **POST:** create a new archive <br/>
 **GET:** list archives <br/>
-**PUT:** bulk update archives <br/>
+**PUT:** bulk update archives
 
 #### Elements
 
@@ -73,7 +73,7 @@ Concrete is better than abstract.
 **DELETE:** delete Bo <br/>
 **POST:** error <br/>
 **GET:** show Bo <br/>
-**PUT:** if exists update Bo, if not error <br/>
+**PUT:** if exists update Bo, if not error
 
 #### Method Parameter
 
@@ -88,9 +88,9 @@ Concrete is better than abstract.
 
 #### What about searching?
 
-**Global:** /**search?q**=project+name` <br/>
-**Scoped:** /owners/:uid/archives/**search?q**=project+name` <br/>
-**Formated:** /**search.xml?q**=project+name` <br/>
+**Global:** /**search?q**=project+name <br/>
+**Scoped:** /owners/:uid/archives/**search?q**=project+name <br/>
+**Formated:** /**search.xml?q**=project+name
 
 #### What about pagination?
 
@@ -120,7 +120,7 @@ JavaScript Convention aka `camelCase`
 
 #### What about non-resource-y stuff? aka (Calculate, Translate, Convert)
 
-User verbs **not** nouns `/**convert**?from=EUR&to=CNY&amount=10`
+User verbs **not** nouns /**convert**?from=EUR&to=CNY&amount=10
 
 #### Errors
 ##### Message for people
