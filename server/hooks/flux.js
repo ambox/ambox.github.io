@@ -2,10 +2,10 @@
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 
-var FluxCtrl = function(Model, defaults){
+var FluxCtrl = function(model, defaults){
 	ambox.bindAll(this);
 	this.defaults = defaults;
-	this.model = Model;
+	this.model = model;
 };
 
 FluxCtrl.prototype.index = function(request, response){

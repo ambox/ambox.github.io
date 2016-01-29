@@ -16,6 +16,7 @@
     "express": "^4.13.3",
     "helmet": "^1.1.0",
     "method-override": "^2.3.5",
+    "mongojs": "^2.3.0",
     "morgan": "^1.6.1",
     "nunjucks": "^2.3.0",
     "q": "^1.4.1",

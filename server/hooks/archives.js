@@ -2,10 +2,10 @@
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 
-var ArchivesCtrl = function(Model, defaults){
+var ArchivesCtrl = function(model, defaults){
 	ambox.bindAll(this);
 	this.defaults = defaults;
-	this.model = Model;
+	this.model = model;
 };
 
 ArchivesCtrl.prototype.index = function(request, response){

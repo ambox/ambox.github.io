@@ -2,10 +2,10 @@
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 
-var ErrorsCtrl = function(Model, defaults){
+var ErrorsCtrl = function(model, defaults){
 	ambox.bindAll(this);
 	this.defaults = defaults;
-	this.model = Model;
+	this.model = model;
 };
 
 ErrorsCtrl.prototype.notFound = function(request, response){

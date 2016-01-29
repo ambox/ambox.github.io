@@ -8,9 +8,9 @@ var defaults = {
 };
 
 exports.flux = function(app, basicAuth){
-	var data = null;
+	var model = require('./models/archives');
 	var cls = require('./hooks/flux');
-	var ctrl = new cls(data, defaults);
+	var ctrl = new cls(new model(), defaults);
 	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
 	app.route('/'+format.replace(/\./g, '')).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
 	app.route('/flux'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
@@ -20,9 +20,9 @@ exports.flux = function(app, basicAuth){
 };
 
 exports.archives = function(app, basicAuth){
-	var data = null;
+	var model = require('./models/archives');
 	var cls = require('./hooks/archives');
-	var ctrl = new cls(data, defaults);
+	var ctrl = new cls(new model(), defaults);
 	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
 	app.route('/archives'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
 	app.route('/archives/new').get(ctrl.new);
@@ -31,16 +31,16 @@ exports.archives = function(app, basicAuth){
 };
 
 exports.contact = function(app, basicAuth){
-	var data = null;
+	var model = null;
 	var cls = require('./hooks/contact');
-	var ctrl = new cls(data, defaults);
+	var ctrl = new cls(model, defaults);
 	app.route('/contact').post(ctrl.create).get(ctrl.index);
 };
 
 exports.errors = function(app, basicAuth){
-	var data = null;
+	var model = null;
 	var cls = require('./hooks/errors');
-	var ctrl = new cls(data, defaults);
+	var ctrl = new cls(model, defaults);
 	app.route('/server-error').get(ctrl.badRequest);
 	app.route('/*').get(ctrl.notFound);
 };

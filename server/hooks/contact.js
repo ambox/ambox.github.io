@@ -2,10 +2,10 @@
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 
-var ContactCtrl = function(Model, defaults){
+var ContactCtrl = function(model, defaults){
 	ambox.bindAll(this);
 	this.defaults = defaults;
-	this.model = Model;
+	this.model = model;
 };
 
 ContactCtrl.prototype.index = function(request, response){
