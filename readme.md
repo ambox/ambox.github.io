@@ -53,3 +53,18 @@ $ curl -X POST -H "Content-Type: application/json" \
   http://localhost:3000/archives/2qwesdv3erfdb1qw23erfbvvd
 ```
 
+## RESTFul API design
+
+#### Collections
+
+- **/archives**
+- **DELETE:** delete all archives
+- **POST:** create a new archive
+- **GET:** list archives
+- **PUT:** bulk update archives
+
+#### Elements
+
+/archives/:uid
+/flux/:uid
+
