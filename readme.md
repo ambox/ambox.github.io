@@ -108,7 +108,7 @@ Concrete is better than abstract.
 #### What about defaults?
 
 Format: `json`
-Pagination <sub>(depends on data size)</sub>: `limit=10&offset=0`
+Pagination <small>(depends on data size)</small>: `limit=10&offset=0`
 
 #### Versioning
 
