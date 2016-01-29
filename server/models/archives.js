@@ -1,7 +1,9 @@
 /* global ambox */
 var mongo = require('../db/mongo');
+var Promise = require('bluebird');
 
 var ArchivesModel = function(){
+	Promise.promisifyAll(this);
 	this.archives = mongo.collection('archives');
 };
 
