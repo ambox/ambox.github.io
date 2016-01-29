@@ -1,47 +1,25 @@
 /* global ambox */
-var root = require('./hooks/root');
-var flux = require('./hooks/flux');
-var archives = require('./hooks/archives');
-var contact = require('./hooks/contact');
-var comments = require('./hooks/comments');
-var posts = require('./hooks/posts');
-var errors = require('./hooks/errors');
-var admin = require('./hooks/admin');
-
-module.exports = function(app, basicAuth){
-	
-	// main
-	app.route('/').get(root.index);
-	
-	// flux
+exports.flux = function(app, basicAuth){
+	var flux = require('./hooks/flux');
+	app.route('/').get(flux.index);
 	app.route('/flux').get(flux.index);
-	
-	// archives
-	app.route('/archives').get(archives.findAll).post(archives.create);
-	app.route('/archives/new').get(basicAuth, archives.renderNew);
+};
+
+exports.archives = function(app, basicAuth){
+	var archives = require('./hooks/archives');
+	// app.route('/archives').get(archives.findAll).post(archives.create);
+	// app.route('/archives/new').get(basicAuth, archives.renderNew);
 	// app.route('/archives/:uid').get(archives.findOne).put(archives.update).delete(archives.delete);
 	// app.route('/archives/:uid/edit').get(archives.renderEdit);
-	
-	// contact
+};
+
+exports.contact = function(app, basicAuth){
+	var contact = require('./hooks/contact');
 	app.route('/contact').get(contact.index);
-	
-	// posts
-	// app.route('/posts').get(posts.index).post(posts.create);
-	// app.route('/posts/new').get(posts.new);
-	// app.route('/posts/:uid').get(posts.show).put(posts.update).delete(posts.delete);
-	// app.route('/posts/:uid/edit').get(posts.edit);
-	
-	// comments
-	// app.route('/posts/:post_uid/comments').post(comments.create);
-	// app.route('/posts/:post_uid/comments/:uid').delete(comments.delete);
-	
-	// admin
-	// app.route('/admin').get(admin.index);
-	// app.route('/admin/jobs').get(admin.index);
-	// app.route('/admin/posts').get(admin.index);
-	// app.route('/admin/comments').get(admin.index);
-	
-	// errors
+};
+
+exports.errors = function(app, basicAuth){
+	var errors = require('./hooks/errors');
 	app.route('/server-error').get(errors.badRequest);
 	app.route('*').get(errors.notFound);
 };

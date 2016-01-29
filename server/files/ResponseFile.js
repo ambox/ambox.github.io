@@ -1,12 +1,13 @@
 /* global ambox */
-var ResponseFile = function(options){
-	ambox.bindAll(this, 'default', 'text/html', 'application/json', 'text/javascript');
+var ResponseFile = function(response, options){
+	ambox.bindAll(this, 'html', 'text', 'json', 'jsonp', 'default');
 	this.options = ambox.merge({}, ResponseFile.defaults, options);
-	this.output = this.options.response;
+	this.options.error = ambox.merge({}, ResponseFile.defaults.error, this.options.error);
+	this.output = response;
 };
 
 ResponseFile.defaults = {
-	output:null,
+	error:{ responseCode:406, message:'Not Acceptable', code:0, moreInfo:'http://' },
 	templateUrl:'',
 	data:{},
 	jsonp:{},
@@ -15,20 +16,20 @@ ResponseFile.defaults = {
 	text:''
 };
 
-ResponseFile.prototype['text/javascript'] = function(){
-	this.output.jsonp(this.options.json);
-};
-
-ResponseFile.prototype['application/json'] = function(){
-	this.output.json(this.options.json);
-};
-
-ResponseFile.prototype['text/html'] = function(){
+ResponseFile.prototype.html = function(){console.log('format.html');
 	this.output.render(this.options.templateUrl, this.options.data);
 };
 
-ResponseFile.prototype['text/plain'] = function(){
+ResponseFile.prototype.text = function(){console.log('format.text');
 	this.output.send(this.options.text);
+};
+
+ResponseFile.prototype.json = function(){console.log('format.json');
+	this.output.json(this.options.json);
+};
+
+ResponseFile.prototype.jsonp = function(){console.log('format.jsonp');
+	this.output.jsonp(this.options.json);
 };
 
 ResponseFile.prototype.default = function(){
