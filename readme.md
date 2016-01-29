@@ -82,8 +82,8 @@ $ curl -X POST -H "Content-Type: application/json" \
 **/archives/:uid** <br/>
 **POST:** error <br/>
 **GET:** show Bo <br/>
-**PUT:** if exists update Bo, if not error
-**DELETE:** delete Bo <br/>
+**PUT:** if exists update Bo, if not error <br/>
+**DELETE:** delete Bo
 
 #### Method Parameter
 
