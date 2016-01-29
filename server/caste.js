@@ -55,6 +55,7 @@ var unbind = exports.unbind = function(fn, context){
 
 var bindAll = exports.bindAll = function(context, methods){
 	methods = Array.isArray(methods)? methods : slice(arguments, 1);
+	methods = methods.length? methods : Object.keys(context);
 	for(var id = 0; id < methods.length; id++){
 		if(typeof context[methods[id]] === 'function'){
 			context[methods[id]] = bind(context[methods[id]], context);
@@ -65,6 +66,7 @@ var bindAll = exports.bindAll = function(context, methods){
 
 var unbindAll = exports.unbindAll = function(context, methods){
 	methods = Array.isArray(methods)? methods : slice(arguments, 1);
+	methods = methods.length? methods : Object.keys(context);
 	for(var id = 0; id < methods.length; id++){
 		if(typeof context[methods[id]] === 'function'){
 			context[methods[id]] = unbind(context[methods[id]], context);
