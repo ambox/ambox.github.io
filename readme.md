@@ -57,11 +57,11 @@ $ curl -X POST -H "Content-Type: application/json" \
 
 #### Collections
 
-- **/archives**
-- **DELETE:** delete all archives
-- **POST:** create a new archive
-- **GET:** list archives
-- **PUT:** bulk update archives
+**/archives** <br>
+**DELETE:** delete all archives <br>
+**POST:** create a new archive <br>
+**GET:** list archives <br>
+**PUT:** bulk update archives <br>
 
 #### Elements
 
