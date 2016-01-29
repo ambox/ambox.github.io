@@ -12,7 +12,7 @@ ArchivesCtrl.prototype.index = function(request, response){
 	response.render('pages/archives', this.defaults);
 };
 
-ArchivesCtrl.prototype.new = function(request, response){console.log('==========> ArchivesCtrl.new');
+ArchivesCtrl.prototype.new = function(request, response){
 	response.render('partials/archives/new', this.defaults);
 };
 
