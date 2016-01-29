@@ -72,18 +72,18 @@ $ curl -X POST -H "Content-Type: application/json" \
 #### Collections
 
 **/archives** <br/>
-**DELETE:** delete all archives <br/>
 **POST:** create a new archive <br/>
 **GET:** list archives <br/>
 **PUT:** bulk update archives
+**DELETE:** delete all archives <br/>
 
 #### Elements
 
 **/archives/:uid** <br/>
-**DELETE:** delete Bo <br/>
 **POST:** error <br/>
 **GET:** show Bo <br/>
 **PUT:** if exists update Bo, if not error
+**DELETE:** delete Bo <br/>
 
 #### Method Parameter
 
