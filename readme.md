@@ -120,7 +120,7 @@ JavaScript Convention aka `camelCase`
 
 #### What about non-resource-y stuff? aka (Calculate, Translate, Convert)
 
-User verbs **not** nouns /**convert**?from=EUR&to=CNY&amount=10
+User verbs **not** nouns: /**convert**?from=EUR&to=CNY&amount=10
 
 #### Errors
 ##### Message for people
