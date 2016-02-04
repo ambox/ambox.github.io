@@ -1,3 +1,2 @@
-var mongojs = require('mongojs');
-var db = mongojs('ambox');
+var db = {};
 module.exports = db;

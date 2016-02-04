@@ -1,6 +1,8 @@
 /* global ambox */
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
+var smtpTransport = require('nodemailer-smtp-transport');
+var nodemailer = require('nodemailer');
 
 var ContactCtrl = function(model, defaults){
 	ambox.bindAll(this);
