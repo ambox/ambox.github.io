@@ -1,4 +1,5 @@
 /* global ambox */
+// @see https://github.com/expressjs/express-resource
 var ResponseFile = function(request, response, options){
 	ambox.bindAll(this);
 	this.options = ambox.merge({}, options);
