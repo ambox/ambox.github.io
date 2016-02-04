@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "git-push powered folio",
   "main": "server.js",
+  "private": true,
   "scripts": {
     "start": "node_modules/nodemon/bin/nodemon.js server"
   },
@@ -16,6 +17,8 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.13.3",
     "helmet": "^1.1.0",
+    "jquery": "^2.2.0",
+    "jsdom": "^8.0.2",
     "method-override": "^2.3.5",
     "mongojs": "^2.3.0",
     "morgan": "^1.6.1",

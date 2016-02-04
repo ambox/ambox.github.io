@@ -1,4 +1,6 @@
 /* global ambox */
+var $ = require('jquery');
+var dom = require('jsdom').env;
 var chalk = require('chalk');
 var ResponseFile = require('../files/ResponseFile');
 

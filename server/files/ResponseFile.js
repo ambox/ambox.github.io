@@ -31,11 +31,6 @@ ResponseFile.renderFault = function(request, response, options){
 	};
 };
 
-ArchivesCtrl.prototype.generateFault = function(request, response){
-	return function(reason){
-	};
-};
-
 ResponseFile.prototype.image = function(){console.log('format.image');
 	this.output.send(this.options.image);
 };

@@ -10,7 +10,6 @@ var favicon = require('serve-favicon');
 var express = require('express');
 var helmet = require('helmet');
 var morgan = require('morgan');
-var Parse = require('parse/node');
 var chalk = require('chalk');
 var path = require('path');
 
@@ -101,13 +100,7 @@ Server.prototype.initStaticFiles = function(){
 };
 
 Server.prototype.initSession = function(){
-	var appId = this.cfg.service.parse.appId;
-	var jsKey = this.cfg.service.parse.secret;
-	console.log('['+ chalk.white('Parse')+ ']\n|');
-	console.log('|    '+chalk.green('appId: ')+ appId);
-	console.log('|    '+chalk.green('jsKey: ')+ jsKey);
-	console.log('|_');
-	Parse.initialize(appId, jsKey);
+	// N/A yet.
 };
 
 Server.prototype.initModules = function(list){

@@ -11,7 +11,7 @@ exports.flux = function(app, basicAuth){
 	var model = require('./models/archives');
 	var cls = require('./hooks/flux');
 	var ctrl = new cls(new model(), defaults);
-	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
+	var format = ':format(\.json|\.jsonp|\.xml|\.html|\.text)?';
 	app.route('/'+format.replace(/\./g, '')).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
 	app.route('/flux'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
 	app.route('/flux/new').get(ctrl.new);
@@ -23,7 +23,7 @@ exports.archives = function(app, basicAuth){
 	var model = require('./models/archives');
 	var cls = require('./hooks/archives');
 	var ctrl = new cls(new model(), defaults);
-	var format = ':format(\.json|\.jsonp|\.html|\.text)?';
+	var format = ':format(\.json|\.jsonp|\.xml|\.html|\.text)?';
 	app.route('/archives'+format).post(ctrl.create).get(ctrl.findAll).put(ctrl.updateAll).delete(ctrl.deleteAll);
 	app.route('/archives/new').get(ctrl.new);
 	app.route('/archives/:uid'+format).get(ctrl.findOne).put(ctrl.updateOne).delete(ctrl.deleteOne);

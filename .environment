@@ -36,8 +36,6 @@ exports TWITTER_KEY=CONSUMER_KEY
 exports TWITTER_SECRET=CONSUMER_SECRET
 exports PAYPAL_ID=CLIENT_ID
 exports PAYPAL_SECRET=CLIENT_SECRET
-exports PARSE_ID=zRt2LFdBjt6A6RqKt7qBRbatea53E3nBjrcuZTqb
-exports PARSE_SECRET=qaTkQ0xEOqN7ywmzbWGyeEw02AUpo4NCOYhOQYcQ
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Mailer
