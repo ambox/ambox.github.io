@@ -1,6 +1,9 @@
 define(['scope'], function(scope){
 
-	function History(){
+	var supportState = 'pushState' in history;
+	var listener = supportState? 'popstate' : 'hashchange';	
+
+	function History(options){
 		console.log('History->created');
 	}
 	
@@ -21,7 +24,7 @@ define(['scope'], function(scope){
 	};
 	
 	History.prototype.backward = function(index){
-		console.log('History->backward:');
+		history.back();
 	};
 	
 	History.prototype.navigateTo = function(view){
@@ -30,6 +33,14 @@ define(['scope'], function(scope){
 	
 	History.prototype.go = function(index){
 		console.log('History->navigateTo:');
+	};
+
+	History.prototype.start = function(){
+		console.log('urls listen!');
+	};
+
+	History.prototype.stop = function(){
+		console.log('urls listen!');
 	};
 
 	return scope.uri('folder.browser.History', History);
