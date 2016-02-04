@@ -33,16 +33,6 @@ Server.basicAuth = function(username, password){
 	};
 };
 
-Server.historyAPIFallback = function(path, options){
-	return function(request, response, next){
-		if(request.method === 'GET' && request.accepts('html')){
-			response.sendFile(path, options, function(error){
-				return error && next();
-			});
-		} else next();
-	};
-};
-
 Server.prototype.initLocalVars = function(){
 	this.app.locals.title = this.cfg.app.title;
 	this.app.locals.description = this.cfg.app.description;
@@ -55,7 +45,6 @@ Server.prototype.initLocalVars = function(){
 };
 
 Server.prototype.initMiddleware = function(){
-	this.app.set('showStackError', true);
 	this.app.enable('jsonp callback');
 	this.app.use(morgan('dev'));
 	this.app.use(compression({ filter:this.initCompression, level:9 }));
@@ -93,9 +82,7 @@ Server.prototype.initHeaders = function(){
 };
 
 Server.prototype.initStaticFiles = function(){
-	var history = Server.historyAPIFallback;
 	this.app.use('/', express.static(path.resolve('static')));
-	this.app.use(history('base.html', { root:path.join(__dirname, 'static') }));
 	this.app.use(favicon(path.join('static', this.app.locals.favicon)));
 };
 
