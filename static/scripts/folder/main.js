@@ -1,4 +1,4 @@
-define(['scope', 'jquery'], function(scope, $){
+define(['scope', 'jquery', 'folder/urls'], function(scope, $, urls){
 
 	function Folder(){
 		this.startup = this.startup.bind(this);
