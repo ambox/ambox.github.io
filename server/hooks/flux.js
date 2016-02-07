@@ -30,22 +30,19 @@ FluxCtrl.prototype.show = function(request, response){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 FluxCtrl.prototype.create = function(request, response){
-	response.render('pages/flux', this.defaults);
+	console.log('[FluxCtrl.create]');
 };
 
 FluxCtrl.prototype.findOne = function(request, response){
-	console.log('[FluxCtrl.findOne.format]:', request.params.format);
-	console.log('[FluxCtrl.findOne.uid]:', request.params.uid);
+	console.log('[FluxCtrl.findOne]<format:%s, uid:%s>:', request.params.format, request.params.uid);
 };
 
 FluxCtrl.prototype.updateOne = function(request, response){
-	console.log('[FluxCtrl.updateOne.format]:', request.params.format);
-	console.log('[FluxCtrl.updateOne.uid]:', request.params.uid);
+	console.log('[FluxCtrl.updateOne]<format:%s, uid:%s>:', request.params.format, request.params.uid);
 };
 
 FluxCtrl.prototype.deleteOne = function(request, response){
-	console.log('[FluxCtrl.deleteOne.format]:', request.params.format);
-	console.log('[FluxCtrl.deleteOne.uid]:', request.params.uid);
+	console.log('[FluxCtrl.deleteOne]<format:%s, uid:%s>:', request.params.format, request.params.uid);
 };
 
 
@@ -54,7 +51,8 @@ FluxCtrl.prototype.deleteOne = function(request, response){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 FluxCtrl.prototype.findAll = function(request, response){
-	console.log('[FluxCtrl.findAll.format]:', request.params.format);
+	console.log('[FluxCtrl.findAll]:', this.model);
+	response.render('pages/flux', this.defaults);
 };
 
 FluxCtrl.prototype.updateAll = function(request, response){
