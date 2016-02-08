@@ -1,19 +1,16 @@
 /* global ambox */
-var mongo = require('../db/mongo')
-var Promise = require('bluebird')
+var assert = require('assert')
 
 var ArchivesModel = function(){
-	Promise.promisifyAll(this)
-	// this.archives = mongo.collection('archives')
+	this.archives = ambox.database.collection('archives')
 }
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Single requests
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ArchivesModel.prototype.create = function(data, callback){
-	// return this.archives.save(data, callback)
+	// return this.archives.insert(data, {}, callback)
 }
 
 ArchivesModel.prototype.findOne = function(uid, callback){

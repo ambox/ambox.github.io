@@ -97,7 +97,7 @@ Server.prototype.initModules = function(list){
 		if(typeof module === 'function'){
 			module(this.app, auth)
 		}else if(module === Object(module)){
-			Object.keys(module).forEach(function(key){
+			ambox.keys(module, false).forEach(function(key){
 				if(typeof module[key] === 'function'){
 					module[key](this.app, auth)
 				}
@@ -116,7 +116,7 @@ Server.prototype.initErrorRoutes = function(){
 	})
 }
 
-Server.prototype.init = function(modules, callback){
+Server.prototype.init = function(modules){
 	this.initLocalVars()
 	this.initMiddleware()
 	this.initViewEngine()
@@ -134,6 +134,7 @@ Server.prototype.start = function(callback){
 	this.app.listen(port, host, ambox.bind(function(){
 		console.log('['+ chalk.white(this.cfg.app.title)+ ']\n|')
 		console.log('|    '+ chalk.green('Environment: ')+ this.cfg.role)
+		console.log('|    '+ chalk.green('Database: ')+ this.cfg.database.uri)
 		console.log('|    '+ chalk.green('Server: ')+ this.cfg.url.server)
 		console.log('|_')
 		callback && callback(this.app, this.cfg)

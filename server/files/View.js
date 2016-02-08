@@ -15,8 +15,9 @@ View.prototype.render = function(route, request, response, params){
 	if(request.xhr){
 		this.compile(route, data, function(error, $){
 			if(error)return console.error(error)
-			var $head = $('head')
-			var $body = $('body')
+			var $html = $('html');
+			var $head = $html.find('>head')
+			var $body = $html.find('>body')
 			data.title = $head.find('>title').text()
 			data.description = $head.find('>meta[name="description"]').attr('content')
 			data.canonical = $head.find('>link[rel="canonical"]').attr('href')
@@ -39,11 +40,11 @@ View.prototype.parse = function(callback){
 	return function(error, markup){
 		if(error)return callback(error, null)
 		var jsdom = require('jsdom')
-		jsdom.env(markup, ambox.bind(function(fault, window){
-			if(fault)return callback(fault, null)
+		jsdom.env(markup, ambox.bind(function(error, $window){
+			if(error)return callback(error, null)
 			var jquery = require('jquery')
-			callback(false, jquery(window))
-			window.close()
+			callback(false, jquery($window))
+			$window.close()
 		}, this))
 	}
 }
