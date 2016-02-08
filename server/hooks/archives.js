@@ -2,7 +2,7 @@
 var $ = require('jquery');
 var dom = require('jsdom').env;
 var chalk = require('chalk');
-var ResponseFile = require('../files/ResponseFile');
+var View = require('../files/View');
 
 var ArchivesCtrl = function(model, defaults){
 	ambox.bindAll(this);
@@ -34,9 +34,9 @@ ArchivesCtrl.prototype.show = function(request, response){
 ArchivesCtrl.prototype.create = function(request, response){
 	var data = request.body;
 	console.log('[ArchivesCtrl.create.data]:', data);
-	// this.model.create(data).then(ResponseFile.renderResult(
+	// this.model.create(data).then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -46,9 +46,9 @@ ArchivesCtrl.prototype.findOne = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.findOne.format]:', format);
 	console.log('[ArchivesCtrl.findOne.uid]:', uid);
-	// this.model.findOne(uid).then(ResponseFile.renderResult(
+	// this.model.findOne(uid).then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -60,9 +60,9 @@ ArchivesCtrl.prototype.updateOne = function(request, response){
 	console.log('[ArchivesCtrl.updateOne.format]:', format);
 	console.log('[ArchivesCtrl.updateOne.data]:', data);
 	console.log('[ArchivesCtrl.updateOne.uid]:', uid);
-	// this.model.updateOne(uid, data).then(ResponseFile.renderResult(
+	// this.model.updateOne(uid, data).then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -72,9 +72,9 @@ ArchivesCtrl.prototype.deleteOne = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.deleteOne.format]:', format);
 	console.log('[ArchivesCtrl.deleteOne.uid]:', uid);
-	// this.model.deleteOne(uid).then(ResponseFile.renderResult(
+	// this.model.deleteOne(uid).then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -87,9 +87,9 @@ ArchivesCtrl.prototype.deleteOne = function(request, response){
 ArchivesCtrl.prototype.findAll = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.findAll.format]:', format);
-	// this.model.findAll().then(ResponseFile.renderResult(
+	// this.model.findAll().then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -99,9 +99,9 @@ ArchivesCtrl.prototype.updateAll = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.updateAll.format]:', format);
 	console.log('[ArchivesCtrl.updateAll.data]:', data);
-	// this.model.updateAll(data).then(ResponseFile.renderResult(
+	// this.model.updateAll(data).then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };
@@ -109,9 +109,9 @@ ArchivesCtrl.prototype.updateAll = function(request, response){
 ArchivesCtrl.prototype.deleteAll = function(request, response){
 	var format = request.params.format || 'json';
 	console.log('[ArchivesCtrl.deleteAll.format]:', format);
-	// this.model.deleteAll().then(ResponseFile.renderResult(
+	// this.model.deleteAll().then(View.renderResult(
 	// 	request, response
-	// )).catch(ResponseFile.renderFault(
+	// )).catch(View.renderFault(
 	// 	request, response
 	// ));
 };

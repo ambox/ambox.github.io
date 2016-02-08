@@ -1,6 +1,6 @@
 /* global ambox */
 var chalk = require('chalk');
-var ResponseFile = require('../files/ResponseFile');
+var View = require('../files/View');
 
 var FluxCtrl = function(model, defaults){
 	ambox.bindAll(this);
@@ -9,19 +9,19 @@ var FluxCtrl = function(model, defaults){
 };
 
 FluxCtrl.prototype.index = function(request, response){
-	response.render('pages/flux', this.defaults);
+	View.render('pages/flux', request, response, this.defaults);
 };
 
 FluxCtrl.prototype.new = function(request, response){
-	response.render('partials/flux/new', this.defaults);
+	View.render('partials/flux/new', request, response, this.defaults);
 };
 
 FluxCtrl.prototype.edit = function(request, response){
-	response.render('partials/flux/edit', this.defaults);
+	View.render('partials/flux/edit', request, response, this.defaults);
 };
 
 FluxCtrl.prototype.show = function(request, response){
-	response.render('partials/flux/show', this.defaults);
+	View.render('partials/flux/show', request, response, this.defaults);
 };
 
 
@@ -52,7 +52,7 @@ FluxCtrl.prototype.deleteOne = function(request, response){
 
 FluxCtrl.prototype.findAll = function(request, response){
 	console.log('[FluxCtrl.findAll]:', this.model);
-	response.render('pages/flux', this.defaults);
+	View.render('pages/flux', request, response, this.defaults);
 };
 
 FluxCtrl.prototype.updateAll = function(request, response){

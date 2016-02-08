@@ -1,6 +1,6 @@
 /* global ambox */
 var chalk = require('chalk');
-var ResponseFile = require('../files/ResponseFile');
+var View = require('../files/View');
 
 var ErrorsCtrl = function(model, defaults){
 	ambox.bindAll(this);
