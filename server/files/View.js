@@ -11,8 +11,9 @@ View.prototype.configure = function(name, options){
 	}
 };
 
-View.prototype.render = function(route, request, response, data){
-	data = ambox.merge({}, ambox.uri('env'), data);
+View.prototype.render = function(route, request, response, params){
+	var env = ambox.uri('env');
+	var data = ambox.merge({ app:env.app, url:env.url }, params);
 	if(request.xhr){
 		this.renderTemplate(route, data, function(error, $){
 			if(error)return console.error(error);
