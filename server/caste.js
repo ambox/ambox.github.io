@@ -6,6 +6,34 @@ var browse = exports.browse = function(fn){
 
 var slice = exports.slice = browse(Array.prototype.slice);
 
+var typeOf = exports.typeOf = function(value, qualified){
+	if(value){
+		var fn = /^.*function\s([^\s]*|[^\(]*)\([^\x00]+$/;
+		var wrap = /^(\[object(\s|\uFEFF|\xA0))|(\])$/g;
+		var type = Object.prototype.toString.call(value);
+		if(qualified && type === '[object Object]'){
+			return value.constructor.toString().replace(fn, '$1') || 'Object';
+		}
+		return type.replace(wrap, '');
+	}
+	return value;
+};
+
+var test = exports.test = function(datatypes, value, qualified){
+	var group = new RegExp('^('+ datatypes +')$', 'g');
+	return group.test(typeOf(value, qualified));
+};
+
+var keys = exports.keys = function(object, getEnum){
+	var properties = [];
+	for(var key in object){
+		if(getEnum || object.hasOwnProperty(key)){
+			properties.push(key);
+		}
+	}
+	return properties;
+};
+
 var ls = exports.ls = function(path){
 	var objectAssessor = /\[(["']?)([^\1]+?)\1?\]/g;
 	var keys = path.replace(objectAssessor, '.$2');
@@ -55,7 +83,7 @@ var unbind = exports.unbind = function(fn, context){
 
 var bindAll = exports.bindAll = function(context, methods){
 	methods = Array.isArray(methods)? methods : slice(arguments, 1);
-	methods = methods.length? methods : Object.keys(context);
+	methods = methods.length? methods : keys(context, true);
 	for(var id = 0; id < methods.length; id++){
 		if(typeof context[methods[id]] === 'function'){
 			context[methods[id]] = bind(context[methods[id]], context);
@@ -66,7 +94,7 @@ var bindAll = exports.bindAll = function(context, methods){
 
 var unbindAll = exports.unbindAll = function(context, methods){
 	methods = Array.isArray(methods)? methods : slice(arguments, 1);
-	methods = methods.length? methods : Object.keys(context);
+	methods = methods.length? methods : keys(context, true);
 	for(var id = 0; id < methods.length; id++){
 		if(typeof context[methods[id]] === 'function'){
 			context[methods[id]] = unbind(context[methods[id]], context);
@@ -108,9 +136,12 @@ var stub = exports.stub = function(target, namespace){
 	target.namespace = namespace;
 	target.unbindAll = unbindAll;
 	target.bindAll = bindAll;
+	target.typeOf = typeOf;
 	target.unbind = unbind;
 	target.browse = browse;
 	target.slice = slice;
+	target.keys = keys;
+	target.test = test;
 	target.bind = bind;
 	target.merge = merge;
 	target.stub = stub;

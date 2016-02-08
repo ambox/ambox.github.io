@@ -8,6 +8,16 @@ define(function(){
 
 	var slice = browse(Array.prototype.slice);
 
+	var keys = function(object, getEnum){
+		var properties = [];
+		for(var key in object){
+			if(getEnum || object.hasOwnProperty(key)){
+				properties.push(key);
+			}
+		}
+		return properties;
+	};
+
 	var ls = function(path){
 		var objectAssessor = /\[(["']?)([^\1]+?)\1?\]/g;
 		var keys = path.replace(objectAssessor, '.$2');
@@ -57,7 +67,7 @@ define(function(){
 
 	var bindAll = function(context, methods){
 		methods = Array.isArray(methods)? methods : slice(arguments, 1);
-		methods = methods.length? methods : Object.keys(context);
+		methods = methods.length? methods : keys(context, true);
 		for(var id = 0; id < methods.length; id++){
 			if(typeof context[methods[id]] === 'function'){
 				context[methods[id]] = bind(context[methods[id]], context);
@@ -68,7 +78,7 @@ define(function(){
 
 	var unbindAll = function(context, methods){
 		methods = Array.isArray(methods)? methods : slice(arguments, 1);
-		methods = methods.length? methods : Object.keys(context);
+		methods = methods.length? methods : keys(context, true);
 		for(var id = 0; id < methods.length; id++){
 			if(typeof context[methods[id]] === 'function'){
 				context[methods[id]] = unbind(context[methods[id]], context);
