@@ -145,3 +145,5 @@ User verbs **not** nouns: /**convert**?from=EUR&to=CNY&amount=10
 	"code": 12345
 }
 ```
+
+<!-- @see http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#insert -->
