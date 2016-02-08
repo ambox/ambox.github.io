@@ -5,12 +5,12 @@ var cookieParser = require('cookie-parser');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var basicAuth = require('basic-auth');
-var nunjucks = require('nunjucks');
 var favicon = require('serve-favicon');
 var express = require('express');
 var helmet = require('helmet');
 var morgan = require('morgan');
 var chalk = require('chalk');
+var View = require('./files/View.js');
 var path = require('path');
 
 var Server = function(cfg){
@@ -62,7 +62,7 @@ Server.prototype.initCompression = function(request, response){
 };
 
 Server.prototype.initViewEngine = function(){
-	nunjucks.configure('views', { autoescape:true, express:this.app });
+	View.configure('views', { autoescape:true, express:this.app });
 	this.app.set('view engine', 'html');
 	this.app.set('views', path.join(this.cfg.url.host, 'views'));
 };

@@ -2,16 +2,17 @@
 var nunjucks = require('nunjucks');
 
 var View = function(options){
-	return this.configure(options);
+	this.configure(options);
 };
 
-View.prototype.configure = function(options){
-	return options;
+View.prototype.configure = function(name, options){
+	if(ambox.typeOf(name) === 'String' && ambox.typeOf(options) === 'Object'){
+		nunjucks.configure(name, options);
+	}
 };
 
 View.prototype.render = function(route, request, response, data){
-	// data = ambox.merge({}, request.app.locals, data);
-	data = ambox.merge({}, data);
+	data = ambox.merge({}, ambox.uri('env'), data);
 	if(request.xhr){
 		this.renderTemplate(route, data, function(error, $){
 			if(error)return console.error(error);
@@ -33,12 +34,12 @@ View.prototype.renderTemplate = function(route, data, callback){
 };
 
 View.prototype.parse = function(callback){
-	var DOM = require('jsdom');
+	var jsdom = require('jsdom');
 	return function(error, markup){
 		if(error){
 			return callback && callback(error, null);
 		}
-		DOM.env(markup, [], ambox.bind(function(errors, window){
+		jsdom.env(markup, [], ambox.bind(function(errors, window){
 			var $ = require('jquery');
 			callback(false, $(window));
 			window.close();
