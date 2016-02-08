@@ -133,8 +133,8 @@ Server.prototype.start = function(callback){
 	var host = this.cfg.url.host;
 	this.app.listen(port, host, ambox.bind(function(){
 		console.log('['+ chalk.white(this.cfg.app.title)+ ']\n|');
-		console.log('|    '+chalk.green('Environment: ')+ this.cfg.role);
-		console.log('|    '+chalk.green('Server: ')+ this.cfg.url.server);
+		console.log('|    '+ chalk.green('Environment: ')+ this.cfg.role);
+		console.log('|    '+ chalk.green('Server: ')+ this.cfg.url.server);
 		console.log('|_');
 		callback && callback(this.app, this.cfg);
 	}, this));

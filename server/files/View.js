@@ -1,6 +1,4 @@
 /* global ambox */
-var $ = require('jquery');
-var DOM = require('jsdom');
 var nunjucks = require('nunjucks');
 
 var View = function(options){
@@ -13,15 +11,19 @@ View.prototype.configure = function(options){
 
 View.prototype.render = function(route, request, response, data){
 	data = ambox.merge({}, request.app.locals, data);
-	this.compile(route, data, function(error, $){
-		if(error){
-			return console.error(error);
-		}
-		console.log('title:', $('head>title').text());
-		console.log('description:', $('head>meta[name="description"]').attr('content'));
-		console.log('canonical:', $('head>link[rel="canonical"]').attr('href'));
-	});
 	if(request.xhr){
+		this.compile(route, data, function(error, $){
+			if(error)return console.error(error);
+			var $head = $('head');
+			var $body = $('body');
+			data.title = $head.find('>title').text() };
+			data.description = $head.find('>meta[name="description"]').attr('content');
+			data.canonical = $head.find('>link[rel="canonical"]').attr('href');
+			data.html = $body.find($body.data('ui-spa') || '[ui-view]').html();
+			response.writeHead(200, { 'Content-Type': 'application/json' });
+			response.write(JSON.stringify(data));
+			response.end();
+		});
 	}else response.render(route, data);
 };
 
@@ -30,15 +32,15 @@ View.prototype.compile = function(route, data, callback){
 };
 
 View.prototype.parse = function(callback){
+	var DOM = require('jsdom');
 	return function(error, markup){
 		if(error){
 			return callback && callback(error, null);
 		}
-		console.log('markuo:', markup);
-		DOM.env(markup, [], ambox.bind(function(errors, html){
-			this.$ = $(html);
-			callback(null, this.$);
-			html.close();
+		DOM.env(markup, [], ambox.bind(function(errors, window){
+			var $ = require('jquery');
+			callback(false, $(window));
+			window.close();
 		}, this));
 	};
 };
