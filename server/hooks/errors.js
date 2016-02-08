@@ -1,19 +1,19 @@
 /* global ambox */
-var chalk = require('chalk');
-var View = require('../files/View');
+var chalk = require('chalk')
+var View = require('../files/View')
 
 var ErrorsCtrl = function(model, defaults){
-	ambox.bindAll(this);
-	this.defaults = defaults;
-	this.model = model;
-};
+	ambox.bindAll(this)
+	this.defaults = defaults
+	this.model = model
+}
 
 ErrorsCtrl.prototype.notFound = function(request, response){
-	response.status(404).render('server/404', this.defaults);
-};
+	response.status(404).render('server/404', this.defaults)
+}
 
 ErrorsCtrl.prototype.badRequest = function(request, response){
-	response.status(500).render('server/500', this.defaults);
-};
+	response.status(500).render('server/500', this.defaults)
+}
 
-module.exports = ambox.uri('controllers.ErrorsCtrl', ErrorsCtrl);
+module.exports = ambox.uri('controllers.ErrorsCtrl', ErrorsCtrl)
