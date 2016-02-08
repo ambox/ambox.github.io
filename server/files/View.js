@@ -13,7 +13,6 @@ View.prototype.render = function(route, request, response, data){
 	// data = ambox.merge({}, request.app.locals, data);
 	data = ambox.merge({}, data);
 	if(request.xhr){
-		console.log('=================== XHR =======================');
 		this.renderTemplate(route, data, function(error, $){
 			if(error)return console.error(error);
 			var $head = $('head');
