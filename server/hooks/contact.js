@@ -11,7 +11,7 @@ var ContactCtrl = function(model, defaults){
 };
 
 ContactCtrl.prototype.index = function(request, response){
-	response.render('pages/contact', this.defaults);
+	View.render('pages/contact', request, response, this.defaults);
 };
 
 
@@ -20,7 +20,7 @@ ContactCtrl.prototype.index = function(request, response){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ContactCtrl.prototype.create = function(request, response){
-	response.render('pages/contact', this.defaults);
+	View.render('pages/contact', request, response, this.defaults);
 };
 
 module.exports = ambox.uri('controllers.ContactCtrl', ContactCtrl);

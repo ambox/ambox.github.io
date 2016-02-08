@@ -1,6 +1,4 @@
 /* global ambox */
-var $ = require('jquery');
-var dom = require('jsdom').env;
 var chalk = require('chalk');
 var View = require('../files/View');
 
@@ -11,19 +9,19 @@ var ArchivesCtrl = function(model, defaults){
 };
 
 ArchivesCtrl.prototype.index = function(request, response){
-	response.render('pages/archives', this.defaults);
+	View.render('pages/archives', request, response, this.defaults);
 };
 
 ArchivesCtrl.prototype.new = function(request, response){
-	response.render('partials/archives/new', this.defaults);
+	View.render('partials/archives/new', request, response, this.defaults);
 };
 
 ArchivesCtrl.prototype.edit = function(request, response){
-	response.render('partials/archives/edit', this.defaults);
+	View.render('partials/archives/edit', request, response, this.defaults);
 };
 
 ArchivesCtrl.prototype.show = function(request, response){
-	response.render('partials/archives/show', this.defaults);
+	View.render('partials/archives/show', request, response, this.defaults);
 };
 
 
@@ -44,8 +42,7 @@ ArchivesCtrl.prototype.create = function(request, response){
 ArchivesCtrl.prototype.findOne = function(request, response){
 	var uid = request.params.uid;
 	var format = request.params.format || 'json';
-	console.log('[ArchivesCtrl.findOne.format]:', format);
-	console.log('[ArchivesCtrl.findOne.uid]:', uid);
+	console.log('[ArchivesCtrl.findOne]<format:%s, uid:%s>:', format, uid);
 	// this.model.findOne(uid).then(View.renderResult(
 	// 	request, response
 	// )).catch(View.renderFault(
@@ -57,9 +54,7 @@ ArchivesCtrl.prototype.updateOne = function(request, response){
 	var data = request.body;
 	var uid = request.params.uid;
 	var format = request.params.format || 'json';
-	console.log('[ArchivesCtrl.updateOne.format]:', format);
-	console.log('[ArchivesCtrl.updateOne.data]:', data);
-	console.log('[ArchivesCtrl.updateOne.uid]:', uid);
+	console.log('[ArchivesCtrl.updateOne]<format:%s, data:%s, uid:%s>:', format, data, uid);
 	// this.model.updateOne(uid, data).then(View.renderResult(
 	// 	request, response
 	// )).catch(View.renderFault(
@@ -70,8 +65,7 @@ ArchivesCtrl.prototype.updateOne = function(request, response){
 ArchivesCtrl.prototype.deleteOne = function(request, response){
 	var uid = request.params.uid;
 	var format = request.params.format || 'json';
-	console.log('[ArchivesCtrl.deleteOne.format]:', format);
-	console.log('[ArchivesCtrl.deleteOne.uid]:', uid);
+	console.log('[ArchivesCtrl.deleteOne]<format:%s, uid:%s>:', format, uid);
 	// this.model.deleteOne(uid).then(View.renderResult(
 	// 	request, response
 	// )).catch(View.renderFault(
@@ -86,7 +80,7 @@ ArchivesCtrl.prototype.deleteOne = function(request, response){
 
 ArchivesCtrl.prototype.findAll = function(request, response){
 	var format = request.params.format || 'json';
-	console.log('[ArchivesCtrl.findAll.format]:', format);
+	View.render('pages/archives', request, response, this.defaults);
 	// this.model.findAll().then(View.renderResult(
 	// 	request, response
 	// )).catch(View.renderFault(
@@ -97,8 +91,7 @@ ArchivesCtrl.prototype.findAll = function(request, response){
 ArchivesCtrl.prototype.updateAll = function(request, response){
 	var data = request.body;
 	var format = request.params.format || 'json';
-	console.log('[ArchivesCtrl.updateAll.format]:', format);
-	console.log('[ArchivesCtrl.updateAll.data]:', data);
+	console.log('[ArchivesCtrl.updateAll]<format:%s, data:%s>:', format, data);
 	// this.model.updateAll(data).then(View.renderResult(
 	// 	request, response
 	// )).catch(View.renderFault(

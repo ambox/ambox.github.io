@@ -10,16 +10,18 @@ View.prototype.configure = function(options){
 };
 
 View.prototype.render = function(route, request, response, data){
-	data = ambox.merge({}, request.app.locals, data);
+	// data = ambox.merge({}, request.app.locals, data);
+	data = ambox.merge({}, data);
 	if(request.xhr){
-		this.compile(route, data, function(error, $){
+		console.log('=================== XHR =======================');
+		this.renderTemplate(route, data, function(error, $){
 			if(error)return console.error(error);
 			var $head = $('head');
 			var $body = $('body');
-			data.title = $head.find('>title').text() };
+			data.title = $head.find('>title').text();
 			data.description = $head.find('>meta[name="description"]').attr('content');
 			data.canonical = $head.find('>link[rel="canonical"]').attr('href');
-			data.html = $body.find($body.data('ui-spa') || '[ui-view]').html();
+			data.content = $($body.find($body.data('ui-spa'))[0] || $body.find('[ui-view]')[0]).html();
 			response.writeHead(200, { 'Content-Type': 'application/json' });
 			response.write(JSON.stringify(data));
 			response.end();
@@ -27,7 +29,7 @@ View.prototype.render = function(route, request, response, data){
 	}else response.render(route, data);
 };
 
-View.prototype.compile = function(route, data, callback){
+View.prototype.renderTemplate = function(route, data, callback){
 	nunjucks.render(route +'.html', data, this.parse(callback));
 };
 

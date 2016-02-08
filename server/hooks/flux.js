@@ -51,7 +51,7 @@ FluxCtrl.prototype.deleteOne = function(request, response){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 FluxCtrl.prototype.findAll = function(request, response){
-	console.log('[FluxCtrl.findAll]:', this.model);
+	console.log('[FluxCtrl.findAll]');
 	View.render('pages/flux', request, response, this.defaults);
 };
 
