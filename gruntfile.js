@@ -37,7 +37,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('express', 'Run express server.', function() {
 		// lsof -i :<port>
-		var open = require('open');
+		var open = require('open')
 		var spawn = require('child_process').spawn
 		grunt.log.writeln('Starting Ambox development server.')
 		// stdio: 'inherit' let us see flask output in grunt
