@@ -726,7 +726,7 @@ th {
 *:after,
 *::before {
   box-sizing: border-box;
-  tap-highlight-color: transparent;
+  tap-highlight-color: rgba(0, 0, 0, 0.3);
   outline-style: none; }
 
 html,
@@ -745,8 +745,60 @@ body {
   font-size: 1rem;
   line-height: 16px;
   line-height: 1rem;
-  font-family: 'Ubuntu','Ubuntu Beta',UbuntuBeta,Ubuntu,'Bitstream Vera Sans','DejaVu Sans',Tahoma,sans-serif; }
+  font-family: 'Ubuntu', 'Ubuntu Beta', UbuntuBeta, Ubuntu, 'Bitstream Vera Sans', 'DejaVu Sans', Tahoma, sans-serif; }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak,
 [is\:cloak], [is-cloak], [data-is-cloak], [x-is-cloak], .is-cloak, .x-is-cloak {
   display: none !important; }
+
+.MainMenu {
+  position: fixed;
+  top: 27px;
+  right: 18px; }
+
+.MainMenu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.MainMenu-item {
+  position: relative;
+  display: inline-block; }
+
+.MainMenu-link {
+  position: relative;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 11px;
+  line-height: 0.6875rem;
+  -webkit-transition: 0.5s color cubic-bezier(0.39, 0.575, 0.565, 1);
+          transition: 0.5s color cubic-bezier(0.39, 0.575, 0.565, 1);
+  text-decoration: none;
+  color: #737373;
+  padding: 0 6px 12px;
+  margin: 0 8px; }
+
+.MainMenu-link:before, .MainMenu-link:after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  -webkit-transition: 0.5s background-color, 0.5s opacity, 0.5s height;
+          transition: 0.5s background-color, 0.5s opacity, 0.5s height;
+  -webkit-transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+          transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  background-color: #c9c9c9;
+  content: ''; }
+
+.MainMenu-item:hover .MainMenu-link,
+.MainMenu-item.is-active .MainMenu-link {
+  color: #fff; }
+
+.MainMenu-item:hover .MainMenu-link:before, .MainMenu-item:hover .MainMenu-link:after,
+.MainMenu-item.is-active .MainMenu-link:before,
+.MainMenu-item.is-active .MainMenu-link:after {
+  background-color: rgba(255, 255, 255, 0.5); }
+
+.MainMenu-item.is-active .MainMenu-link:after {
+  height: 3px; }

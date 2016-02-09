@@ -13,14 +13,14 @@
 *:after,
 *::before {
 	box-sizing: border-box;
-	tap-highlight-color: rgba(0,0,0,0);
+	tap-highlight-color: rgba(0,0,0,0.3);
 	outline-style: none;
 }
 
 html,
 body {
 	@include size(100% 100%);
-	background-color: #eee;
+	background-color: $color-Gallery;
 	overflow: hidden;
 }
 
@@ -31,5 +31,6 @@ html {
 body {
 	@include font-size(16px);
 	@include line-height(16px);
-	font-family:'Ubuntu','Ubuntu Beta',UbuntuBeta,Ubuntu,'Bitstream Vera Sans','DejaVu Sans',Tahoma,sans-serif;
+	font-family: 'Ubuntu', 'Ubuntu Beta', UbuntuBeta, Ubuntu,
+	'Bitstream Vera Sans', 'DejaVu Sans', Tahoma, sans-serif;
 }

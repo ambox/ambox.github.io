@@ -3,3 +3,58 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Layout rules divide the page into sections.
 // Layouts hold one or more modules together.
+
+.MainMenu {
+	@include fixed(27px 18px none none);
+}
+.MainMenu-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.MainMenu-item {
+	@include relative;
+	display: inline-block;
+}
+.MainMenu-item~colorA {
+}
+.MainMenu-item~colorB {
+}
+.MainMenu-item~colorC {
+}
+.MainMenu-link {
+	@include relative;
+	@include font-size(15px);
+	@include line-height(11px);
+	transition: 0.5s color $easeOutSine;
+	text-decoration: none;
+	color: $color-DoveGray;
+	padding: 0 6px 12px;
+	margin: 0 8px;
+}
+.MainMenu-link:before {
+	@include absolute(none 0 0 0);
+	@include size(none 1px);
+	transition: 0.5s background-color, 0.5s opacity, 0.5s height;
+	transition-timing-function: $easeOutSine;
+	background-color: $color-Silver;
+	content: '';
+}
+.MainMenu-link:after {
+	@extend .MainMenu-link:before;
+}
+// states
+.MainMenu-item:hover,
+.MainMenu-item.is-active{
+	.MainMenu-link {
+		color: #fff;
+	}
+	.MainMenu-link:before {
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+}
+.MainMenu-item.is-active{
+	.MainMenu-link:after {
+		@include size(none 3px);
+	}
+}

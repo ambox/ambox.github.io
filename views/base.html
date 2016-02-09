@@ -11,14 +11,14 @@
 	<link rel="stylesheet" href="styles/skin.css">
 </head>
 <body ui-spa="[ui-view]">
-	<nav class="menu">
-		<ul class="list">
+	<nav class="MainMenu">
+		<ul class="MainMenu-list">
 		{% for state, name in menu %}
-			<li class="list__item"><a class="link" href="{{state}}" ui-sref>{{name}}</a></li>
+			<li class="MainMenu-item"><a class="MainMenu-link" href="{{state}}" ui-sref>{{name}}</a></li>
 		{% endfor %}
 		</ul>
 	</nav>
-	<section class="view">
+	<section class="View">
 		<div ui-view>{% block view %}{% endblock %}</div>
 	</section>
 	<script data-main="scripts/setup.js" src="scripts/vendors/require/require.js"></script>
