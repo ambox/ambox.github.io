@@ -42,7 +42,6 @@ Server.prototype.initLocalVars = function(){
 	this.app.locals.googleAnalyticsAppId = this.cfg.service.googleAnalytics.appId
 	this.app.locals.facebookAppId = this.cfg.service.facebook.appId
 	this.app.locals.server = this.cfg.url.server
-	this.app.locals.livereload = this.cfg.app.livereload;
 }
 
 Server.prototype.initMiddleware = function(){

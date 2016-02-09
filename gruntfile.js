@@ -39,14 +39,15 @@ module.exports = function (grunt) {
 		})
 	}
 
-	 grunt.registerTask('express', 'Run express server.', function() {
-        // lsof -i :<port>
-        var spawn = require('child_process').spawn
-        grunt.log.writeln('Starting Ambox development server.')
-        // stdio: 'inherit' let us see flask output in grunt
-        var PIPE = { stdio: 'inherit' }
-        spawn('node_modules/nodemon/bin/nodemon.js', ['-q', 'server'], PIPE)
-    })
+	grunt.loadNpmTasks('livereloadx')
+	grunt.registerTask('express', 'Run express server.', function() {
+		// lsof -i :<port>
+		var spawn = require('child_process').spawn
+		grunt.log.writeln('Starting Ambox development server.')
+		// stdio: 'inherit' let us see flask output in grunt
+		var PIPE = { stdio: 'inherit' }
+		spawn('node_modules/nodemon/bin/nodemon.js', ['-q', 'server'], PIPE)
+	})
 
 	execute(grunt.file.readJSON('package.json'))
 }
