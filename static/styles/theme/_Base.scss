@@ -1,5 +1,6 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Base rules
-// ==========
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Base is a base rules. Base rules are the defaults.
 // They are almost exclusively single element selectors but it
 // could include attribute selectors,
@@ -11,6 +12,7 @@
 *,
 *:after,
 *::before {
+	box-sizing: border-box;
 	tap-highlight-color: rgba(0,0,0,0);
 	outline-style: none;
 }
@@ -18,7 +20,7 @@
 html,
 body {
 	@include size(100% 100%);
-	background-color: #000;
+	background-color: #eee;
 	overflow: hidden;
 }
 
@@ -29,4 +31,5 @@ html {
 body {
 	@include font-size(16px);
 	@include line-height(16px);
+	font-family:'Ubuntu','Ubuntu Beta',UbuntuBeta,Ubuntu,'Bitstream Vera Sans','DejaVu Sans',Tahoma,sans-serif;
 }

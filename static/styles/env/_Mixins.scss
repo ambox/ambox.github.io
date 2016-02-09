@@ -83,17 +83,6 @@
 	@include position(relative, $args);
 }
 
-// @usage: @include font-face('Slug', "FilePath", "#SVGId", 700, normal);
-@mixin font-face($name, $file, $id-svg, $weight, $style) {
-	@font-face {
-		font-family: $name;
-		src: url($file + ".eot");
-		src: url($file + ".eot?#iefix") format("embedded-opentype"), url($file + ".woff") format("woff"), url($file + ".ttf") format("truetype"), url($file + ".svg" + $id-svg) format("svg");
-		font-weight: $weight;
-		font-style: $style;
-	}
-}
-
 // @usage: @include size(none 59px);
 @mixin size($point: null) {
 	@if length($point) == 1 {

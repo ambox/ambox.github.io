@@ -2,7 +2,7 @@
 var assert = require('assert')
 
 var ArchivesModel = function(){
-	this.archives = ambox.database.collection('archives')
+	// this.archives = ambox.database.collection('archives')
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
