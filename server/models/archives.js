@@ -14,7 +14,7 @@ ArchivesModel.prototype.create = function(data, callback){
 }
 
 ArchivesModel.prototype.findOne = function(uid, callback){
-	// return this.archives.findOne({ _id:mongo.ObjectId(uid) }, callback)
+	// return this.archives.findOne({ _id:ObjectId(uid) }, callback)
 }
 
 ArchivesModel.prototype.updateOne = function(uid, data, callback){
