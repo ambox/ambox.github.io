@@ -22,7 +22,7 @@ module.exports = function () {
 			},
 			files: {
 				'<%= scaffold.static %>/styles/skin.css': [
-					'<%= scaffold.static %>/styles/skin.{scss,sass}'
+					'<%= scaffold.static %>/styles/skin.scss'
 				]
 			}
 		}

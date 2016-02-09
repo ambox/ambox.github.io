@@ -11,7 +11,7 @@ module.exports = function () {
 			spawn: false
 		},
 		styles: {
-			files: ['<%= scaffold.static %>/styles/**/*.{scss,sass}'],
+			files: ['<%= scaffold.static %>/styles/**/*.scss'],
 			tasks: ['styles']
 		}
 	}

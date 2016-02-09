@@ -12,10 +12,6 @@ module.exports = function (grunt) {
 	// @see https://www.npmjs.com/package/load-grunt-tasks
 	require('load-grunt-tasks')(grunt)
 
-	// Display the elapsed execution time of grunt tasks
-	// @see https://www.npmjs.com/package/time-grunt
-	require('time-grunt')(grunt)
-
 	var readOptionalJSON = function(filepath) {
 		var data = {}
 		try {
@@ -39,14 +35,15 @@ module.exports = function (grunt) {
 		})
 	}
 
-	grunt.loadNpmTasks('livereloadx')
 	grunt.registerTask('express', 'Run express server.', function() {
 		// lsof -i :<port>
+		var open = require('open');
 		var spawn = require('child_process').spawn
 		grunt.log.writeln('Starting Ambox development server.')
 		// stdio: 'inherit' let us see flask output in grunt
 		var PIPE = { stdio: 'inherit' }
 		spawn('node_modules/nodemon/bin/nodemon.js', ['-q', 'server'], PIPE)
+		setTimeout(open, 1000, 'http://0.0.0.0:3000')
 	})
 
 	execute(grunt.file.readJSON('package.json'))

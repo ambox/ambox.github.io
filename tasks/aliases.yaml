@@ -2,7 +2,6 @@ default:
   - 'static'
 
 server:
-  # - 'livereloadx'
   - 'static'
   - 'express'
   - 'watch'

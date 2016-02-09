@@ -10,7 +10,7 @@
 	<link rel="canonical" href="{{canonical}}" />
 	<link rel="stylesheet" href="styles/skin.css">
 </head>
-<body ui-spa=".view [ui-view]">
+<body ui-spa="[ui-view]">
 	<nav class="menu">
 		<ul class="list">
 		{% for state, name in menu %}
@@ -22,6 +22,5 @@
 		<div ui-view>{% block view %}{% endblock %}</div>
 	</section>
 	<script data-main="scripts/setup.js" src="scripts/vendors/require/require.js"></script>
-	<script src="//localhost:35729/livereload.js?snipver=2"></script>
 </body>
 </html>
