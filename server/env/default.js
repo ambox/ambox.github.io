@@ -6,6 +6,7 @@ ambox.uri('env.app.description', 'git-push powered folio')
 ambox.uri('env.app.keywords', 'ambox,node,heroku,express')
 ambox.uri('env.app.favicon', 'favicon.ico')
 ambox.uri('env.app.logo', 'images/share.jpg')
+ambox.uri('env.app.livereload', ambox.env.role === 'localhost')
 
 ambox.uri('env.url.protocol', ambox.env.role === 'secure'? 'https' : 'http')
 ambox.uri('env.url.port', environ.get('PORT', 3000))
