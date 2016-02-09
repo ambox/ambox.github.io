@@ -1,0 +1,32 @@
+// Base rules
+// ==========
+// Base is a base rules. Base rules are the defaults.
+// They are almost exclusively single element selectors but it
+// could include attribute selectors,
+// pseudo-class selectors, child selectors or sibling selectors.
+// Essentially, a base style says that wherever this element is
+// on the page, it should look like this.
+@include normalize;
+
+*,
+*:after,
+*::before {
+	tap-highlight-color: rgba(0,0,0,0);
+	outline-style: none;
+}
+
+html,
+body {
+	@include size(100% 100%);
+	background-color: black;
+	overflow: hidden;
+}
+
+html {
+	touch-action: none;
+}
+
+body {
+	@include font-size(16px);
+	@include line-height(16px);
+}

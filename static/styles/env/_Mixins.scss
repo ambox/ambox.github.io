@@ -1,0 +1,206 @@
+// @usage: @include position(absolute, 13px 51px auto auto);
+@mixin position($shorthand, $offsets: null) {
+	@if $shorthand != null {
+		@if $shorthand == "static" {
+			position: static;
+		}
+		@else if $shorthand == "relative" {
+			position: relative;
+		}
+		@else if $shorthand == "absolute" {
+			position: absolute;
+		}
+		@else if $shorthand == "fixed" {
+			position: fixed;
+		}
+		@else {
+			@debug "position only accepts 'static, relative, absolute, fixed' as shorthands";
+		}
+	}
+	@if length($offsets) == 1 {
+		$positionProperty: top, right, bottom, left;
+		@if $offsets != none {
+			@each $property in $positionProperty {
+				#{$property}: $offsets;
+			}
+		}
+	}
+	@else if length($offsets) == 2 {
+		@if nth($offsets, 1) != none {
+			top: nth($offsets, 1);
+			bottom: nth($offsets, 1);
+		}
+		@if nth($offsets, 2) != none {
+			right: nth($offsets, 2);
+			left: nth($offsets, 2);
+		}
+	}
+	@else if length($offsets) == 3 {
+		@if nth($offsets, 1) != none {
+			top: nth($offsets, 1);
+		}
+		@if nth($offsets, 2) != none {
+			right: nth($offsets, 2);
+			left: nth($offsets, 2);
+		}
+		@if nth($offsets, 3) != none {
+			bottom: nth($offsets, 3);
+		}
+	}
+	@else if length($offsets) == 4 {
+		@if nth($offsets, 1) != none {
+			top: nth($offsets, 1);
+		}
+		@if nth($offsets, 2) != none {
+			right: nth($offsets, 2);
+		}
+		@if nth($offsets, 3) != none {
+			bottom: nth($offsets, 3);
+		}
+		@if nth($offsets, 4) != none {
+			left: nth($offsets, 4);
+		}
+	}
+}
+
+// @usage: @include static(13px 51px auto auto);
+@mixin static($args: none) {
+	@include position(static, $args);
+}
+
+// @usage: @include absolute(13px 51px auto auto);
+@mixin absolute($args: none) {
+	@include position(absolute, $args);
+}
+
+// @usage: @include fixed(13px 51px auto auto);
+@mixin fixed($args: none) {
+	@include position(fixed, $args);
+}
+
+// @usage: @include relative(13px 51px auto auto);
+@mixin relative($args: none) {
+	@include position(relative, $args);
+}
+
+// @usage: @include font-face('Slug', "FilePath", "#SVGId", 700, normal);
+@mixin font-face($name, $file, $id-svg, $weight, $style) {
+	@font-face {
+		font-family: $name;
+		src: url($file + ".eot");
+		src: url($file + ".eot?#iefix") format("embedded-opentype"), url($file + ".woff") format("woff"), url($file + ".ttf") format("truetype"), url($file + ".svg" + $id-svg) format("svg");
+		font-weight: $weight;
+		font-style: $style;
+	}
+}
+
+// @usage: @include size(none 59px);
+@mixin size($point: null) {
+	@if length($point) == 1 {
+		@if nth($point, 1) != none {
+			width: nth($point, 1);
+		}
+	}
+	@else if length($point) == 2 {
+		@if nth($point, 1) != none {
+			width: nth($point, 1);
+		}
+		@if nth($point, 2) != none {
+			height: nth($point, 2);
+		}
+	}
+}
+
+// @usage: @include min-size(170px);
+@mixin min-size($point: null) {
+	@if length($point) == 1 {
+		@if nth($point, 1) != none {
+			min-width: nth($point, 1);
+		}
+	}
+	@else if length($point) == 2 {
+		@if nth($point, 1) != none {
+			min-width: nth($point, 1);
+		}
+		@if nth($point, 2) != none {
+			min-height: nth($point, 2);
+		}
+	}
+}
+
+// @usage: @include max-size(170px 59px);
+@mixin max-size($point: null) {
+	@if length($point) == 1 {
+		@if nth($point, 1) != none {
+			max-width: nth($point, 1);
+		}
+	}
+	@else if length($point) == 2 {
+		@if nth($point, 1) != none {
+			max-width: nth($point, 1);
+		}
+		@if nth($point, 2) != none {
+			max-height: nth($point, 2);
+		}
+	}
+}
+
+// @usage: font-size: calculateRem(pixels);
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+// @usage: @include font-size(14px)
+@mixin font-size($size: 12px) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+// @usage: @include line-height(14px)
+@mixin line-height($size: 12px) {
+	line-height: $size;
+	line-height: calculateRem($size);
+}
+
+// @usage: @include flipH;
+@mixin flipH {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+
+// @usage: @include flipV;
+@mixin flipV {
+	-moz-transform: scaleY(-1);
+	-o-transform: scaleY(-1);
+	-webkit-transform: scaleY(-1);
+	transform: scaleY(-1);
+	filter: FlipV;
+	-ms-filter: "FlipV";
+}
+
+// @usage: @include zoom(0.5);
+@mixin zoom($value: 1) {
+	$zoom: $value * 100;
+	-ms-zoom: $value;
+	-ms-transform-origin: 0 0;
+	-moz-transform: scale($value);
+	-moz-transform-origin: 0px #{$zoom}px;
+	-o-transform: scale($value);
+	-o-transform-origin: 0px #{$zoom}px;
+	-webkit-transform: scale($value);
+	-webkit-transform-origin: 0 0;
+}
+
+// @usage: @include opacity(0.8);
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=#{$opacity-ie});
+	filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity-ie})";
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity-ie})";
+}

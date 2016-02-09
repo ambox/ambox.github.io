@@ -1,0 +1,15 @@
+default:
+  - 'static'
+
+server:
+  - 'static'
+  - 'express'
+  - 'watch'
+
+static:
+  - 'clean:tmp'
+  - 'styles'
+
+styles:
+  - 'compass'
+  - 'autoprefixer'

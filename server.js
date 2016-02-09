@@ -9,5 +9,4 @@ database.connect(config.database.uri, function(error, database){
 	ambox.uri('database', database)
 	server.init(require('./server/urls'))
 	server.start()
-	// database.close()
 })
