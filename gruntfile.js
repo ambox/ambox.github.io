@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 		var open = require('open')
 		var spawn = require('child_process').spawn
 		grunt.log.writeln('Starting Ambox development server.')
-		// stdio: 'inherit' let us see flask output in grunt
+		// stdio: 'inherit' let us see express output in grunt
 		var PIPE = { stdio: 'inherit' }
 		spawn('node_modules/nodemon/bin/nodemon.js', ['-q', 'server'], PIPE)
 		setTimeout(open, 1000, 'http://0.0.0.0:3000')
