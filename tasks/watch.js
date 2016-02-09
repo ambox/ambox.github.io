@@ -5,7 +5,7 @@ module.exports = function () {
 	// @see https://github.com/gruntjs/grunt-contrib-watch
 	return {
 		options: {
-			livereload: false, // LiveReloadX take care of it
+			livereload: true,
 			debounceDelay: 250,
 			interrupt: false,
 			spawn: false
