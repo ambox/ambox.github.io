@@ -26,7 +26,8 @@
     "nodemailer-smtp-transport": "^2.0.1",
     "nunjucks": "^2.3.0",
     "serve-favicon": "^2.3.0",
-    "socket.io": "^1.4.4"
+    "socket.io": "^1.4.4",
+    "nodemon": "^1.8.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -34,12 +35,10 @@
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-compass": "^1.0.4",
     "grunt-contrib-watch": "^0.6.1",
-    "livereloadx": "^0.3.9",
+    "grunt-open": "^0.2.3",
     "load-grunt-config": "^0.19.1",
     "load-grunt-tasks": "^3.4.0",
-    "nodemon": "^1.8.1",
-    "strip-json-comments": "^2.0.0",
-    "time-grunt": "^1.3.0"
+    "strip-json-comments": "^2.0.0"
   },
   "engines": {
     "node": "0.12.7"
@@ -57,9 +56,6 @@
   ],
   "scaffold": {
     "vendors": "node_modules",
-    "modules": [
-      "desktop"
-    ],
     "server": "server",
     "static": "static",
     "tmp": ".ambox-cache"
