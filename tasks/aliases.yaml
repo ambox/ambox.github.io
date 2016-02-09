@@ -11,5 +11,5 @@ static:
   - 'styles'
 
 styles:
-  - 'compass'
+  - 'sass'
   - 'autoprefixer'
