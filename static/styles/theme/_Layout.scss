@@ -4,23 +4,39 @@
 // Layout rules divide the page into sections.
 // Layouts hold one or more modules together.
 
+.MainHeader {
+	@include fixed(27px none none 18px);
+}
+
+.MainHeader-title {
+	@include font-size(17px);
+	@include line-height(13px);
+	font-weight: normal;
+}
+.MainHeader-titleLink {
+	text-decoration: none;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .MainMenu {
 	@include fixed(27px 18px none none);
 }
 .MainMenu-list {
-	list-style: none;
+	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
 .MainMenu-item {
 	@include relative;
+	@include size(none 30px);
 	display: inline-block;
 }
-.MainMenu-item~colorA {
+.MainMenu-item--colorA {
 }
-.MainMenu-item~colorB {
+.MainMenu-item--colorB {
 }
-.MainMenu-item~colorC {
+.MainMenu-item--colorC {
 }
 .MainMenu-link {
 	@include relative;
@@ -47,14 +63,46 @@
 .MainMenu-item:hover,
 .MainMenu-item.is-active{
 	.MainMenu-link {
-		color: #fff;
+		color: $color-CodGray;
 	}
 	.MainMenu-link:before {
-		background-color: rgba(255, 255, 255, 0.5);
+		background-color: $color-CodGray;
 	}
 }
 .MainMenu-item.is-active{
 	.MainMenu-link:after {
 		@include size(none 3px);
+	}
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.MainView {
+	padding: 80px 17px 0 17px;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.MainFooter {
+}
+.MainFooter-signature {
+	@include fixed(none 20px 17px none);
+	@include size(34px 30px);
+	padding: 0;
+}
+
+@media (max-width: 768px) {
+	.MainHeader {
+		display: none;
+	}
+	.MainMenu {
+		@include fixed(0 0 none 0);
+		margin: 0 0 60px;
+		padding: 15px 0;
+		text-align: center;
+		background: white;
+	}
+	.MainView {
+		padding: 60px 10px 0 10px;
 	}
 }

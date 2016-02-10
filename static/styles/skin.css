@@ -733,7 +733,8 @@ html,
 body {
   width: 100%;
   height: 100%;
-  background-color: #eee;
+  background-color: #fbfbfb;
+  color: #111;
   overflow: hidden; }
 
 html {
@@ -747,9 +748,43 @@ body {
   line-height: 1rem;
   font-family: 'Ubuntu', 'Ubuntu Beta', UbuntuBeta, Ubuntu, 'Bitstream Vera Sans', 'DejaVu Sans', Tahoma, sans-serif; }
 
+a {
+  -webkit-transition: 0.5s color cubic-bezier(0.39, 0.575, 0.565, 1);
+          transition: 0.5s color cubic-bezier(0.39, 0.575, 0.565, 1);
+  color: #737373; }
+
+a:hover,
+a:active {
+  color: #111; }
+
+.Icon {
+  display: inline-block;
+  text-indent: -999em; }
+
+.Icon--ambox {
+  width: 100%;
+  height: 100%;
+  background: url("../images/logo.svg") no-repeat center center;
+  background-size: contain; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak,
 [is\:cloak], [is-cloak], [data-is-cloak], [x-is-cloak], .is-cloak, .x-is-cloak {
   display: none !important; }
+
+.MainHeader {
+  position: fixed;
+  top: 27px;
+  left: 18px; }
+
+.MainHeader-title {
+  font-size: 17px;
+  font-size: 1.0625rem;
+  line-height: 13px;
+  line-height: 0.8125rem;
+  font-weight: normal; }
+
+.MainHeader-titleLink {
+  text-decoration: none; }
 
 .MainMenu {
   position: fixed;
@@ -757,12 +792,13 @@ body {
   right: 18px; }
 
 .MainMenu-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0; }
 
 .MainMenu-item {
   position: relative;
+  height: 30px;
   display: inline-block; }
 
 .MainMenu-link {
@@ -793,12 +829,38 @@ body {
 
 .MainMenu-item:hover .MainMenu-link,
 .MainMenu-item.is-active .MainMenu-link {
-  color: #fff; }
+  color: #111; }
 
 .MainMenu-item:hover .MainMenu-link:before, .MainMenu-item:hover .MainMenu-link:after,
 .MainMenu-item.is-active .MainMenu-link:before,
 .MainMenu-item.is-active .MainMenu-link:after {
-  background-color: rgba(255, 255, 255, 0.5); }
+  background-color: #111; }
 
 .MainMenu-item.is-active .MainMenu-link:after {
   height: 3px; }
+
+.MainView {
+  padding: 80px 17px 0 17px; }
+
+.MainFooter-signature {
+  position: fixed;
+  right: 20px;
+  bottom: 17px;
+  width: 34px;
+  height: 30px;
+  padding: 0; }
+
+@media (max-width: 768px) {
+  .MainHeader {
+    display: none; }
+  .MainMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 0 60px;
+    padding: 15px 0;
+    text-align: center;
+    background: white; }
+  .MainView {
+    padding: 60px 10px 0 10px; } }

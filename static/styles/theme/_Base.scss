@@ -20,7 +20,8 @@
 html,
 body {
 	@include size(100% 100%);
-	background-color: $color-Gallery;
+	background-color: $color-Alabaster;
+	color: $color-CodGray;
 	overflow: hidden;
 }
 
@@ -33,4 +34,13 @@ body {
 	@include line-height(16px);
 	font-family: 'Ubuntu', 'Ubuntu Beta', UbuntuBeta, Ubuntu,
 	'Bitstream Vera Sans', 'DejaVu Sans', Tahoma, sans-serif;
+}
+
+a {
+	transition: 0.5s color $easeOutSine;
+	color: $color-DoveGray;
+}
+a:hover,
+a:active {
+	color: $color-CodGray;
 }

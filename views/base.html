@@ -11,6 +11,12 @@
 	<link rel="stylesheet" href="styles/skin.css">
 </head>
 <body ui-spa="[ui-view]">
+	<header class="MainHeader">
+		<h1 class="MainHeader-title">
+			<a class="MainHeader-titleLink" href="/" ui-sref>Adrian Miranda.</a>
+		</h1>
+	</header>
+
 	<nav class="MainMenu">
 		<ul class="MainMenu-list">
 		{% for state, name in menu %}
@@ -18,9 +24,17 @@
 		{% endfor %}
 		</ul>
 	</nav>
-	<section class="View">
+
+	<section class="MainView">
 		<div ui-view>{% block view %}{% endblock %}</div>
 	</section>
+
+	<footer class="MainFooter">
+		<a class="MainFooter-signature" rel="nofollow" href="https://github.com/ambox" target="_blank">
+			<i class="Icon Icon--ambox"></i>
+		</a>
+	</footer>
+
 	<script data-main="scripts/setup.js" src="scripts/vendors/require/require.js"></script>
 </body>
 </html>

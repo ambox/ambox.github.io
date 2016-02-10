@@ -4,3 +4,13 @@
 // Modules are the reusable, modular parts of our design.
 // They are the callouts, the sidebar sections, the product
 // lists and so on.
+
+.Icon {
+	display: inline-block;
+	text-indent: -999em;
+}
+.Icon--ambox {
+	@include size(100% 100%);
+	background: url($img-logo) no-repeat center center;
+	background-size: contain;
+}
