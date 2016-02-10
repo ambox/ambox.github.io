@@ -106,3 +106,33 @@
 		padding: 60px 10px 0 10px;
 	}
 }
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.News {
+	@include size(15px 80%);
+	display: table;
+}
+.News-list {
+	@include relative;
+	display: table-cell;
+	vertical-align: middle;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.News-item {
+	@include relative;
+	@include size(15px);
+}
+.News-link {
+	@include size(100% 14px);
+	text-indent: -999em;
+	display: inline-block;
+	overflow: hidden;
+}
+.News-link:before {
+	@include absolute(0 none none 0);
+	@include size(100% 1px);
+	background: #121c25;
+	content: '';
+}

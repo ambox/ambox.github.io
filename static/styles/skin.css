@@ -758,6 +758,7 @@ a:active {
   color: #111; }
 
 .Icon {
+  overflow: hidden;
   display: inline-block;
   text-indent: -999em; }
 
@@ -864,3 +865,36 @@ a:active {
     background-color: #fbfbfb; }
   .MainView {
     padding: 60px 10px 0 10px; } }
+
+.News {
+  width: 15px;
+  height: 80%;
+  display: table; }
+
+.News-list {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+.News-item {
+  position: relative;
+  width: 15px; }
+
+.News-link {
+  width: 100%;
+  height: 14px;
+  text-indent: -999em;
+  display: inline-block;
+  overflow: hidden; }
+
+.News-link:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #121c25;
+  content: ''; }
