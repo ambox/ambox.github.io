@@ -13,3 +13,6 @@ static:
 styles:
   - 'sass'
   - 'autoprefixer'
+
+build:
+  - 'requirejs'

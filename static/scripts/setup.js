@@ -6,6 +6,7 @@ require.config({
 		'pixi':'vendors/pixi',
 		'jquery':'vendors/jquery/jquery',
 		'jquery.gsap':'vendors/gsap/jquery.gsap',
+		'requirejs':'vendors/require/require',
 		'gsap.EasePack':'vendors/gsap/easing/EasePack',
 		'gsap.CSSPlugin':'vendors/gsap/plugins/CSSPlugin',
 		'gsap.BezierPlugin':'vendors/gsap/plugins/BezierPlugin',
