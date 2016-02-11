@@ -1,18 +1,12 @@
 default:
-  - 'static'
+  - 'styles'
+  - 'requirejs'
 
 server:
-  - 'static'
+  - 'styles'
   - 'express'
   - 'watch'
-
-static:
-  - 'clean:tmp'
-  - 'styles'
 
 styles:
   - 'sass'
   - 'autoprefixer'
-
-build:
-  - 'requirejs'
