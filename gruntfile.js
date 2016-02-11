@@ -15,10 +15,14 @@ module.exports = function (grunt) {
 	var readOptionalJSON = function(filepath) {
 		var data = {}
 		try {
+			// Strip comments from JSON. Lets you use comments in your JSON files!
+			// @see https://github.com/sindresorhus/strip-json-comments
 			data = JSON.parse(require('strip-json-comments')(
 				require('fs').readFileSync(filepath, { encoding: 'utf8' })
 			))
-		} catch(e){}
+		} catch(error) {
+			console.log('[readOptionalJSON Error: %s\n]', error.stack)
+		}
 		return data
 	}
 
