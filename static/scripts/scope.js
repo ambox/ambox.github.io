@@ -6,16 +6,25 @@ define(function(){
 		};
 	};
 
+	var hasOwnProp = browse(Object.prototype.hasOwnProperty);
+	var toString = browse(Object.prototype.toString);
 	var slice = browse(Array.prototype.slice);
 
 	var keys = function(object, getEnum){
 		var properties = [];
 		for(var key in object){
-			if(getEnum || object.hasOwnProperty(key)){
+			if(getEnum || hasOwnProp(object, key)){
 				properties.push(key);
 			}
 		}
 		return properties;
+	};
+
+	var flatten = function(list){
+		if(!Array.isArray(list))return [];
+		return list.reduce(function(a, b){
+			return a.concat(b);
+		}, []);
 	};
 
 	var ls = function(path){
@@ -117,8 +126,11 @@ define(function(){
 
 	var stub = function(target, namespace){
 		target = target[namespace] = target[namespace] || {};
+		target.hasOwnProp = hasOwnProp;
 		target.namespace = namespace;
 		target.unbindAll = unbindAll;
+		target.toString = toString;
+		target.flatten = flatten;
 		target.bindAll = bindAll;
 		target.unbind = unbind;
 		target.browse = browse;

@@ -1,5 +1,5 @@
 define(['scope'], function(scope){
-	
+
 	var el = document.createElement('a');
 
 	function URL(value){
@@ -29,6 +29,18 @@ define(['scope'], function(scope){
 			value = el.href;
 		}
 		return value;
+	};
+
+	URL.pathRegexp = function(path, opts){
+		path = new URL(path).pathname;
+		opts = scope.merge({}, opts);
+		var flags = opts.sensitive ? '' : 'i';
+		path = path.replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&');
+		path = path.replace(/\((.*?)\)/g, '(?:$1)?');
+		path = path.replace(/(\(\?)?:\w+/g, function(match, optional){
+			return optional? match : '([^/?]+)';
+		}).replace(/\*\w+/g, '([^?]*?)');
+		return new RegExp('^'+ path +'(?:\\?([\\s\\S]*))?$', flags);
 	};
 
 	return scope.uri('folder.browser.URL', URL);
