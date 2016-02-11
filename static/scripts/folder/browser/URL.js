@@ -31,16 +31,15 @@ define(['scope'], function(scope){
 		return value;
 	};
 
-	URL.pathRegexp = function(path, opts){
+	URL.pathRegExp = function(path, sensitive){
 		path = new URL(path).pathname;
-		opts = scope.merge({}, opts);
-		var flags = opts.sensitive ? '' : 'i';
+		sensitive = sensitive? '' : 'i';
 		path = path.replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&');
 		path = path.replace(/\((.*?)\)/g, '(?:$1)?');
 		path = path.replace(/(\(\?)?:\w+/g, function(match, optional){
 			return optional? match : '([^/?]+)';
 		}).replace(/\*\w+/g, '([^?]*?)');
-		return new RegExp('^'+ path +'(?:\\?([\\s\\S]*))?$', flags);
+		return new RegExp('^'+ path +'(?:\\?([\\s\\S]*))?$', sensitive);
 	};
 
 	return scope.uri('folder.browser.URL', URL);
