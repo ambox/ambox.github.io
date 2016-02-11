@@ -1,20 +1,43 @@
-define(['scope', 'folder/browser/History'], function(scope, History){
+define(['scope', 'folder/browser/Router'], function(scope, Router){
 
-	function urls(target){
-		this.links = target;
-	}
+	var app = Router('[ui-sref]');
 
-	urls.prototype['/'] = function(){};
-	urls.prototype['/flux'] = function(){};
-	urls.prototype['/flux/new'] = function(){};
-	urls.prototype['/flux/:uid'] = function(uid){};
-	urls.prototype['/flux/:uid/edit'] = function(uid){};
-	urls.prototype['/archives/new'] = function(){}
-	urls.prototype['/archives/:uid'] = function(uid){};
-	urls.prototype['/archives/:uid/edit'] = function(uid){};
-	urls.prototype['/contact'] = function(){};
-	urls.prototype['/404'] = function(){};
+	app.use(function(req, res, next){
+		console.log('middleware\n\t- req:%s\n\t- res:%s', req, res);
+		res.teste = 'aeaea';
+		next();
+	});
 
-	var history = new History(new urls('[ui-sref]'));
-	return scope.uri('urls', history);
+	app.route('/').get(function(req, res, next){
+		console.log('res:', res.teste);
+	});
+
+	app.route('/flux').get(function flux(req, res, next){
+	});
+
+	app.route('/flux/new').get(function(req, res, next){
+	});
+
+	app.route('/flux/:uid').get(function(req, res, next){
+	});
+
+	app.route('/flux/:uid/edit').get(function(req, res, next){
+	});
+
+	app.route('/archives/new').get(function(req, res, next){
+	});
+
+	app.route('/archives/:uid').get(function(req, res, next){
+	});
+
+	app.route('/archives/:uid/edit').get(function(req, res, next){
+	});
+
+	app.route('/contact').get(function(req, res, next){
+	});
+
+	app.route('*').get(function(req, res, next){
+	});
+
+	return scope.uri('app', app);
 });

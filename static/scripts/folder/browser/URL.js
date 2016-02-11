@@ -9,7 +9,7 @@ define(['scope'], function(scope){
 		this.pathname = (el.pathname.charAt(0) === '/')? el.pathname:'/'+ el.pathname;
 		this.protocol = el.protocol? el.protocol.replace(/\:$/, '') : '';
 		this.search = el.search? el.search.replace(/^\?/, '') : '';
-		this.hash = el.hash? el.hash.replace(/^\#/, '') : '';
+		this.hash = el.hash? el.hash.replace(/^\#\!?/, '') : '';
 		this.port = window.parseInt(el.port) || defaultPorts[this.protocol] || null;
 		this.password = el.password;
 		this.username = el.username;
