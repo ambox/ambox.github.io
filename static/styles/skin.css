@@ -546,7 +546,7 @@
 
 *,
 *:after,
-*::before {
+*:before {
   box-sizing: border-box;
   tap-highlight-color: rgba(0, 0, 0, 0.3);
   outline-style: none; }
