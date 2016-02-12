@@ -10,7 +10,7 @@ define(['scope', 'jquery', './UI'], function(scope, $, UI){
 
 	Archives.index = function(ctx){
 		console.log('Archives.index');
-		$('body [ui-view]').html(ctx.template.content);
+		$(ctx.template.selector).html(ctx.template.content);
 	};
 
 	Archives.new = function(){

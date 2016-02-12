@@ -19,9 +19,10 @@ View.prototype.render = function(route, request, response, params){
 			var $head = $html.find('>head')
 			var $body = $html.find('>body')
 			data.title = $head.find('>title').text()
+			data.selector = $body.data('ui-spa') || '[ui-view]'
 			data.description = $head.find('>meta[name="description"]').attr('content')
 			data.canonical = $head.find('>link[rel="canonical"]').attr('href')
-			data.content = $($body.find($body.data('ui-spa'))[0] || $body.find('[ui-view]')[0]).html()
+			data.content = $body.find(data.selector).html() || ''
 			response.writeHead(200, { 'Content-Type': 'application/json' })
 			response.write(JSON.stringify(data))
 			response.end()
