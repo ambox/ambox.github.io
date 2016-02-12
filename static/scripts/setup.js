@@ -4,6 +4,7 @@ require.config({
 	deps:['boot'],
 	paths:{
 		'pixi':'vendors/pixi',
+		'page': 'vendors/page',
 		'jquery':'vendors/jquery/jquery',
 		'jquery.gsap':'vendors/gsap/jquery.gsap',
 		'requirejs':'vendors/require/require',
