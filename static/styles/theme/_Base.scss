@@ -32,8 +32,8 @@ html {
 }
 
 body {
-	@include font-size(16px);
-	@include line-height(16px);
+	@include font-size;
+	@include line-height;
 	font-family: 'Ubuntu', 'Ubuntu Beta', UbuntuBeta, Ubuntu,
 	'Bitstream Vera Sans', 'DejaVu Sans', Tahoma, sans-serif;
 	margin: 0;

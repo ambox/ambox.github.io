@@ -141,13 +141,13 @@
 }
 
 // @usage: @include font-size(14px)
-@mixin font-size($size: 12px) {
+@mixin font-size($size: 16px) {
 	font-size: $size;
 	font-size: calculateRem($size);
 }
 
 // @usage: @include line-height(14px)
-@mixin line-height($size: 12px) {
+@mixin line-height($size: 16px) {
 	line-height: $size;
 	line-height: calculateRem($size);
 }
@@ -178,9 +178,9 @@
 	-ms-zoom: $value;
 	-ms-transform-origin: 0 0;
 	-moz-transform: scale($value);
-	-moz-transform-origin: 0px #{$zoom}px;
+	-moz-transform-origin: 0 #{$zoom}px;
 	-o-transform: scale($value);
-	-o-transform-origin: 0px #{$zoom}px;
+	-o-transform-origin: 0 #{$zoom}px;
 	-webkit-transform: scale($value);
 	-webkit-transform-origin: 0 0;
 }
