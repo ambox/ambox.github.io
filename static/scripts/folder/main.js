@@ -1,19 +1,19 @@
-define(['scope', 'jquery', 'folder/urls'], function(scope, $){
+define(['scope', 'jquery', './urls'], function(scope, $){
 
 	function Folder(){
 		scope.bindAll(this);
 	}
 
 	Folder.prototype.startup = function(){
-		this.app = new scope.Router();
+		this.app = new scope.folder.Router();
 		$('body').on('click', '[ui-sref]', this.onClickSRef);
-		this.app.request('/');
+		this.app.start();
 	};
 
 	Folder.prototype.onClickSRef = function(evt){
 		var $target = $(evt.currentTarget);
-		var url = $target.attr('ui-sref');
-		scope.app.request(url);
+		var uri = $target.attr('ui-sref');
+		this.app.request(uri);
 		evt.preventDefault();
 	};
 
